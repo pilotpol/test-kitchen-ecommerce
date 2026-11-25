@@ -1,0 +1,1524 @@
+{
+  "items": [
+    {
+      "id": "BL-01",
+      "title": "หน้าแรกคิวคำขอพร้อมเมนูและข้อมูลตัวอย่าง",
+      "priority": "critical",
+      "summary": "รันแอปแล้วเปิดหน้าเว็บได้ มีหน้าแรก (S1) เมนูด้านข้าง 9 รายการ และข้อมูลตัวอย่างพอให้เห็นภาพ โดยสร้างตารางทั้งหมดใน Migrate และโหลดข้อมูลตัวอย่างเมื่อ SEED_DEMO_DATA=true",
+      "acceptance": [
+        "เปิด browser ที่หน้าแรกแล้วเห็นคิวคำขอตัวอย่างอย่างน้อย 5 แถว การ์ดสรุป 3 ใบ และเมนูครบ 9 รายการ",
+        "คลิกเมนูแต่ละรายการแล้วไปหน้าของเมนูนั้นได้ (หน้าที่ยังไม่ทำแสดงสถานะ empty ภาษาไทย)",
+        "รัน Migrate 2 รอบไม่ผิดพลาด และไม่ตั้ง SEED_DEMO_DATA แล้วไม่มีแถวทดสอบ (AC-36)",
+        "ไม่มีข้อความ em-dash และไม่มีข้อความ (เจ้าของแอป)"
+      ],
+      "screens": [
+        "S1 คิวคำขอใบเสนอราคา"
+      ],
+      "depends": [],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "สร้างทุกตารางตามหัวข้อ ข้อมูล ของ Spec ด้วย CREATE TABLE IF NOT EXISTS พร้อม CHECK และ index ค่าเริ่มต้นใน app_meta ไม่มี is_owner",
+          "files": []
+        },
+        "backend": {
+          "task": "ตัวโหลดข้อมูลตัวอย่างชุดย่อย (องค์กร สินค้า คำขอ) และ GET /api/staff/quote-requests แบบพื้นฐาน",
+          "files": []
+        },
+        "frontend": {
+          "task": "โครงหน้า เมนูด้านข้าง 9 รายการ และหน้า S1 แสดงการ์ดสรุปกับตารางจากข้อมูลตัวอย่าง พร้อมสถานะ loading empty error",
+          "files": []
+        },
+        "integration": {
+          "task": "หน้าเว็บเรียก backend ผ่าน /api/backend/ ของ Next.js",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "หน้าจอรายการพร้อมเมนูและสถานะ (ui medium) สร้างตารางทั้งชุดและตัวโหลดข้อมูลตัวอย่าง (backend medium)",
+        "total": 2.0
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-02",
+      "title": "ค้น Knowledge Base จับคู่ wireframe และบันทึก ADR",
+      "priority": "high",
+      "summary": "ยืนยันชื่อบทบาทผู้ดูแล บริการอีเมล และวิธีให้ Agent ได้ข้อมูลแคตตาล็อก จับคู่ wireframe 46 หน้ากับรหัสหน้าจอใน docs/wireframe-map.md และเขียน ADR 0000 ถึง 0010",
+      "acceptance": [
+        "มีผลค้นหรือบันทึกว่าไม่พบ ครบ 5 ข้อของขั้น 0 ใน ADR",
+        "docs/wireframe-map.md มี 46 แถว ทุกแถวมีรหัสหน้าจอจากชุดเดียวและระบุหน้าหลักหรือสถานะย่อย พร้อมระบุ 8 หน้าที่เพิ่มจากฉบับ 38 หน้า (AC-37)",
+        "ถ้าผลค้นขัดกับ Spec หรือพบหน้าที่ไม่ตรงรหัสใด ให้หยุดและกลับมาถามผู้ใช้",
+        "ADR ทุกฉบับมีหัวข้อครบตามแม่แบบและสถานะ ยอมรับ"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-01"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "backend": {
+          "task": "เขียน docs/adr/0000-template.md, README.md และ ADR 0001 ถึง 0010 และตาราง docs/wireframe-map.md",
+          "files": []
+        },
+        "frontend": {
+          "task": "เปิดภาพ page-01.svg ถึง page-46.svg เพื่อจับคู่รหัสหน้าจอ",
+          "files": []
+        },
+        "integration": {
+          "task": "ค้น harness-promptserve-app และ promptserve-platform ผ่าน search_knowledge_base",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "งานเอกสารและการตรวจภาพ 46 หน้า (ui low) งานเขียน ADR และตารางจับคู่ (backend low)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-03",
+      "title": "ตั้งค่าแอป Agent และเอกสารคลังความรู้",
+      "priority": "high",
+      "summary": "ปรับ promptserve.app.json เขียน agent.instructions ครบ 9 ข้อ และสร้างเอกสารใน knowledge/ 4 ฉบับ",
+      "acceptance": [
+        "psapp check --types ผ่านและไม่มีความลับในไฟล์",
+        "access.mode เป็น signed-in และ roles เป็น User",
+        "knowledge/ มี 4 ฉบับตาม Spec และไม่มีข้อมูลส่วนบุคคลหรือราคาขององค์กรใด"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-01"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "backend": {
+          "task": "ตรวจว่า backend ไม่อ่านค่าความลับจากซอร์ส",
+          "files": []
+        },
+        "integration": {
+          "task": "เขียน agent.instructions ตั้ง knowledge.folders และเอกสาร 4 ฉบับสำหรับคลัง app-test-app",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.5,
+      "sizing": {
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "integration": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "เชื่อม Agent และคลังความรู้ของแพลตฟอร์ม (integration medium) ตรวจการอ่านค่าจาก environment (backend low)",
+        "total": 1.5
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-04",
+      "title": "การเข้าใช้และสิทธิ์ผู้ดูแลกับเจ้าหน้าที่",
+      "priority": "critical",
+      "summary": "หาสิทธิ์จาก X-PS-Roles เทียบ PS_ADMIN_ROLE_NAME และจาก app_users มี /api/me หน้า E1 ป้าย (ผู้ดูแลระบบ) และ backendFetch ที่ส่ง roles",
+      "acceptance": [
+        "ผู้ที่ไม่ใช่ผู้ดูแล ไม่มีใน app_users หรือถูกปิด เห็น E1 และเรียก /api/staff/* ได้ 403 (AC-04)",
+        "บทบาทที่ตรงกับ PS_ADMIN_ROLE_NAME ได้สิทธิ์โดยไม่ต้องมีแถว และเมื่อค่านี้ว่างจะไม่มีผู้ดูแล (AC-31)",
+        "header X-PS-Roles จากเบราว์เซอร์ไม่ถูกส่งต่อ",
+        "ป้าย (ผู้ดูแลระบบ) แสดงเฉพาะผู้ดูแล และไม่มีหน้าใดแสดง (เจ้าของแอป)"
+      ],
+      "screens": [
+        "E1 ยังไม่ได้รับสิทธิ์ใช้งาน"
+      ],
+      "depends": [
+        "BL-01",
+        "BL-02"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้ตาราง app_users (role เป็น staff เท่านั้น ไม่มี is_owner)",
+          "files": []
+        },
+        "backend": {
+          "task": "middleware requireStaff, requireAdmin, requireBuyerPortal, requireInternalKey และ GET /api/me ที่คืน is_admin",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า E1 และป้ายข้างชื่อผู้ใช้ตาม is_admin",
+          "files": []
+        },
+        "integration": {
+          "task": "ย้าย usernameOf ไป lib/session-user.ts และเปลี่ยน backendFetch เป็น (path, {username, roles}, init) ที่ใส่ X-PS-Internal-Key เฉพาะ /internal/",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "integration": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "หน้า E1 และป้ายชื่อ (ui low) middleware พร้อมกติกาสิทธิ์และ transaction (backend medium) เชื่อม session กับ header (integration low)",
+        "total": 2.0
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-05",
+      "title": "ประกาศความเป็นส่วนตัว (S10)",
+      "priority": "medium",
+      "summary": "แสดงประกาศเมื่อเข้าใช้ครั้งแรกและเปิดดูภายหลังได้ บันทึกเวลารับทราบ เจ้าหน้าที่ที่ app_users ผู้ดูแลเป็นแถว privacy.accept ใน audit_log",
+      "acceptance": [
+        "ต้องกดรับทราบก่อนใช้งานครั้งแรกและบันทึกเวลา (AC-26)",
+        "จำนวนแถวใน app_users ไม่เปลี่ยนหลังผู้ดูแลรับทราบ และผู้ดูแลไม่อยู่ใน GET /api/staff/users",
+        "ถอดบทบาทผู้ดูแลแล้วผู้ใช้นั้นเห็น E1"
+      ],
+      "screens": [
+        "S10 ประกาศความเป็นส่วนตัว"
+      ],
+      "depends": [
+        "BL-04"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้คอลัมน์ privacy_notice_accepted_at และตาราง audit_log",
+          "files": []
+        },
+        "backend": {
+          "task": "POST /api/me/privacy-notice แยกกรณีผู้ดูแลกับเจ้าหน้าที่ (A-42)",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า S10 และตัวบังคับให้รับทราบก่อนเข้าหน้าอื่น",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "หน้าข้อความพร้อมปุ่มรับทราบ (ui low) บันทึกเวลาในตารางเดียว (backend low)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-06",
+      "title": "ค่าตั้งและสวิตช์ระยะที่ 2 พร้อม guard ผู้สั่งซื้อ",
+      "priority": "high",
+      "summary": "หน้า S7 ส่วนตั้งค่า (อายุใบเสนอราคา อัตราภาษี สวิตช์ระยะที่ 2) และ guard ที่ตอบ 403 ทุก path ใต้ /api/buyer/ พร้อมล็อก BUYER_PORTAL_IMPLEMENTED เป็น false",
+      "acceptance": [
+        "ทุก path ในตาราง API ระยะที่ 2 ตอบ 403 ตรวจด้วย test แบบตาราง (AC-03 ส่วน 403)",
+        "ผู้ที่ไม่ใช่ผู้ดูแลเรียกเปลี่ยนสวิตช์ได้ 403 ผู้ดูแลตั้ง true ได้ 409 และบันทึก settings.denied (AC-29)",
+        "สวิตช์เป็นอ่านอย่างเดียวสำหรับเจ้าหน้าที่ และปิดใช้งานพร้อมข้อความในรอบแรก"
+      ],
+      "screens": [
+        "S7 ตัวชี้วัดและตั้งค่า (ส่วนตั้งค่า)"
+      ],
+      "depends": [
+        "BL-04"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ค่า quote_validity_days, vat_rate, buyer_portal_enabled ใน app_meta",
+          "files": []
+        },
+        "backend": {
+          "task": "GET และ PUT /api/staff/settings กับ requireAdmin ค่าคงที่ BUYER_PORTAL_IMPLEMENTED และ route /api/buyer/* ตอบ 403",
+          "files": []
+        },
+        "frontend": {
+          "task": "ฟอร์มตั้งค่าและสวิตช์ใน S7",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ฟอร์มไม่เกิน 5 ช่อง (ui low) กติกาสิทธิ์ สถานะ 403 กับ 409 และ audit_log (backend medium)",
+        "total": 1.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-07",
+      "title": "จัดการสินค้าและสต็อก (S3)",
+      "priority": "high",
+      "summary": "ค้น กรอง เพิ่ม แก้ไข เลิกขาย ปรับสต็อก และชื่อเรียกอื่นสำหรับค้นแชต",
+      "acceptance": [
+        "เพิ่มและแก้ไขสินค้าได้ โดย sku ต้องตรงรูปแบบ ^[A-Z]{2,5}-[0-9]{4}$ (AC-12)",
+        "เลิกขายและปรับสต็อกได้ และบันทึก audit_log",
+        "ราคามาตรฐานและจำนวนสต็อกเห็นเฉพาะฝั่งเจ้าหน้าที่"
+      ],
+      "screens": [
+        "S3 สินค้าและสต็อก"
+      ],
+      "depends": [
+        "BL-04"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง products พร้อม keywords",
+          "files": []
+        },
+        "backend": {
+          "task": "GET POST PUT /api/staff/products และ PATCH .../stock",
+          "files": []
+        },
+        "frontend": {
+          "task": "รายการ ฟอร์มแก้ไข และปุ่มบันทึก เลิกขาย ปรับสต็อก",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "รายการกับฟอร์มประมาณ 10 ช่องพร้อมกรอง (ui medium) validation และ audit_log (backend medium)",
+        "total": 2.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-08",
+      "title": "จัดการองค์กรและผู้ติดต่อ (S4)",
+      "priority": "high",
+      "summary": "เพิ่ม แก้ไข ปิดองค์กร และจัดการผู้ติดต่อ",
+      "acceptance": [
+        "องค์กรที่ปิดแล้วบันทึกคำขอใหม่ไม่ได้ (422)",
+        "ผู้ติดต่อต้องมีอีเมลหรือเบอร์โทรอย่างน้อยหนึ่งค่า",
+        "ทุกหน้าที่แสดงอีเมลหรือเบอร์โทรมีเหตุผลที่เก็บตามตารางข้อมูลส่วนบุคคล"
+      ],
+      "screens": [
+        "S4 องค์กร ผู้ติดต่อ และราคาตามสัญญา"
+      ],
+      "depends": [
+        "BL-04"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง organizations และ contacts",
+          "files": []
+        },
+        "backend": {
+          "task": "API องค์กรและผู้ติดต่อ",
+          "files": []
+        },
+        "frontend": {
+          "task": "รายการองค์กร ฟอร์ม และรายชื่อผู้ติดต่อใน S4",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ฟอร์มและรายการสองระดับ (ui medium) validation และข้อจำกัดข้ามตาราง (backend medium)",
+        "total": 2.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-09",
+      "title": "ราคาตามสัญญาขององค์กร",
+      "priority": "high",
+      "summary": "ตั้ง แก้ไข และเอาราคาตามสัญญาออกต่อองค์กร",
+      "acceptance": [
+        "ตั้งราคาหลายสินค้าในครั้งเดียวได้ และ unit_price เป็น null คือเอาราคาออก",
+        "ราคาเก็บเป็น NUMERIC(12,2) ไม่ใช้ float",
+        "บันทึก price.update ใน audit_log โดยไม่มีข้อมูลส่วนบุคคล"
+      ],
+      "screens": [
+        "S4 องค์กร ผู้ติดต่อ และราคาตามสัญญา"
+      ],
+      "depends": [
+        "BL-07",
+        "BL-08"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง contract_prices คีย์ (org_id, product_id)",
+          "files": []
+        },
+        "backend": {
+          "task": "GET และ PUT /api/staff/organizations/:id/prices",
+          "files": []
+        },
+        "frontend": {
+          "task": "ตารางราคาตามสัญญาที่แก้ไขได้ใน S4",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ตารางแก้ไขหลายแถวพร้อมกรอง (ui medium) บันทึกเป็นชุดใน transaction (backend medium)",
+        "total": 2.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-10",
+      "title": "จัดการบัญชีเจ้าหน้าที่ (S5)",
+      "priority": "medium",
+      "summary": "เพิ่มเจ้าหน้าที่ แก้ชื่อที่แสดง ปิดหรือเปิดบัญชี โดยไม่แสดงผู้ดูแลในรายการ",
+      "acceptance": [
+        "ปิดบัญชีตนเองได้ 409",
+        "ผู้ดูแลไม่อยู่ในรายการ",
+        "ผู้ดูแลคนแรกที่เข้าแอปเพิ่มเจ้าหน้าที่ได้ทันที"
+      ],
+      "screens": [
+        "S5 เจ้าหน้าที่"
+      ],
+      "depends": [
+        "BL-04"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้ตาราง app_users",
+          "files": []
+        },
+        "backend": {
+          "task": "GET POST /api/staff/users และ PATCH /api/staff/users/:username",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า S5",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "หน้ารายการกับฟอร์มสองช่อง (ui low) CRUD ตารางเดียว (backend low)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-11",
+      "title": "ฟังก์ชันแกนกลาง เงิน เวลาทำการ เลขเอกสาร นาฬิกา และ testdb",
+      "priority": "high",
+      "summary": "แพ็กเกจ money (สตางค์ int64) bizhours clock seq และ testdb สำหรับ test ฐานข้อมูลแบบ schema ชั่วคราว",
+      "acceptance": [
+        "ภาษีคำนวณตาม (subtotal x vat_bp + 5000) div 10000 ตัวอย่าง 11,800.00 ได้ภาษี 826.00 และยอดสุทธิ 12,626.00 และมีกรณีเศษครึ่งสตางค์ (AC-06)",
+        "เวลาที่รอนับชั่วโมงทำการ จันทร์ถึงศุกร์ 08:30 ถึง 17:30 น. ผ่าน test ข้ามคืนและข้ามสุดสัปดาห์ (AC-07)",
+        "เลขเอกสารแรกของปีได้ 0001 โดยไม่ต้องมีแถวล่วงหน้า และ transaction ล้มเหลวแล้วไม่เกิดเลขข้าม",
+        "testdb ข้ามบนเครื่องนักพัฒนาเมื่อไม่ตั้ง TEST_DATABASE_URL และล้มเมื่อ CI=true"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-01"
+      ],
+      "estimate": "2.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้ app_meta สำหรับ seq.QR.<ปี> และ seq.SO.<ปี>",
+          "files": []
+        },
+        "backend": {
+          "task": "แพ็กเกจ clock, money, bizhours, seq และ testdb พร้อม unit test",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 2.5,
+      "sizing": {
+        "backend": {
+          "level": "high",
+          "md": 2.5
+        },
+        "reason": "การคำนวณไม่ธรรมดา (ภาษี ปัดเศษ เวลาทำการข้ามวัน) และออกเลขลำดับใน transaction (backend high)",
+        "total": 2.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-12",
+      "title": "บันทึกคำขอแทนลูกค้า (S8) พร้อมแคตตาล็อก",
+      "priority": "critical",
+      "summary": "เลือกองค์กร ผู้ติดต่อ ช่องทาง เวลาที่ได้รับ ค้นแคตตาล็อกตามราคาตามสัญญา เพิ่มรายการ และบันทึกคำขอ",
+      "acceptance": [
+        "แคตตาล็อกแสดงหลังเลือกองค์กรเท่านั้น และสินค้าที่ไม่มีราคาแสดง ราคาตามใบเสนอราคา (AC-01)",
+        "บันทึกคำขออย่างน้อย 1 รายการได้ ได้รหัส QR-พ.ศ.-เลข และปรากฏในคิวภายใน 5 วินาที (AC-02)",
+        "เวลาที่ได้รับในอนาคตหรือองค์กรปิดแล้วได้ 422 พร้อมข้อความรายช่อง",
+        "สินค้าซ้ำในคำขอเดียวถูกรวมจำนวน"
+      ],
+      "screens": [
+        "S8 บันทึกคำขอแทนลูกค้า"
+      ],
+      "depends": [
+        "BL-09",
+        "BL-11"
+      ],
+      "estimate": "3.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง quote_requests และ quote_request_items",
+          "files": []
+        },
+        "backend": {
+          "task": "GET /api/staff/catalog และ POST /api/staff/quote-requests พร้อมออกเลข QR ใน transaction",
+          "files": []
+        },
+        "frontend": {
+          "task": "ฟอร์ม S8 แคตตาล็อก ตารางรายการ และปุ่มบันทึก (ปุ่มเปิดแชตเชื่อมใน BL-27)",
+          "files": []
+        },
+        "integration": {
+          "task": "หน้าเว็บเรียก catalog และ quote-requests ผ่าน proxy",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 3.5,
+      "sizing": {
+        "ui": {
+          "level": "high",
+          "md": 2.5
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ฟอร์มหลายส่วนที่มีกติกาแบบพลวัตและตารางสองชุด (ui high) validation และ transaction (backend medium)",
+        "total": 3.5
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-13",
+      "title": "คิวคำขอเต็มรูปแบบและตัวเลขแจ้งเตือน",
+      "priority": "high",
+      "summary": "S1 แสดงเวลาที่รอ ป้ายเกินกำหนด แท็บสถานะ ค้นหา การ์ดสรุป 3 ใบ และป้ายตัวเลขที่เมนู",
+      "acceptance": [
+        "เวลาที่รอเป็นชั่วโมงทำการทศนิยม 1 ตำแหน่ง และป้ายเกินกำหนดเมื่อเกิน 9 ชั่วโมงทำการ",
+        "new_requests ไม่นับคำขอที่ขอแก้ไข ส่วน overdue_requests นับ",
+        "ป้ายเมนู คิวคำขอ เท่ากับ new_requests และ คำถามที่ส่งต่อ เท่ากับ open_escalations ส่วนการ์ดทั้ง 3 ตรงกับค่าทั้ง 3 (AC-23)"
+      ],
+      "screens": [
+        "S1 คิวคำขอใบเสนอราคา"
+      ],
+      "depends": [
+        "BL-12"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "database": {
+          "task": "index สำหรับกรองสถานะและค้นรหัสคำขอ",
+          "files": []
+        },
+        "backend": {
+          "task": "ปรับ GET /api/staff/quote-requests และ GET /api/staff/notifications/summary",
+          "files": []
+        },
+        "frontend": {
+          "task": "แท็บ ช่องค้นหา การ์ดสรุป และป้ายตัวเลขเมนู",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "รายการพร้อมกรองและค้น (ui medium) คำนวณเวลาทำการและตัวเลขแจ้งเตือน (backend medium)",
+        "total": 2.0
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-14",
+      "title": "กลไกออกใบเสนอราคา (ร่าง ราคา ยอด วันหมดอายุ)",
+      "priority": "critical",
+      "summary": "ร่างใบเสนอราคาที่เติมราคาตามสัญญา คำนวณ price_source ยอด ภาษี valid_until ออกฉบับ R0 และ R1 พร้อมแทนที่ฉบับเดิม",
+      "acceptance": [
+        "ร่างเติมราคาตามสัญญาทุกรายการที่มี และติดป้าย no_contract_price, out_of_stock, discontinued (AC-05)",
+        "ออกใบเสนอราคาไม่ได้ (422) เมื่อบรรทัดไม่มีราคาหรือมีสินค้าเลิกขาย",
+        "price_source เป็น contract เมื่อราคาเท่าราคาตามสัญญาปัจจุบัน และ manual ในกรณีอื่น เพิ่มสินค้าทดแทนที่ active ได้ (AC-32)",
+        "ออกฉบับใหม่แล้วฉบับเดิมเป็น superseded และมี issued ได้ไม่เกิน 1 ฉบับต่อคำขอ (AC-10)"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-12"
+      ],
+      "estimate": "2.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง quotes และ quote_items พร้อม unique index บางส่วนสถานะ issued",
+          "files": []
+        },
+        "backend": {
+          "task": "แพ็กเกจ quote (state machine ร่าง ยอด) และ GET detail กับ POST /api/staff/quote-requests/:id/quotes",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 2.5,
+      "sizing": {
+        "backend": {
+          "level": "high",
+          "md": 2.5
+        },
+        "reason": "การคำนวณเงินและกติกาหลายข้อ state machine และ transaction หลายตาราง (backend high)",
+        "total": 2.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-15",
+      "title": "หน้าออกใบเสนอราคา (S2a)",
+      "priority": "critical",
+      "summary": "แสดงข้อมูลคำขอ ตารางร่าง คำเตือน สรุปยอด และปุ่มออกใบเสนอราคา",
+      "acceptance": [
+        "ตารางร่างมี 6 คอลัมน์ตาม wireframe และแก้ราคาต่อหน่วยได้ทุกบรรทัด",
+        "แสดงคำเตือนไม่มีราคาและสินค้าหมด และยอดสรุปตรงกับ backend",
+        "ผู้ดูแลเห็นป้าย (ผู้ดูแลระบบ) ทุกหน้า"
+      ],
+      "screens": [
+        "S2a ออกใบเสนอราคาจากคำขอ"
+      ],
+      "depends": [
+        "BL-14",
+        "BL-13"
+      ],
+      "estimate": "3 วัน",
+      "parts": {
+        "backend": {
+          "task": "GET /api/staff/quote-requests/:id คืนร่างพร้อม flags",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า S2a ตารางร่างที่แก้ไขได้ คำเตือน สรุปยอด และปุ่มออกใบเสนอราคา",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 3.0,
+      "sizing": {
+        "ui": {
+          "level": "high",
+          "md": 2.5
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "ตารางแก้ไขได้ที่มีกติกาแบบพลวัตและสรุปยอด (ui high) ปรับ endpoint อ่านข้อมูล (backend low)",
+        "total": 3.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-16",
+      "title": "ยกเลิกคำขอ",
+      "priority": "medium",
+      "summary": "ยกเลิกคำขอสถานะ pending_quote พร้อมเหตุผล รวมคำขอที่ลูกค้าขอแก้ไขแล้ว",
+      "acceptance": [
+        "ยกเลิกได้เฉพาะ pending_quote และต้องระบุเหตุผล สถานะอื่นได้ 409 (AC-35)",
+        "ในกรณีขอแก้ไขแล้ว ใบล่าสุดคงสถานะ revision_requested",
+        "คำขอที่ยกเลิกอยู่ในแท็บ ยกเลิก ของ S1"
+      ],
+      "screens": [
+        "S2a ออกใบเสนอราคาจากคำขอ"
+      ],
+      "depends": [
+        "BL-15"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "database": {
+          "task": "คอลัมน์ cancel_reason และ closed_at",
+          "files": []
+        },
+        "backend": {
+          "task": "POST /api/staff/quote-requests/:id/cancel และบันทึก request.cancel",
+          "files": []
+        },
+        "frontend": {
+          "task": "ลิงก์ ยกเลิกคำขอ และหน้าต่างระบุเหตุผลใน S2a",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "หน้าต่างกรอกเหตุผลช่องเดียว (ui low) endpoint เดียวพร้อมตรวจสถานะ (backend low)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-17",
+      "title": "บันทึกคำตอบของลูกค้าและสร้างคำสั่งซื้อ",
+      "priority": "critical",
+      "summary": "บันทึกยืนยัน ปฏิเสธ หรือขอแก้ไข พร้อมช่องทางและหลักฐาน ตรวจเวลาและสถานะที่มีผล และสร้างคำสั่งซื้อ",
+      "acceptance": [
+        "ยืนยันแล้วได้คำสั่งซื้อ confirmed หนึ่งรายการ บันทึกซ้ำได้ 409 และยืนยันพร้อมกันได้คำสั่งซื้อเดียว (AC-08)",
+        "responded_at ก่อน issued_at หรืออยู่ในอนาคตเกิน 5 นาทีได้ 422 และบันทึกหลังหมดอายุได้ 409 แม้ responded_at อยู่ก่อนวันหมดอายุ",
+        "ขอแก้ไขแล้วคำขอกลับเป็น pending_quote และนับเวลารอใหม่จาก responded_at",
+        "การยืนยันไม่เปลี่ยนจำนวนสต็อก (AC-12)"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-14",
+        "BL-11"
+      ],
+      "estimate": "2.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง orders (quote_id unique) และคอลัมน์คำตอบใน quotes",
+          "files": []
+        },
+        "backend": {
+          "task": "POST /api/staff/quotes/:id/record-response พร้อมสถานะที่มีผล เลข SO และการล็อกแถว",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 2.5,
+      "sizing": {
+        "backend": {
+          "level": "high",
+          "md": 2.5
+        },
+        "reason": "หลายสถานะ กติกาเวลา การทำงานพร้อมกัน และ transaction หลายตาราง (backend high)",
+        "total": 2.5
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-18",
+      "title": "หน้าบันทึกคำตอบของลูกค้า (S2b)",
+      "priority": "high",
+      "summary": "เลือกคำตอบ ช่องทาง วันเวลา หมายเหตุหลักฐาน เหตุผลเมื่อปฏิเสธ และแสดงคำสั่งซื้อที่เกิดขึ้น",
+      "acceptance": [
+        "หมายเหตุหลักฐานจำเป็น และเหตุผลจำเป็นเมื่อเลือกปฏิเสธ",
+        "ใบที่หมดอายุ ถูกแทนที่ หรือตอบแล้ว บันทึกไม่ได้และแสดงข้อความภาษาไทย",
+        "แสดงการ์ดคำสั่งซื้อหลังยืนยัน"
+      ],
+      "screens": [
+        "S2b บันทึกคำตอบของลูกค้า"
+      ],
+      "depends": [
+        "BL-17",
+        "BL-15"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "frontend": {
+          "task": "ฟอร์ม S2b พร้อมตรวจข้อมูลและสถานะข้อผิดพลาด",
+          "files": []
+        },
+        "integration": {
+          "task": "เรียก record-response ผ่าน proxy และแสดง 409 กับ 422 ตามข้อความรายช่อง",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ฟอร์มประมาณ 8 ช่องพร้อมกติกาแสดงตามตัวเลือก (ui medium)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-19",
+      "title": "รายการใบเสนอราคาและคำสั่งซื้อ (S2c)",
+      "priority": "medium",
+      "summary": "แท็บใบเสนอราคาและคำสั่งซื้อ ตัวกรององค์กร และคลิกแถวเปิด S2b",
+      "acceptance": [
+        "แท็บใบเสนอราคาแสดงรหัส QT องค์กร วันที่ออก ยอดสุทธิ และสถานะที่มีผล",
+        "แท็บคำสั่งซื้อแสดงรหัส SO องค์กร วันที่ยืนยัน และยอดสุทธิ",
+        "วันที่แสดงเป็นพุทธศักราช เงินแสดงทศนิยม 2 ตำแหน่ง"
+      ],
+      "screens": [
+        "S2c รายการใบเสนอราคาและคำสั่งซื้อ"
+      ],
+      "depends": [
+        "BL-17"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "backend": {
+          "task": "GET /api/staff/quotes, /quotes/:id, /orders, /orders/:id",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า S2c สองแท็บพร้อมตัวกรอง",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "รายการพร้อมกรองและแบ่งหน้า (ui medium) คำนวณสถานะที่มีผลตอนอ่าน (backend medium)",
+        "total": 2.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-20",
+      "title": "ตัวรันงานตามรอบและ expire_quotes",
+      "priority": "high",
+      "summary": "jobs.Run ทำงานทันทีเมื่อ backend เริ่มและทุกวัน 00:05 น. เวลาประเทศไทย ด้วย time.Timer และฝัง time/tzdata",
+      "acceptance": [
+        "nextRun คืน 00:05 ของวันถัดไป หรือวันเดียวกันถ้ายังไม่ถึง และทดสอบที่ 00:04, 00:05, 23:59 (AC-38)",
+        "โหลด Asia/Bangkok ได้แม้ระบบไม่มีข้อมูลเขตเวลา และโหลดไม่ได้แล้ว backend ไม่เริ่มทำงาน",
+        "ใบที่เลย valid_until เป็น expired และคำขอเป็น closed ใน transaction เดียว รันซ้ำปลอดภัย (AC-09)"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-17"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้ตาราง quotes และ quote_requests และบันทึก quote.expire",
+          "files": []
+        },
+        "backend": {
+          "task": "แพ็กเกจ jobs, nextRun, expire_quotes และเริ่มตัวรันใน backend/main.go หลัง store.Migrate",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "batch": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "งานตามรอบที่ทำซ้ำได้พร้อมแจ้งข้อผิดพลาด (batch medium) ผูกกับ main.go (backend low)",
+        "total": 1.5
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-21",
+      "title": "API ตัวชี้วัดเวลาออกใบเสนอราคา",
+      "priority": "high",
+      "summary": "คำนวณตัวหาร ตัวตั้ง ร้อยละ รอผล มัธยฐาน เป้าหมายร้อยละ 90 สถานะเทียบเป้า และค่าฐานตอนอ่าน",
+      "acceptance": [
+        "ตอบครบ 10 ฟิลด์ตาม Spec",
+        "percent เท่ากับ 90.0 ถือว่า meets_target เป็นจริง และเดือนที่ไม่มีตัวหารได้ percent และ meets_target เป็น null (AC-34)",
+        "ค่าฐานมาจากเดือนแรกที่ตัวหารมากกว่า 0 และเป็น null ถ้ายังไม่มี",
+        "คำขอที่ยกเลิกก่อน R0 ไม่นับ ส่วนที่มี R0 แล้วนับตามผล R0 (AC-13, AC-35)"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-17",
+        "BL-11"
+      ],
+      "estimate": "2.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้ query จากข้อมูลคำขอและใบเสนอราคา ไม่เพิ่มตาราง",
+          "files": []
+        },
+        "backend": {
+          "task": "GET /api/staff/metrics และค่าคงที่ TARGET_PERCENT",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 2.5,
+      "sizing": {
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "report": {
+          "level": "high",
+          "md": 1.5
+        },
+        "reason": "รายงานรวมหลายแหล่งพร้อมค่าฐานและเดือนที่ยังไม่สิ้นสุด (report high) กติกานับตัวหารและเวลาทำการ (backend medium)",
+        "total": 2.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-22",
+      "title": "หน้าตัวชี้วัด (S7 ส่วนตัวชี้วัด)",
+      "priority": "medium",
+      "summary": "แสดงเป้าหมาย สถานะเทียบเป้า ค่าฐานคู่เดือนที่เลือก และป้าย ยังไม่สิ้นสุด",
+      "acceptance": [
+        "แสดงถึงเป้าหมายหรือต่ำกว่าเป้าหมายตาม meets_target",
+        "ไม่มีตัวหารแสดง ยังไม่มีข้อมูลของเดือนนี้ และไม่แสดงร้อยละ",
+        "เดือนแสดงเป็นพุทธศักราชและป้าย ยังไม่สิ้นสุด แสดงเมื่อ month_closed เป็นเท็จ"
+      ],
+      "screens": [
+        "S7 ตัวชี้วัดและตั้งค่า (ส่วนตัวชี้วัด)"
+      ],
+      "depends": [
+        "BL-21",
+        "BL-06"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "frontend": {
+          "task": "ส่วนตัวชี้วัดใน S7 พร้อม component test ตามกรณีของ AC-34",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ส่วนแสดงผลที่มีสถานะแตกแขนงหลายกรณี (ui medium)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-23",
+      "title": "PDF ใบเสนอราคาและคำสั่งซื้อ",
+      "priority": "high",
+      "summary": "สร้าง PDF ภาษาไทยด้วย gopdf และฟอนต์ Sarabun ที่ฝังในไฟล์โปรแกรม",
+      "acceptance": [
+        "PDF มีรหัสเอกสาร วันที่พุทธศักราช ชื่อองค์กร รายการ ราคา และยอดรวม (AC-11)",
+        "สระบน สระล่าง และวรรณยุกต์ไม่ซ้อนทับเมื่อตรวจด้วยตา",
+        "สร้างไม่สำเร็จตอบ 500 ข้อความไทย และข้อมูลใบเสนอราคายังครบ",
+        "ปุ่มดาวน์โหลดใน S2b และ S2c ใช้งานได้"
+      ],
+      "screens": [
+        "S2b บันทึกคำตอบของลูกค้า",
+        "S2c รายการใบเสนอราคาและคำสั่งซื้อ"
+      ],
+      "depends": [
+        "BL-17",
+        "BL-19"
+      ],
+      "estimate": "3 วัน",
+      "parts": {
+        "backend": {
+          "task": "แพ็กเกจ pdf พร้อมฟอนต์และสัญญา OFL กับ GET /api/staff/quotes/:id/pdf และ /orders/:id/pdf",
+          "files": []
+        },
+        "frontend": {
+          "task": "ปุ่มดาวน์โหลด PDF ใน S2b และ S2c",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 3.0,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "high",
+          "md": 2.5
+        },
+        "reason": "จัดหน้าเอกสารภาษาไทยและตารางรายการ (backend high) ปุ่มดาวน์โหลด (ui low)",
+        "total": 3.0
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-24",
+      "title": "ข้อความเชิญและลบข้อมูลส่วนบุคคลของผู้ติดต่อ",
+      "priority": "medium",
+      "summary": "สร้างข้อความเชิญที่คัดลอกได้ และปกปิดตัวตนผู้ติดต่อตามคำขอ",
+      "acceptance": [
+        "ข้อความเชิญมีชื่อองค์กร ลิงก์เข้าแอป และสรุปข้อมูลส่วนบุคคลที่เก็บ หน้าจอแจ้งว่าเข้าใช้ได้เมื่อเปิดระยะที่ 2 และไม่มีการเรียกบริการอีเมล (AC-22)",
+        "ลบแล้วชื่อเป็น ข้อมูลถูกลบตามคำขอ ล้างอีเมล เบอร์โทร ชื่อผู้ใช้ ลบซ้ำได้ 409",
+        "คำขอ ใบเสนอราคา และคำสั่งซื้อเดิมยังเปิดและพิมพ์ PDF ได้ และ audit_log ไม่มีข้อมูลส่วนบุคคล (AC-24)"
+      ],
+      "screens": [
+        "S4 องค์กร ผู้ติดต่อ และราคาตามสัญญา"
+      ],
+      "depends": [
+        "BL-08"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ใช้คอลัมน์ anonymized_at และ status ของ contacts",
+          "files": []
+        },
+        "backend": {
+          "task": "GET invite-text และ POST erase-personal-data พร้อม audit_log",
+          "files": []
+        },
+        "frontend": {
+          "task": "ปุ่มคัดลอกข้อความเชิญและหน้าต่างยืนยันการลบใน S4",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "ui": {
+          "level": "low",
+          "md": 0.5
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ปกปิดข้อมูลใน transaction และสร้างข้อความ (backend medium) ปุ่มกับหน้าต่างยืนยัน (ui low)",
+        "total": 1.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-25",
+      "title": "บริบทแชตและบันทึกคำถามที่ส่งต่อฝั่ง backend",
+      "priority": "critical",
+      "summary": "route /internal/chat-context และ /internal/chat-escalations ตรวจ X-PS-Internal-Key และผู้เรียก",
+      "acceptance": [
+        "ไม่มีหรือ key ไม่ตรง หรือไม่ได้ตั้ง BACKEND_INTERNAL_KEY ตอบ 403 รวมถึงเรียกผ่าน /api/backend/ ด้วย path ที่ลดระดับไดเรกทอรี (AC-33)",
+        "บริบทมีเฉพาะสินค้าขององค์กรที่เลือก มี stock_status แต่ไม่มี stock_qty, list_price หรือราคาองค์กรอื่น (AC-17)",
+        "ค้นสินค้าด้วย sku ชื่อ หมวด และ keywords ไม่รวมสินค้าเลิกขาย จำกัดตาม CHAT_CONTEXT_MAX_PRODUCTS"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-09",
+        "BL-04"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ตาราง chat_escalations",
+          "files": []
+        },
+        "backend": {
+          "task": "GET /internal/chat-context และ POST /internal/chat-escalations",
+          "files": []
+        },
+        "integration": {
+          "task": "backendFetch ใส่ X-PS-Internal-Key เฉพาะ path /internal/",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "integration": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "ค้นและกรองตามองค์กรพร้อมตรวจ key (backend medium) เรียกด้านเดียวระหว่าง Next.js กับ backend (integration low)",
+        "total": 1.5
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-26",
+      "title": "route แชต /api/chat และการเรียก AI Gateway",
+      "priority": "critical",
+      "summary": "ปกปิดอีเมลและเบอร์โทร ดึงบริบท เรียก Agent ผ่าน createPromptServRoute อ่าน SSE จนจบ แยกบรรทัดท้าย ตรวจรหัสสินค้า และส่งต่อคิว",
+      "acceptance": [
+        "อีเมลและเบอร์โทรถูกแทนด้วย [อีเมล] และ [เบอร์โทร] ก่อนถึง AI Gateway และไม่มีที่ใดเก็บประวัติแชต (AC-19)",
+        "รหัสสินค้าที่ไม่อยู่ในบริบทไม่มีการ์ด แสดงคำเตือน และบันทึก unverified_sku (AC-14)",
+        "ร้องเรียน คำสำคัญร้องเรียน และความมั่นใจต่ำกว่า 0.70 หรือไม่มีบรรทัดความมั่นใจ เข้าคิวด้วย reason ที่ถูกต้อง (AC-20)",
+        "AI Gateway ไม่ตอบ stream รายงานข้อผิดพลาด หรือเกิน CHAT_TIMEOUT_MS ตอบข้อความระบบไม่พร้อมใช้งาน และไม่มี session ตอบ 401",
+        "ไม่เรียกผู้ให้บริการโมเดลโดยตรง"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-25",
+        "BL-03"
+      ],
+      "estimate": "4 วัน",
+      "parts": {
+        "backend": {
+          "task": "lib/chat/mask.ts, context.ts, trailer.ts, sku.ts, sse.ts และ app/api/chat/route.ts พร้อม unit test",
+          "files": []
+        },
+        "integration": {
+          "task": "relay ของ createPromptServRoute จาก @repo/ai-gateway-sdk/server ด้วย withAuth, forwardUserToken และ requireUserToken",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 4.0,
+      "sizing": {
+        "backend": {
+          "level": "high",
+          "md": 2.5
+        },
+        "integration": {
+          "level": "high",
+          "md": 1.5
+        },
+        "reason": "ตรรกะหลายขั้นและการแยกผลจาก SSE (backend high) เชื่อม AI Gateway และ Agent ที่ไม่มีสัญญาแบบเครื่องอ่านได้ครบ (integration high)",
+        "total": 4.0
+      },
+      "sit": true
+    },
+    {
+      "id": "BL-27",
+      "title": "แผงแชตผู้ช่วย (S9)",
+      "priority": "high",
+      "summary": "แผงแชตที่เปิดจาก S2a และ S8 ต้องเลือกองค์กรก่อนถาม แสดงคำตอบ การ์ดสินค้า แหล่งที่มา และคำเตือน",
+      "acceptance": [
+        "ไม่เลือกองค์กรแล้วถามไม่ได้ และเปลี่ยนองค์กรแล้วบทสนทนาถูกล้าง",
+        "ส่งไม่เกิน CHAT_MAX_TURNS รอบ และแสดงสถานะกำลังประมวลผลกับปุ่มลองใหม่เมื่อรอเกิน 10 วินาที",
+        "แสดงข้อความระบบผู้ช่วยไม่พร้อมใช้งานเมื่อเกิดข้อผิดพลาด โดยหน้าอื่นยังใช้ได้"
+      ],
+      "screens": [
+        "S9 แผงแชตผู้ช่วย"
+      ],
+      "depends": [
+        "BL-26",
+        "BL-15",
+        "BL-12"
+      ],
+      "estimate": "3 วัน",
+      "parts": {
+        "frontend": {
+          "task": "แผงแชต บทสนทนาในหน่วยความจำของหน้า การ์ดสินค้า และสถานะผิดพลาด",
+          "files": []
+        },
+        "integration": {
+          "task": "เรียก POST /api/chat และแสดง answer products sources escalated warning",
+          "files": []
+        }
+      },
+      "difficulty": "hard",
+      "days": 3.0,
+      "sizing": {
+        "ui": {
+          "level": "high",
+          "md": 2.5
+        },
+        "integration": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "พื้นที่ทำงานแบบโต้ตอบพร้อมสถานะหลายแบบ (ui high) เรียก route เดียว (integration low)",
+        "total": 3.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-28",
+      "title": "คิวคำถามที่ส่งต่อ (S6)",
+      "priority": "medium",
+      "summary": "รายการคำถามที่แชตส่งต่อ กรองสถานะ และปิดรายการพร้อมหมายเหตุ",
+      "acceptance": [
+        "แสดง reason และข้อความที่ปกปิดแล้ว",
+        "ปิดรายการพร้อม close_note ได้",
+        "ป้ายเมนูคำถามที่ส่งต่อเท่ากับ open_escalations"
+      ],
+      "screens": [
+        "S6 คำถามที่แชตส่งต่อ"
+      ],
+      "depends": [
+        "BL-25"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "backend": {
+          "task": "GET /api/staff/chat-escalations และ PATCH /api/staff/chat-escalations/:id",
+          "files": []
+        },
+        "frontend": {
+          "task": "หน้า S6 รายการ ตัวกรอง และหน้าต่างปิดรายการ",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "รายการพร้อมกรองและฟอร์มปิดรายการ (ui medium) validation และ audit_log (backend medium)",
+        "total": 2.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-29",
+      "title": "งาน purge_escalations",
+      "priority": "medium",
+      "summary": "ลบคำถามที่ส่งต่อเมื่อครบ 90 วัน โดยทำต่อจาก expire_quotes ในทุกรอบ",
+      "acceptance": [
+        "แถวที่ created_at เก่ากว่า 90 วันถูกลบ ตรวจด้วยนาฬิกาจำลอง (AC-25)",
+        "รันซ้ำแล้วไม่เกิดผลซ้ำซ้อน"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-20",
+        "BL-25"
+      ],
+      "estimate": "0.5 วัน",
+      "parts": {
+        "database": {
+          "task": "ลบแถวใน chat_escalations ตาม created_at",
+          "files": []
+        },
+        "backend": {
+          "task": "เพิ่ม purge_escalations ใน jobs",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 0.5,
+      "sizing": {
+        "batch": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "งานตามรอบแหล่งเดียวที่ไม่ต้องมี checkpoint (batch low)",
+        "total": 0.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-30",
+      "title": "ข้อมูลทดสอบครบชุดสำหรับ Local Run และ Playground",
+      "priority": "medium",
+      "summary": "ขยายข้อมูลตัวอย่างเป็น 3 องค์กร สินค้าประมาณ 10 รายการ ครอบคลุมกรณีขอบ และคำขอกระจายอย่างน้อย 2 เดือน",
+      "acceptance": [
+        "มีสินค้าหมด ไม่มีราคาตามสัญญา เลิกขาย รายละเอียดที่มีคำสั่งแทรก และชื่อเรียกอื่น ลิควิด",
+        "มีใบเสนอราคาที่หมดอายุ 1 ฉบับ และคำขอที่ยกเลิกหลังขอแก้ไข 1 รายการ",
+        "S1 และ S7 แสดงค่าฐาน สถานะเทียบเป้า และป้าย ยังไม่สิ้นสุด",
+        "รันซ้ำไม่เกิดแถวซ้ำ ใช้ชื่อสมมติทั้งหมด และไม่สร้างแถวผู้ดูแลใน app_users (AC-36)"
+      ],
+      "screens": [
+        "S1 คิวคำขอใบเสนอราคา",
+        "S7 ตัวชี้วัดและตั้งค่า"
+      ],
+      "depends": [
+        "BL-17",
+        "BL-25"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "database": {
+          "task": "ข้อมูลทดสอบแบบ idempotent ที่โหลดเมื่อ SEED_DEMO_DATA=true เท่านั้น",
+          "files": []
+        },
+        "backend": {
+          "task": "ขยาย backend/internal/store/seed.go และ test ด้วย testdb",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.0,
+      "sizing": {
+        "backend": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "ชุดข้อมูลหลายตารางที่ต้องรันซ้ำได้และครอบคลุมกรณีขอบ (backend medium)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-31",
+      "title": "ชุดประเมิน AI 16 กรณีใน evals/",
+      "priority": "high",
+      "summary": "เขียน normal, edge, refuse, escalate เป็นไฟล์ jsonl พร้อม README อธิบาย schema",
+      "acceptance": [
+        "มี 16 กรณี (ปกติ 4 ขอบ 5 ปฏิเสธ 5 ส่งต่อ 2) ทุกบรรทัดเป็น JSON ที่มีฟิลด์ครบ",
+        "ทุกกรณีอ้าง AC และตัดสินจากพฤติกรรม ไม่ใช่ข้อความตรงตัว",
+        "ใช้ข้อมูลสมมติทั้งหมด และ max_seconds เป็น 10"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-26",
+        "BL-30"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "backend": {
+          "task": "ตรวจ schema ของไฟล์ด้วยสคริปต์ง่าย ๆ",
+          "files": []
+        },
+        "integration": {
+          "task": "เขียนกรณีตาม .claude/rules/evals.md และเตรียมรันบน Evals ของ PromptServe",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "integration": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "reason": "เตรียมชุดสำหรับระบบ Evals ของแพลตฟอร์ม (integration medium) ตรวจ schema (backend low)",
+        "total": 1.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-32",
+      "title": "Runbook และ checklist ก่อน Go live",
+      "priority": "medium",
+      "summary": "เขียน docs/runbook.md ครบทุกเหตุในตารางสถานะผิดพลาด และ docs/golive-checklist.md",
+      "acceptance": [
+        "runbook มีหัวข้อขั้นต่ำ 6 หัวข้อ และครอบคลุมทุกแถวของตารางสถานะผิดพลาด",
+        "golive-checklist มี Risk Tier ผล AC ผลชุดประเมิน เวลาตอบสูงสุด ชื่อและวันที่ผู้ยืนยัน และสถานะการตั้ง PS_ADMIN_ROLE_NAME กับ BACKEND_INTERNAL_KEY (ไม่บันทึกค่าความลับ)",
+        "ไม่มีช่องชื่อเจ้าของแอป"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-26"
+      ],
+      "estimate": "1 วัน",
+      "parts": {
+        "backend": {
+          "task": "เขียนเอกสารจากตารางสถานะผิดพลาด",
+          "files": []
+        },
+        "integration": {
+          "task": "ระบุขั้นตรวจ Agent และ virtual key ใน AI Studio",
+          "files": []
+        }
+      },
+      "difficulty": "easy",
+      "days": 1.0,
+      "sizing": {
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "integration": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "งานเอกสารเชิงปฏิบัติการ (backend low) ขั้นตรวจการเชื่อมต่อกับแพลตฟอร์ม (integration low)",
+        "total": 1.0
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-33",
+      "title": "ตรวจคุณภาพและเทียบหน้าจอกับ wireframe ครบ 46 หน้า",
+      "priority": "high",
+      "summary": "รัน lint, check-types, test ทั้งสองฝั่ง ค้นคำที่ห้ามมี และเทียบหน้าจอที่สร้างกับ wireframe รายหน้า",
+      "acceptance": [
+        "pnpm lint, pnpm check-types, pnpm test และ go test ./... ที่ตั้ง TEST_DATABASE_URL ผ่าน โดยไม่มี test ที่ถูกข้าม",
+        "ไม่พบ APP_OWNER_USERNAME, is_owner, requireOwner, app_users_one_owner และ (เจ้าของแอป) ในโค้ด เอกสาร และ wireframe",
+        "ผลเทียบครบ 46 หน้าใน docs/wireframe-map.md ถ้าพบหน้าที่ไม่ตรงรหัสหรือ Spec ขัดกับ wireframe ให้บันทึกและกลับมาถามผู้ใช้ (AC-37)",
+        "ไม่มีข้อความ em-dash ในหน้าจอ และไม่มีข้อค้นพบระดับ Critical หรือ High จาก /review"
+      ],
+      "screens": [
+        "S1 คิวคำขอใบเสนอราคา",
+        "S2a ออกใบเสนอราคาจากคำขอ",
+        "S2b บันทึกคำตอบของลูกค้า",
+        "S2c รายการใบเสนอราคาและคำสั่งซื้อ",
+        "S3 สินค้าและสต็อก",
+        "S4 องค์กร ผู้ติดต่อ และราคาตามสัญญา",
+        "S5 เจ้าหน้าที่",
+        "S6 คำถามที่แชตส่งต่อ"
+      ],
+      "depends": [
+        "BL-05",
+        "BL-10",
+        "BL-18",
+        "BL-19",
+        "BL-22",
+        "BL-23"
+      ],
+      "estimate": "1.5 วัน",
+      "parts": {
+        "backend": {
+          "task": "รันชุด test ทั้งหมดและแก้ข้อค้นพบเล็กน้อย",
+          "files": []
+        },
+        "frontend": {
+          "task": "เปิดภาพ page-NN.svg เทียบกับหน้าจอที่สร้างและบันทึกผลรายหน้า",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 1.5,
+      "sizing": {
+        "ui": {
+          "level": "medium",
+          "md": 1.0
+        },
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "reason": "เทียบหน้าจอ 46 หน้าและแก้ความต่างเล็กน้อย (ui medium) รันและแก้ test (backend low)",
+        "total": 1.5
+      },
+      "sit": false
+    },
+    {
+      "id": "BL-34",
+      "title": "นำขึ้น Playground และทดสอบ SIT ทุกระบบ",
+      "priority": "high",
+      "summary": "ตรวจการนำขึ้น Playground ของ AI Kitchen ตั้งค่า environment รันชุดประเมินกับ Agent จริง และเตรียมให้ร้านยืนยันก่อน Go live",
+      "acceptance": [
+        "ก่อนเชิญผู้ทดสอบและรันชุดประเมิน ผู้ดูแลตั้ง BACKEND_INTERNAL_KEY และยืนยัน PS_ADMIN_ROLE_NAME กับบัญชีผู้ดูแลที่เปิดแอปได้ (การตั้ง environment ต้องกลับมาถามผู้ใช้ก่อน)",
+        "ทดสอบ SIT ครอบคลุม Keycloak, proxy, Go backend, PostgreSQL, PDF, งานตามรอบ, route /internal/ และ AI Gateway กับ Agent",
+        "ชุดประเมินผ่านตาม AC-27 และแชตตอบภายใน 10 วินาทีทุกกรณี (AC-28)",
+        "บันทึกผลลงใน docs/golive-checklist.md และเจ้าของร้านหรือผู้ที่ร้านมอบหมายยืนยันพร้อมชื่อและวันที่ ส่วน Go live agent ห้ามกดเอง (AC-30)"
+      ],
+      "screens": [],
+      "depends": [
+        "BL-31",
+        "BL-32",
+        "BL-33"
+      ],
+      "estimate": "2 วัน",
+      "parts": {
+        "backend": {
+          "task": "แก้ข้อบกพร่องที่พบจาก SIT",
+          "files": []
+        },
+        "integration": {
+          "task": "ตรวจการเชื่อมกับ Keycloak, AI Gateway, Agent, คลัง app-test-app และรันชุดประเมินบน Evals ของ PromptServe",
+          "files": []
+        }
+      },
+      "difficulty": "medium",
+      "days": 2.0,
+      "sizing": {
+        "backend": {
+          "level": "low",
+          "md": 0.5
+        },
+        "integration": {
+          "level": "high",
+          "md": 1.5
+        },
+        "reason": "ทดสอบกับระบบแพลตฟอร์มจริงหลายส่วน (integration high) แก้ข้อบกพร่อง (backend low)",
+        "total": 2.0
+      },
+      "sit": true
+    }
+  ],
+  "updatedAt": 1795601112
+}
