@@ -1,0 +1,4 @@
+[submodule "apps/test-app"]
+	path = apps/test-app
+	url = /Users/polawattana.c/Library/Application Support/AI Kitchen 3.8 Dev/repos/test-app-1a21190c905/web.git
+	branch = main
