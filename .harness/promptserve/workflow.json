@@ -1,0 +1,48 @@
+{
+  "mode": "auto",
+  "steps": [
+    {
+      "id": "lead",
+      "name": "Requirement gathering",
+      "roles": [
+        "lead"
+      ],
+      "substeps": [
+        {
+          "id": "requirement",
+          "name": "Requirement",
+          "owner": "ผู้รับผิดชอบโครงการ"
+        }
+      ]
+    },
+    {
+      "id": "builder",
+      "name": "Build",
+      "roles": [
+        "builder"
+      ],
+      "substeps": [
+        {
+          "id": "code",
+          "name": "Build",
+          "owner": "นักพัฒนา (รับงานจาก BSA ผ่าน Git แล้วใช้ Autopilot ได้)"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "name": "Deploy",
+      "roles": [
+        "builder",
+        "devops"
+      ],
+      "substeps": [
+        {
+          "id": "deploy",
+          "name": "Deploy",
+          "owner": "DevOps รับงานจากนักพัฒนา ทดสอบ อนุมัติ แล้วนำขึ้น AI Workspace"
+        }
+      ]
+    }
+  ]
+}

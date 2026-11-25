@@ -1,0 +1,26 @@
+# PromptServ channel app — environment
+#
+# After copying to .env, fill in real values. DO NOT commit .env.
+
+# AI Gateway
+AI_GATEWAY_URL=http://promptserv-ai-gateway:4001
+CHANNEL_API_KEY=ps-ch-REPLACE_ME
+CHANNEL_ID={{CHANNEL_ID}}
+
+# Keycloak
+KEYCLOAK_URL=http://keycloak:8180
+KEYCLOAK_PUBLIC_URL=http://localhost:8180
+KEYCLOAK_REALM=promptserv
+KEYCLOAK_CLIENT_ID={{KEYCLOAK_CLIENT_ID}}
+KEYCLOAK_CLIENT_SECRET=REPLACE_ME
+KEYCLOAK_REDIRECT_URI=http://localhost:{{PORT}}/api/auth/callback
+COOKIE_SECRET=REPLACE_ME_WITH_AT_LEAST_32_CHARS
+
+# Optional: mock auth for local dev without Keycloak
+AUTH_MOCK_MODE=false
+
+# Optional: LINE channel secret when CHANNEL_TYPE=LINE
+# LINE_CHANNEL_SECRET=
+
+# Optional: Telegram webhook secret when CHANNEL_TYPE=TELEGRAM
+# TELEGRAM_SECRET_TOKEN=

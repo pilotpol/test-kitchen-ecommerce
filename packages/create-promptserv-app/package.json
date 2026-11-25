@@ -1,0 +1,32 @@
+{
+  "name": "create-promptserv-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Scaffold a new PromptServ channel app (Next.js + SDK + Keycloak + webhooks)",
+  "bin": {
+    "create-promptserv-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.18.12",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "5.9.2"
+  }
+}

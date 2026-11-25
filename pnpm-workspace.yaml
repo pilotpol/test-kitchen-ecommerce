@@ -1,0 +1,7 @@
+packages:
+  - "apps/*"
+  - "apps/prompt-crm/*"
+  - "packages/*"
+  # แอปติดตามงานโครงการ Local AI Box มี lockfile ของตัวเอง (build context = โฟลเดอร์แอป)
+  # จึงไม่อยู่ใน workspace เพื่อไม่ให้ pnpm-lock.yaml ของ monorepo เปลี่ยน
+  - "!apps/localbox-demo"

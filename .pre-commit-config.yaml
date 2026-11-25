@@ -1,0 +1,18 @@
+# Checks before a commit exists, the earliest feedback loop of the project.
+# Install once per clone: pip install pre-commit && pre-commit install
+# The same checks run in CI and in the agent's hooks (.claude/hooks/), so a person and an agent
+# meet the same rules. Python 3 standard library only, no network.
+repos:
+  - repo: local
+    hooks:
+      - id: secret-scan
+        name: secret scan of the staged changes (ci/secret_scan.py)
+        entry: python3 ci/secret_scan.py --staged
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: post-edit-check
+        name: JSON, Python and secrets of each staged file (.claude/hooks/post_edit_check.py)
+        entry: python3 .claude/hooks/post_edit_check.py
+        language: system
+        types: [text]

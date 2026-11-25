@@ -1,0 +1,39 @@
+# CI ของ test-app-: guardrail ของ agent และการตรวจโค้ดของแอป ทุก push และ pull request
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Secret scan of every tracked file
+        run: python3 ci/secret_scan.py --tree
+      - name: Guardrail tests
+        run: |
+          python3 -m unittest discover -s ci/tests -v
+          bash .claude/hooks/tests/test_guardrails.sh
+
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      # แอปใหม่ใน apps/ ยังไม่อยู่ใน lockfile จนกว่าจะ commit pnpm-lock.yaml ที่ pnpm install อัปเดตแล้ว
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm check-types
+      # ชุดทดสอบของแอป: ข้ามเองเมื่อแอปยังไม่มี script test (แอปใหม่ยังไม่มี) พอมีแล้วต้องผ่านก่อน merge
+      - run: pnpm test --if-present

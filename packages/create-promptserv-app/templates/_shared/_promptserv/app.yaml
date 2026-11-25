@@ -1,0 +1,48 @@
+# What this app is, in the terms the platform understands.
+#
+# One file read by three readers that would otherwise each need telling
+# separately: the harness that builds the app, the pipeline that deploys it,
+# and the person reviewing the pull request. Before this existed, the slug
+# lived in a compose file, the roles lived in an environment variable, and the
+# channel lived in somebody's memory - and the three drifted the first time
+# one of them was edited.
+#
+# Presentation belongs in branding. Nothing here may decide what the app is
+# allowed to do except `roles`, which is a gate, not a hint.
+
+# URL is /app/<slug>. Lowercase letters, digits and hyphens.
+# appName is validated as kebab-case at scaffold time, so it is already a
+# valid slug - there is no second name to keep in step with this one.
+slug: test-app-
+name: test-app-
+description: ""
+
+# Keycloak realm roles that unlock this app. Empty means every signed-in user.
+# The convention is one role per app - User_<APP> - plus SuperAdmin, never a
+# generic Admin or Manager: those are cross-tenant and would open this app to
+# every other tenant's administrator.
+roles: []
+
+# The gateway identity this app calls with. Issued when the app is created;
+# leave empty in a template.
+channel: ""
+
+build:
+  dockerfile: Dockerfile
+  port: 3000
+  # Checked after deploy before traffic is sent.
+  health: /api/config
+
+# Runtime environment. Values live in the deployment, never here - this file
+# is committed, and a secret in a committed file is a secret that has leaked.
+env:
+  required:
+    - AI_GATEWAY_URL
+    - CHANNEL_KEY
+    - KEYCLOAK_ISSUER
+    - KEYCLOAK_CLIENT_ID
+    - KEYCLOAK_CLIENT_SECRET
+    - AUTH_SECRET
+  optional:
+    - AUTH_REQUIRED_ROLES
+    - NEXT_PUBLIC_APP_NAME

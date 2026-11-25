@@ -1,0 +1,8 @@
+{
+  "tabs": {
+    "requirement": ["inputs", "intent", "spec", "plan", "wireframe", "backlog"],
+    "code": ["backlog", "designdocs", "techstack", "unittest", "preview"],
+    "deploy": ["pipeline", "preview"]
+  },
+  "docs": []
+}

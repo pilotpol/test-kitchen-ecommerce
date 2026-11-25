@@ -1,0 +1,28 @@
+{
+  "name": "test-app-",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p {{PORT}}",
+    "build": "next build",
+    "start": "next start -p {{PORT}}",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.5.28",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "@repo/ai-gateway-sdk": "workspace:*",
+    "@repo/auth-bff": "workspace:*",
+    "@repo/auth-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.12",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "typescript": "5.9.2"
+  }
+}

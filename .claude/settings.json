@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(d=$PWD; until [ -f \"$d/.claude/hooks/pre_bash_guard.py\" ] || [ \"$d\" = / ]; do d=$(dirname \"$d\"); done; [ \"$d\" = / ] && d=$CLAUDE_PROJECT_DIR; echo \"$d\")/.claude/hooks/pre_bash_guard.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(d=$PWD; until [ -f \"$d/.claude/hooks/post_edit_check.py\" ] || [ \"$d\" = / ]; do d=$(dirname \"$d\"); done; [ \"$d\" = / ] && d=$CLAUDE_PROJECT_DIR; echo \"$d\")/.claude/hooks/post_edit_check.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

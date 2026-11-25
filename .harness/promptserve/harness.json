@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "promptserve",
+  "version": "4.1.1",
+  "requires": {
+    "app": "3.2.8"
+  },
+  "components": {
+    "knowledge": "1.3.1",
+    "team": "1.0.0",
+    "roles": "2.2.0",
+    "workflow": "3.1.0",
+    "workspace": "2.1.0",
+    "scaffold": "1.1.4",
+    "policy": "1.0.0"
+  },
+  "scoreFloor": 89,
+  "order": 1,
+  "mode": "promptserve",
+  "name": "PromptServe Application Harness",
+  "short": "Prompt Serve Template",
+  "description": "สร้าง Application ภายใต้ Prompt Serve Framework แล้วนำขึ้น AI Workspace เป็นสามขั้น: Requirement gathering ที่นักวิเคราะห์ระบบทำเอกสารและ backlog ให้ครบ (มีผู้ตรวจอิสระเป็นด่านสุดท้าย) แล้วส่งงานให้นักพัฒนาผ่าน Git, Build ที่นักพัฒนารับงานแล้วใช้ Autopilot พัฒนาตาม backlog ทีละรายการ และ Deploy ที่ DevOps รับงานจากนักพัฒนา ทดสอบ อนุมัติ แล้วนำขึ้น AI Workspace ใช้ stack มาตรฐาน Next.js, Go + Gin และ PostgreSQL พร้อม Agent และคลังความรู้ของแอปที่แพลตฟอร์มสร้างให้",
+  "scope": "promptserve",
+  "stack": "promptserve",
+  "minBackends": 2,
+  "team": {},
+  "knowledgeBases": [
+    "harness-promptserve-app"
+  ],
+  "submodules": [],
+  "stages": [
+    {
+      "id": "requirement",
+      "name": "Requirement gathering",
+      "gate": "Intent, Spec, Plan และ Design ครบ มี backlog ที่ผ่านผู้ตรวจอิสระ และนำเอกสารขึ้น Git แล้วจึงส่งงานให้นักพัฒนา (ไม่มีทางส่งต่อโดยไม่ผ่าน Git)"
+    },
+    {
+      "id": "build",
+      "name": "พัฒนาตาม backlog",
+      "gate": "นักพัฒนารับงานจากนักวิเคราะห์ระบบผ่าน Git ยืนยัน Tech Stack แล้ว ทุกรายการผ่าน unit test และรวมเข้างานหลักแล้วจึงส่งงานให้ DevOps"
+    },
+    {
+      "id": "deploy",
+      "name": "นำขึ้น AI Workspace",
+      "gate": "DevOps รับงานจากนักพัฒนาผ่าน Git ผ่านการตรวจก่อนส่ง และ Playground พร้อมใช้งานก่อน Go live"
+    }
+  ],
+  "includes": [
+    "guardrails"
+  ]
+}
