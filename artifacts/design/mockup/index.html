@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8">
@@ -6,546 +6,695 @@
 <title>Mockup ระบบใบเสนอราคาเครื่องเขียน</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,"Sukhumvit Set","Segoe UI",sans-serif;font-size:14px;color:#1f2937;background:#f3f4f6}
-.mockbar{background:#92400e;color:#fff;text-align:center;font-size:12px;padding:4px 8px}
-.top{background:#1e3a5f;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
-.top h1{font-size:16px;margin:0}
-.user{display:flex;align-items:center;gap:10px;font-size:13px}
-.avatar{width:32px;height:32px;border-radius:50%;background:#dbeafe;color:#1e3a5f;display:flex;align-items:center;justify-content:center;font-weight:700}
-.layout{display:flex;min-height:calc(100vh - 80px)}
-nav{width:240px;background:#fff;border-right:1px solid #e5e7eb;padding:12px 0;flex-shrink:0}
-nav a{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;color:#374151;text-decoration:none}
-nav a:hover{background:#f3f4f6}
-nav a.active{background:#e0ecfb;color:#1e3a5f;font-weight:600;border-left:3px solid #1e3a5f;padding-left:17px}
-.badge{background:#dc2626;color:#fff;border-radius:10px;font-size:11px;padding:1px 7px}
-main{flex:1;padding:24px;min-width:0}
-.screen{display:none}.screen.on{display:block}
-h2{margin:0 0 4px;font-size:20px}
-h3{font-size:15px;margin:20px 0 8px}
-.sub{color:#6b7280;margin:0 0 16px}
-.head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:16px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.cards .card{margin:0}.cards b{font-size:24px;display:block}
-.cards .warn b{color:#b91c1c}
-table{width:100%;border-collapse:collapse;background:#fff}
-th,td{padding:9px 10px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:middle}
-th{background:#f9fafb;font-size:12px;color:#4b5563}
-td.n,th.n{text-align:right}
-tr.click{cursor:pointer}tr.click:hover{background:#f0f6ff}
-button,.btn{font:inherit;border-radius:6px;padding:8px 14px;border:1px solid #1e3a5f;background:#fff;color:#1e3a5f;cursor:pointer}
-button.p{background:#1e3a5f;color:#fff}
-button.d{border-color:#b91c1c;color:#b91c1c}
-button:disabled{opacity:.45;cursor:not-allowed}
-a.lnk{color:#1d4ed8;cursor:pointer;text-decoration:underline}
-input,select,textarea{font:inherit;padding:7px 9px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;max-width:100%}
-textarea{width:100%;min-height:70px}
-label{display:block;font-size:12px;color:#4b5563;margin:10px 0 3px}
-.row{display:flex;gap:12px;flex-wrap:wrap}.row>div{flex:1;min-width:200px}
-.row input,.row select{width:100%}
-.tabs{display:flex;gap:4px;border-bottom:1px solid #d1d5db;margin-bottom:12px}
-.tabs button{border:none;border-radius:6px 6px 0 0;background:transparent;color:#4b5563}
-.tabs button.on{background:#1e3a5f;color:#fff}
-.tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:12px;background:#e5e7eb}
-.tag.g{background:#dcfce7;color:#166534}.tag.r{background:#fee2e2;color:#991b1b}.tag.y{background:#fef3c7;color:#92400e}.tag.b{background:#dbeafe;color:#1e40af}
-.alert{padding:10px 12px;border-radius:6px;margin-bottom:10px;background:#fef3c7;color:#78350f;border:1px solid #fcd34d}
-.alert.e{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}
-.alert.o{background:#dcfce7;color:#14532d;border-color:#86efac}
-.state{padding:28px;text-align:center;color:#6b7280;background:#fff;border:1px dashed #cbd5e1;border-radius:8px}
-.state.er{color:#991b1b;border-color:#fca5a5}
-.bar{display:flex;align-items:flex-end;gap:14px;height:140px;padding:10px 0}
-.bar div{flex:1;background:#3b82f6;color:#fff;text-align:center;font-size:12px;border-radius:4px 4px 0 0;position:relative}
-.bar span{position:absolute;bottom:-20px;left:0;right:0;color:#4b5563}
-.sw{display:flex;align-items:center;gap:10px}
-.sw input{width:18px;height:18px}
-#toast{position:fixed;right:20px;bottom:20px;background:#166534;color:#fff;padding:10px 16px;border-radius:6px;display:none;z-index:50}
-#modal{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:40}
-#modal .box{background:#fff;border-radius:8px;padding:20px;width:440px;max-width:92vw}
-#modal .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
-#drawer{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:100vw;background:#fff;border-left:1px solid #cbd5e1;box-shadow:-4px 0 14px rgba(0,0,0,.12);display:none;flex-direction:column;z-index:30}
-#drawer.on{display:flex}
-#drawer header{background:#1e3a5f;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
-#drawer header button{background:transparent;color:#fff;border-color:#fff;padding:3px 9px}
-#msgs{flex:1;overflow:auto;padding:12px;background:#f9fafb}
-.m{max-width:88%;padding:8px 11px;border-radius:10px;margin-bottom:8px;white-space:pre-wrap}
-.m.u{background:#1e3a5f;color:#fff;margin-left:auto}
-.m.a{background:#fff;border:1px solid #e5e7eb}
-.pc{border:1px solid #93c5fd;background:#eff6ff;border-radius:6px;padding:6px 9px;margin-top:6px}
-#drawer footer{padding:10px;border-top:1px solid #e5e7eb}
-#drawer footer .f{display:flex;gap:6px;margin-top:6px}#drawer footer input{flex:1}
-.note{font-size:12px;color:#6b7280}
-.center{max-width:520px;margin:40px auto;text-align:center}
-.pre{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:10px;white-space:pre-wrap;font-size:13px}
-.right{text-align:right}
+body{margin:0;font-family:-apple-system,"Sukhumvit Set","Sarabun",sans-serif;font-size:14px;color:#1d2733;background:#f5f7fa}
+#mockbar{position:sticky;top:0;z-index:60;background:#fff3bf;border-bottom:1px solid #e0c85a;padding:6px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px}
+#mockbar select{font:inherit;padding:2px 4px}
+#mockbar b{color:#7a5b00}
+.appbar{height:52px;background:#16324f;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
+.brand{font-weight:700;font-size:16px}
+.user{display:flex;align-items:center;gap:10px}
+.av{width:32px;height:32px;border-radius:50%;background:#4f86c0;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.layout{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 92px)}
+.side{background:#eaf0f7;padding:12px 0;border-right:1px solid #d3dde9}
+.side a{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;color:#1d3a5a;text-decoration:none;border-left:4px solid transparent}
+.side a:hover{background:#dce7f4}
+.side a.on{background:#d0e0f2;border-left-color:#1f5fa8;font-weight:700}
+.cnt{background:#c0392b;color:#fff;border-radius:10px;font-size:12px;padding:1px 8px}
+main{padding:24px 28px;min-width:0}
+.pagehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px}
+h1{font-size:21px;margin:0}
+h2{font-size:16px;margin:0 0 10px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.card{background:#fff;border:1px solid #d9e1ea;border-radius:8px;padding:16px;margin-bottom:14px}
+.cards .card{margin-bottom:0}
+.big{font-size:24px;font-weight:700;margin-top:4px}
+.muted{color:#5f6f80;font-size:13px}
+.btn{font:inherit;border-radius:6px;border:1px solid #1f5fa8;background:#fff;color:#1f5fa8;padding:8px 16px;cursor:pointer}
+.btn.primary{background:#1f5fa8;color:#fff}
+.btn.danger{border-color:#b03a2e;color:#b03a2e}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:3px 10px;font-size:13px}
+a.lnk{color:#1f5fa8;cursor:pointer;text-decoration:underline}
+table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d9e1ea}
+.t th{background:#eef2f7;text-align:left;padding:9px 10px;font-size:13px;border-bottom:1px solid #d9e1ea}
+.t td{padding:9px 10px;border-bottom:1px solid #edf1f5;vertical-align:middle}
+.t tr.click{cursor:pointer}
+.t tr.click:hover td{background:#f2f7fd}
+.t td.r,.t th.r{text-align:right}
+.badge{display:inline-block;border-radius:10px;padding:2px 10px;font-size:12px;background:#e6ebf1;color:#33465a;white-space:nowrap}
+.b-green{background:#d9f0e0;color:#17623a}.b-red{background:#f9dcd8;color:#9a2a1d}.b-amber{background:#fdecc4;color:#7a5200}.b-blue{background:#d9e8f8;color:#174f8a}.b-grey{background:#e6ebf1;color:#4a5968}
+.tabs{display:flex;gap:4px;margin:10px 0}
+.tabs button{font:inherit;border:1px solid #cfd9e5;background:#fff;padding:7px 16px;cursor:pointer;border-radius:6px}
+.tabs button.on{background:#1f5fa8;color:#fff;border-color:#1f5fa8}
+input,select,textarea{font:inherit;padding:7px 9px;border:1px solid #b9c6d4;border-radius:6px;background:#fff;max-width:100%}
+.search{width:320px;margin-bottom:10px}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#33465a}
+label input,label select,label textarea{font-size:14px;color:#1d2733}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pin{width:110px;text-align:right}
+.warn{background:#fff6dd;border:1px solid #e8cf85;border-radius:6px;padding:8px 12px;margin-bottom:8px;color:#6d4c00}
+.err{background:#fdeceb;border:1px solid #e3a49c;border-radius:6px;padding:8px 12px;margin-bottom:10px;color:#8a2519}
+.ok{background:#e4f5ea;border:1px solid #9fd3b0;border-radius:6px;padding:8px 12px;margin-bottom:10px;color:#17623a}
+.info{background:#e8f1fb;border:1px solid #b5cfee;border-radius:6px;padding:8px 12px;margin-bottom:10px;color:#17436f}
+.actions{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin-top:12px}
+.sumrow{display:flex;justify-content:space-between;padding:4px 0}
+.sumrow.tot{font-weight:700;border-top:1px solid #d9e1ea;margin-top:4px;padding-top:8px}
+.statebox{background:#fff;border:1px dashed #b9c6d4;border-radius:8px;padding:48px;text-align:center;color:#4a5968}
+.spin{width:34px;height:34px;border:4px solid #d0dbe8;border-top-color:#1f5fa8;border-radius:50%;margin:0 auto 12px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#modal{position:fixed;inset:0;background:rgba(20,30,45,.45);display:none;align-items:center;justify-content:center;z-index:80}
+#modal.show{display:flex}
+.mbox{background:#fff;border-radius:10px;width:560px;max-width:94vw;max-height:90vh;overflow:auto;padding:20px}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1d2733;color:#fff;padding:10px 20px;border-radius:8px;display:none;z-index:90;max-width:90vw}
+#toast.bad{background:#9a2a1d}
+.drawer{position:fixed;right:0;top:40px;bottom:0;width:400px;background:#fff;border-left:1px solid #b9c6d4;box-shadow:-4px 0 14px rgba(0,0,0,.12);z-index:40;display:flex;flex-direction:column}
+.dhead{padding:12px 14px;border-bottom:1px solid #d9e1ea;display:flex;justify-content:space-between;align-items:center}
+.dbody{padding:12px;overflow:auto;flex:1;background:#f5f7fa}
+.dfoot{padding:10px;border-top:1px solid #d9e1ea;display:flex;gap:8px}
+.dfoot input{flex:1}
+.msg{margin:8px 0;padding:9px 12px;border-radius:10px;max-width:90%;white-space:pre-wrap}
+.msg.u{background:#d0e0f2;margin-left:auto}
+.msg.a{background:#fff;border:1px solid #d9e1ea}
+.pc{border:1px solid #cfd9e5;border-radius:6px;padding:6px 10px;margin-top:6px;background:#fafcff;font-size:13px}
+.chips button{font:inherit;font-size:12px;border:1px solid #b9c6d4;background:#fff;border-radius:12px;padding:3px 10px;cursor:pointer;margin:2px}
+.orgs button{display:block;width:100%;text-align:left;font:inherit;padding:9px 10px;border:0;border-bottom:1px solid #edf1f5;background:#fff;cursor:pointer}
+.orgs button.on{background:#d0e0f2;font-weight:700}
+.center{max-width:520px;margin:60px auto;text-align:center}
+pre.inv{white-space:pre-wrap;background:#f5f7fa;border:1px solid #d9e1ea;padding:10px;border-radius:6px;font-family:inherit}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:flex;overflow:auto}.cards,.grid2,.grid3,.split{grid-template-columns:1fr}.drawer{width:100%}}
 </style>
 </head>
 <body>
-<div class="mockbar">Mockup สำหรับตรวจหน้าจอ ยังไม่ใช่แอปจริง ข้อมูลทั้งหมดเป็นข้อมูลตัวอย่างและไม่ถูกส่งออกไปที่ใด</div>
-<div class="top">
-  <h1>ระบบใบเสนอราคาเครื่องเขียน</h1>
-  <div class="user"><div class="avatar">สศ</div><span>สมศรี ใจดี (เจ้าของแอป)</span></div>
+<div id="mockbar">
+  <b>Mockup สำหรับตรวจหน้าจอ ยังไม่ใช่แอปจริง</b>
+  <label style="flex-direction:row;align-items:center;gap:6px">หน้าจอ <select id="selScreen" onchange="go(this.value)"></select></label>
+  <label style="flex-direction:row;align-items:center;gap:6px">มุมมอง
+    <select id="selMode" onchange="S.mode=this.value;render()">
+      <option value="admin">ผู้ดูแลระบบ PromptServe</option>
+      <option value="staff">เจ้าหน้าที่</option>
+      <option value="none">ไม่มีสิทธิ์ (E1)</option>
+    </select></label>
+  <label style="flex-direction:row;align-items:center;gap:6px">สถานะข้อมูล
+    <select id="selState" onchange="S.vstate=this.value;render()">
+      <option value="ok">ปกติ</option>
+      <option value="loading">กำลังโหลด</option>
+      <option value="empty">ไม่มีข้อมูล</option>
+      <option value="error">ข้อผิดพลาด</option>
+    </select></label>
 </div>
-<div class="layout">
-<nav id="nav">
-  <a href="#s1" data-n="s1">คิวคำขอ <span class="badge" id="qbadge">5</span></a>
-  <a href="#s8" data-n="s8">บันทึกคำขอแทนลูกค้า</a>
-  <a href="#s2l" data-n="s2l">ใบเสนอราคาและคำสั่งซื้อ</a>
-  <a href="#s3" data-n="s3">สินค้าและสต็อก</a>
-  <a href="#s4" data-n="s4">องค์กรและผู้ติดต่อ</a>
-  <a href="#s5" data-n="s5">เจ้าหน้าที่</a>
-  <a href="#s6" data-n="s6">คำถามที่ส่งต่อ <span class="badge">1</span></a>
-  <a href="#s7" data-n="s7">ตัวชี้วัดและตั้งค่า</a>
-  <a href="#s10" data-n="s10">ประกาศความเป็นส่วนตัว</a>
-  <a href="#e1" data-n="e1" style="margin-top:20px;font-size:12px;color:#6b7280">ตัวอย่างหน้าไม่ได้รับสิทธิ์</a>
-</nav>
-<main>
-
-<!-- S1 -->
-<section class="screen" id="s1">
-  <div class="head"><div><h2>คิวคำขอใบเสนอราคา</h2><p class="sub">วันนี้ 25 พ.ย. 2569 เวลา 10:00 น. เวลาที่รอนับเป็นชั่วโมงทำการจากเวลาที่ร้านได้รับคำขอ</p></div>
-  <button class="p" onclick="location.hash='s8'">บันทึกคำขอแทนลูกค้า</button></div>
-  <div class="cards">
-    <div class="card"><span>คำขอใหม่</span><b>3 รายการ</b></div>
-    <div class="card warn"><span>คำขอเกินกำหนด</span><b>2 รายการ</b></div>
-    <div class="card"><span>คำถามที่ส่งต่อที่ยังไม่ปิด</span><b>1 รายการ</b></div>
-  </div>
-  <div class="tabs" id="qtabs"></div>
-  <div style="margin-bottom:10px;display:flex;gap:8px;align-items:center"><input id="qsearch" placeholder="ค้นหารหัสคำขอหรือชื่อองค์กร" style="width:320px">
-  <select id="qstate"><option value="">แสดงข้อมูลปกติ</option><option value="loading">จำลองสถานะ loading</option><option value="empty">จำลองสถานะ empty</option><option value="error">จำลองสถานะ error</option></select></div>
-  <div id="qbody"></div>
-  <p class="note">ป้าย "เกินกำหนด" แสดงเมื่อรอเกิน 9 ชั่วโมงทำการ (1 วันทำการ) คลิกแถวเพื่อออกใบเสนอราคา</p>
-</section>
-
-<!-- S8 -->
-<section class="screen" id="s8">
-  <div class="head"><div><h2>บันทึกคำขอใบเสนอราคาแทนลูกค้า</h2><p class="sub">เลือกองค์กรก่อน จึงจะแสดงแคตตาล็อกตามราคาตามสัญญา</p></div></div>
-  <div class="card">
-    <div class="row">
-      <div><label>องค์กร</label><select id="o8"></select></div>
-      <div><label>ผู้ติดต่อ</label><select id="c8"></select></div>
-      <div><label>ช่องทางที่ลูกค้าส่งคำขอ</label><select id="ch8"><option>โทรศัพท์</option><option>อีเมล</option><option>ไลน์</option></select></div>
-      <div><label>เวลาที่ร้านได้รับคำขอ</label><input id="t8" value="25 พ.ย. 2569 09:15 น."></div>
-    </div>
-  </div>
-  <div class="row">
-    <div style="flex:3">
-      <h3>แคตตาล็อกตามราคาตามสัญญา</h3>
-      <input id="s8q" placeholder="ค้นหาสินค้าหรือรหัสสินค้า" style="width:100%;margin-bottom:8px">
-      <div id="cat8"></div>
-    </div>
-    <div style="flex:2">
-      <h3>รายการในคำขอ</h3>
-      <div id="items8"></div>
-      <label>หมายเหตุ</label><textarea id="n8">ขอใบเสนอราคาสำหรับเปิดภาคเรียนที่ 1</textarea>
-      <div id="e8"></div>
-      <div style="margin-top:10px;display:flex;gap:8px;justify-content:flex-end"><button onclick="openChat()">เปิดแชตผู้ช่วย</button><button class="p" onclick="save8()">บันทึกคำขอ</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- S2 -->
-<section class="screen" id="s2">
-  <div class="head"><div><h2>ออกใบเสนอราคาจากคำขอ QR-2569-0012 <span class="tag y">รอเสนอราคา</span></h2></div></div>
-  <div class="row">
-    <div class="card"><b>ข้อมูลคำขอ</b><br>องค์กร โรงเรียนวัดสุทธิวราราม<br>ผู้ติดต่อ คุณสมหมาย รักเรียน<br>รับทางโทรศัพท์ 24 พ.ย. 2569 09:15 น.</div>
-    <div class="card"><b>ใบเสนอราคา QT-2569-0012-R0</b><br>อายุ 30 วัน หมดอายุ 25 ธ.ค. 2569<br>ภาษีมูลค่าเพิ่มร้อยละ 7 แยกบรรทัด</div>
-  </div>
-  <div class="alert" id="w1">คำเตือน: 1 รายการไม่มีราคาตามสัญญา ต้องกรอกราคาก่อนออกใบเสนอราคา</div>
-  <div class="alert">คำเตือน: 1 รายการสินค้าหมด เจ้าหน้าที่ตรวจและตัดสินใจก่อนออก</div>
-  <table><thead><tr><th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th class="n">ราคาต่อหน่วย (บาท)</th><th>ที่มาราคา</th><th>หมายเหตุ</th></tr></thead>
-  <tbody>
-   <tr><td>PEN-0101</td><td>ปากกาลูกลื่นสีน้ำเงิน</td><td class="n">500</td><td class="n">2,800.00/500 = 5.60</td><td><span class="tag b">ราคาตามสัญญา</span></td><td></td></tr>
-   <tr><td>PAP-0201</td><td>กระดาษ A4 80 แกรม</td><td class="n">40</td><td class="n">105.00</td><td><span class="tag b">ราคาตามสัญญา</span></td><td></td></tr>
-   <tr><td>NBK-0310</td><td>สมุดปกอ่อน 80 แผ่น</td><td class="n">600</td><td class="n">8.00</td><td><span class="tag b">ราคาตามสัญญา</span></td><td><span class="tag r">สินค้าหมด</span></td></tr>
-   <tr><td>LIQ-0402</td><td>น้ำยาลบคำผิด</td><td class="n">100</td><td class="n"><input id="liq" type="number" min="0" step="0.01" style="width:100px" placeholder="กรอกราคา"></td><td><span class="tag y" id="lsrc">ไม่มีราคาตามสัญญา</span></td><td></td></tr>
-  </tbody></table>
-  <div class="card" style="max-width:360px;margin:12px 0 12px auto">
-    <b>สรุปยอด</b>
-    <div style="display:flex;justify-content:space-between;margin-top:6px"><span>ยอดรวมที่มีราคา</span><span id="sum1">11,800.00 บาท</span></div>
-    <div style="display:flex;justify-content:space-between"><span>ภาษีมูลค่าเพิ่ม 7%</span><span id="sum2">826.00 บาท</span></div>
-    <div style="display:flex;justify-content:space-between;font-weight:700"><span>ยอดสุทธิ</span><span id="sum3">12,626.00 บาท</span></div>
-  </div>
-  <div id="e2"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center">
-    <a class="lnk" onclick="cancelReq()">ยกเลิกคำขอ</a>
-    <div style="display:flex;gap:8px"><button onclick="openChat()">เปิดแชตผู้ช่วย</button><button class="p" id="issue" disabled onclick="issueQ()">ออกใบเสนอราคา</button></div>
-  </div>
-</section>
-
-<!-- S2R -->
-<section class="screen" id="s2r">
-  <div class="head"><div><h2>บันทึกคำตอบของลูกค้า QT-2569-0010-R0 <span class="tag b" id="r-st">ออกแล้ว รอลูกค้าตอบ</span></h2></div></div>
-  <div class="row">
-    <div class="card"><b>โรงเรียนอนุบาลบ้านดอกไม้</b><br>ออกเมื่อ 20 พ.ย. 2569 หมดอายุ 20 ธ.ค. 2569<br>ยอดสุทธิ 12,626.00 บาท</div>
-    <div class="card" id="ordcard" style="display:none"><b>คำสั่งซื้อ SO-2569-0007</b><br>สถานะ <span class="tag g">ยืนยันแล้ว</span><br>ระบบสร้างหลังบันทึกคำตอบยืนยัน<br><a class="lnk" onclick="toast('จำลองการดาวน์โหลด PDF คำสั่งซื้อ SO-2569-0007')">ดาวน์โหลด PDF คำสั่งซื้อ</a></div>
-  </div>
-  <div class="card" id="rform">
-    <label>คำตอบของลูกค้า</label>
-    <div><label style="display:inline;margin-right:16px"><input type="radio" name="dec" value="confirm" checked onchange="decChg()"> ลูกค้ายืนยัน</label>
-    <label style="display:inline;margin-right:16px"><input type="radio" name="dec" value="reject" onchange="decChg()"> ลูกค้าปฏิเสธ</label>
-    <label style="display:inline"><input type="radio" name="dec" value="revise" onchange="decChg()"> ลูกค้าขอแก้ไข</label></div>
-    <div class="row">
-      <div><label>ช่องทางที่ลูกค้าตอบ</label><select id="rch"><option>อีเมล</option><option>โทรศัพท์</option><option>ไลน์</option></select></div>
-      <div><label>วันและเวลาที่ลูกค้าตอบ</label><input id="rt" value="24 พ.ย. 2569 14:30 น."></div>
-    </div>
-    <div id="rrw" style="display:none"><label>เหตุผลที่ปฏิเสธ (จำเป็น)</label><input id="rr" style="width:100%"></div>
-    <label>หมายเหตุหลักฐาน (จำเป็น)</label>
-    <textarea id="rn">ลูกค้าตอบยืนยันทางอีเมลเมื่อวันที่ 24 พ.ย. 2569 หัวเรื่อง ยืนยันใบเสนอราคา</textarea>
-    <div id="e3"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-      <button onclick="toast('จำลองการดาวน์โหลด PDF ใบเสนอราคา QT-2569-0010-R0')">ดาวน์โหลด PDF ใบเสนอราคา</button>
-      <div><a class="lnk" onclick="location.hash='s2l'" style="margin-right:12px">ยกเลิก</a><button class="p" onclick="saveResp()">บันทึกคำตอบ</button></div>
-    </div>
-  </div>
-  <p class="note">ใบเสนอราคาที่หมดอายุหรือถูกแทนที่บันทึกคำตอบไม่ได้ ระบบแจ้งว่า "ใบเสนอราคานี้ไม่อยู่ในสถานะที่รับคำตอบได้"</p>
-</section>
-
-<!-- S2L -->
-<section class="screen" id="s2l">
-  <div class="head"><div><h2>ใบเสนอราคาและคำสั่งซื้อ</h2></div><button onclick="toast('จำลองการดาวน์โหลด PDF')">ดาวน์โหลด PDF</button></div>
-  <div class="tabs"><button id="tq" class="on" onclick="lt('q')">ใบเสนอราคา</button><button id="to" onclick="lt('o')">คำสั่งซื้อ</button></div>
-  <div style="margin-bottom:10px"><select id="lorg" onchange="renderL()"></select></div>
-  <div id="lbody"></div>
-  <p class="note">คลิกแถวใบเสนอราคาที่รอลูกค้าตอบเพื่อบันทึกคำตอบของลูกค้า</p>
-</section>
-
-<!-- S3 -->
-<section class="screen" id="s3">
-  <div class="head"><div><h2>สินค้าและสต็อก</h2><p class="sub">ราคามาตรฐานและสต็อกเห็นเฉพาะเจ้าหน้าที่ การยืนยันคำสั่งซื้อไม่ตัดสต็อกอัตโนมัติ</p></div><button class="p" onclick="newProd()">เพิ่มสินค้า</button></div>
-  <div style="display:flex;gap:8px;margin-bottom:10px"><input id="pq" placeholder="ค้นหารหัสหรือชื่อสินค้า" style="width:280px"><select id="pcat"><option value="">ทุกหมวด</option><option>เครื่องเขียน</option><option>กระดาษและสมุด</option><option>อุปกรณ์สำนักงาน</option></select></div>
-  <div id="pbody"></div>
-  <div class="card" style="margin-top:16px" id="pedit"></div>
-</section>
-
-<!-- S4 -->
-<section class="screen" id="s4">
-  <div class="head"><div><h2>องค์กรและผู้ติดต่อ</h2></div><button class="p" onclick="toast('จำลองการเพิ่มองค์กร: ยังไม่มีการบันทึกจริง')">เพิ่มองค์กร</button></div>
-  <div class="card"><label>องค์กร</label><select id="o4" onchange="renderOrg()" style="min-width:300px"></select>
-  <div id="orginfo" class="note" style="margin-top:8px"></div></div>
-  <h3>ผู้ติดต่อ</h3><div id="ctab"></div>
-  <div class="card" id="invbox" style="display:none;margin-top:12px"><b>ข้อความเชิญ (คัดลอกแล้วส่งเองนอกแอป)</b><div class="pre" id="invtxt"></div><button style="margin-top:8px" onclick="copyInv()">คัดลอกข้อความ</button> <span class="note">แอปไม่ส่งอีเมลเอง</span></div>
-  <h3>ราคาตามสัญญา (บาทต่อหน่วย ไม่รวมภาษีมูลค่าเพิ่ม)</h3><div id="ptab"></div>
-  <div style="margin-top:10px"><button class="p" onclick="toast('บันทึกราคาตามสัญญาแล้ว (จำลอง)')">บันทึกราคาตามสัญญา</button></div>
-</section>
-
-<!-- S5 -->
-<section class="screen" id="s5">
-  <div class="head"><div><h2>เจ้าหน้าที่</h2><p class="sub">เจ้าหน้าที่ต้องมีบัญชี PromptServe บทบาท User ที่ผู้ดูแลระบบสร้างให้ก่อน</p></div></div>
-  <div class="card"><div class="row"><div><label>ชื่อที่แสดง</label><input id="su1"></div><div><label>ชื่อผู้ใช้ PromptServe</label><input id="su2"></div><div style="flex:0;align-self:flex-end"><button class="p" onclick="addStaff()">เพิ่มเจ้าหน้าที่</button></div></div><div id="e5"></div></div>
-  <div id="stbody"></div>
-</section>
-
-<!-- S6 -->
-<section class="screen" id="s6">
-  <div class="head"><div><h2>คำถามที่แชตส่งต่อ</h2><p class="sub">ข้อความปกปิดอีเมลและเบอร์โทรแล้ว ระบบลบอัตโนมัติเมื่อครบ 90 วัน</p></div></div>
-  <div id="esbody"></div>
-</section>
-
-<!-- S7 -->
-<section class="screen" id="s7">
-  <div class="head"><div><h2>ตัวชี้วัดและตั้งค่า</h2></div></div>
-  <div class="card">
-    <div style="display:flex;justify-content:space-between"><b>ตัวชี้วัดเวลาออกใบเสนอราคา</b><select><option>พฤศจิกายน 2569</option><option>ตุลาคม 2569</option></select></div>
-    <div class="cards" style="margin-top:12px"><div class="card"><span>ออกภายใน 1 วันทำการ</span><b>92.3%</b><span class="note">24 จาก 26 คำขอ (เป้าหมายอย่างน้อย 90%)</span></div><div class="card"><span>ค่ามัธยฐานของเวลา</span><b>5.4 ชั่วโมงทำการ</b></div><div class="card"><span>คำขอที่ยังไม่ออกใบเสนอราคา</span><b>5 รายการ</b></div></div>
-    <div class="bar" style="margin-bottom:28px"><div style="height:78%">78%<span>มิ.ย.</span></div><div style="height:84%">84%<span>ก.ค.</span></div><div style="height:88%">88%<span>ส.ค.</span></div><div style="height:90%">90%<span>ก.ย.</span></div><div style="height:91%">91%<span>ต.ค.</span></div><div style="height:92%">92%<span>พ.ย.</span></div></div>
-  </div>
-  <div class="card">
-    <b>ตั้งค่า</b>
-    <div class="row"><div><label>อายุใบเสนอราคา (วัน)</label><input id="qv" type="number" value="30"></div><div><label>อัตราภาษีมูลค่าเพิ่ม (ร้อยละ)</label><input id="vt" type="number" value="7"></div></div>
-    <label>เปิดระยะที่ 2 (ผู้สั่งซื้อเข้าใช้เอง)</label>
-    <div class="sw"><input type="checkbox" id="bp"><span id="bpnote">ปิดอยู่ ฝั่งผู้สั่งซื้อทุก route ตอบ 403</span></div>
-    <div class="sw" style="margin-top:8px"><input type="checkbox" id="asnon"><span class="note">จำลองมุมมองเจ้าหน้าที่ที่ไม่ใช่เจ้าของแอป</span></div>
-    <div style="margin-top:12px"><button class="p" onclick="toast('บันทึกอายุใบเสนอราคาและอัตราภาษีแล้ว (จำลอง)')">บันทึกค่าตั้ง</button></div>
-  </div>
-</section>
-
-<!-- S10 -->
-<section class="screen" id="s10">
-  <div class="head"><div><h2>ประกาศความเป็นส่วนตัว</h2></div></div>
-  <div class="card">
-    <p>ร้านเก็บข้อมูลส่วนบุคคลเท่าที่จำเป็นเพื่อจัดการใบเสนอราคาและคำสั่งซื้อขององค์กรลูกค้า</p>
-    <table><thead><tr><th>ข้อมูล</th><th>เหตุผลที่เก็บ</th><th>ระยะเก็บและการลบ</th></tr></thead><tbody>
-    <tr><td>ชื่อ-นามสกุลผู้ติดต่อ</td><td>ระบุผู้ที่ขอและตอบใบเสนอราคา</td><td>เก็บตลอดที่ใช้งาน ลบเมื่อมีคำขอ</td></tr>
-    <tr><td>อีเมลและเบอร์โทรที่ทำงาน</td><td>ติดต่อเรื่องใบเสนอราคา</td><td>เช่นเดียวกับชื่อ</td></tr>
-    <tr><td>ชื่อผู้ใช้และชื่อที่แสดงของเจ้าหน้าที่</td><td>ระบุผู้ทำรายการในบันทึกการใช้งาน</td><td>เก็บตลอดที่ใช้งาน</td></tr>
-    <tr><td>ข้อความคำถามที่ปกปิดแล้ว</td><td>ให้เจ้าหน้าที่ตรวจเรื่องที่ผู้ช่วยตอบไม่ได้</td><td>ลบอัตโนมัติเมื่อครบ 90 วัน</td></tr></tbody></table>
-    <p class="note">ร้านไม่เก็บเลขบัตรประชาชน ที่อยู่ส่วนบุคคล ข้อมูลการชำระเงิน และประวัติแชต</p>
-    <div class="alert o" id="pvok" style="display:none">รับทราบแล้วเมื่อ 25 พ.ย. 2569 10:00 น.</div>
-    <button class="p" id="pvb" onclick="acceptPv()">รับทราบ</button>
-  </div>
-</section>
-
-<!-- E1 -->
-<section class="screen" id="e1">
-  <div class="center card">
-    <h2>บัญชีนี้ยังไม่ได้รับสิทธิ์ใช้งาน</h2>
-    <p>กรุณาติดต่อเจ้าของแอป เพื่อเพิ่มบัญชีของท่านเป็นเจ้าหน้าที่ หน้านี้ไม่แสดงข้อมูลใดของร้าน</p>
-    <button onclick="location.hash='s1'">กลับสู่หน้าหลักตัวอย่าง</button>
-  </div>
-</section>
-
-</main>
-</div>
-
-<!-- chat drawer S9 -->
-<aside id="drawer">
-  <header><b>แชตผู้ช่วย</b><button onclick="closeChat()">ปิด</button></header>
-  <div id="msgs"><div class="m a">สวัสดีครับ เลือกองค์กรก่อน แล้วสอบถามสินค้าหรือขอคำแนะนำได้ ผู้ช่วยไม่ตั้งราคา ไม่ลดราคา และไม่ออกใบเสนอราคา</div></div>
-  <footer>
-    <select id="co" style="width:100%"></select>
-    <div class="note" style="margin-top:4px">ระบบปกปิดอีเมลและเบอร์โทรก่อนส่งถึงโมเดล ไม่เก็บประวัติแชต</div>
-    <div class="f"><input id="cin" maxlength="1000" placeholder="พิมพ์คำถาม (ไม่เกิน 1,000 ตัวอักษร)" onkeydown="if(event.key==='Enter')sendChat()"><button class="p" onclick="sendChat()">ส่ง</button></div>
-  </footer>
-</aside>
-
-<div id="modal"><div class="box"><h3 id="mt" style="margin-top:0"></h3><p id="mb"></p><div class="acts"><button onclick="mclose()">ยกเลิก</button><button class="p" id="mok">ยืนยัน</button></div></div></div>
+<div id="app"></div>
+<div id="modal"><div class="mbox" id="mbox"></div></div>
 <div id="toast"></div>
 
 <script type="application/json" id="mockup-screens">
 [
 {"id":"s1","name":"S1 คิวคำขอใบเสนอราคา","route":"/"},
 {"id":"s8","name":"S8 บันทึกคำขอแทนลูกค้า","route":"/requests/new"},
-{"id":"s9","name":"S9 แผงแชตผู้ช่วย","route":"/requests/new (แผงแชต)"},
-{"id":"s2","name":"S2 ออกใบเสนอราคา","route":"/requests/[id]/quote"},
-{"id":"s2r","name":"S2 บันทึกคำตอบของลูกค้า","route":"/quotes/[id]/response"},
-{"id":"s2l","name":"S2 รายการใบเสนอราคาและคำสั่งซื้อ","route":"/quotes"},
+{"id":"s2a","name":"S2a ออกใบเสนอราคาจากคำขอ","route":"/requests/[id]"},
+{"id":"s2b","name":"S2b บันทึกคำตอบของลูกค้า","route":"/quotes/[id]/response"},
+{"id":"s2c","name":"S2c ใบเสนอราคาและคำสั่งซื้อ","route":"/documents"},
 {"id":"s3","name":"S3 สินค้าและสต็อก","route":"/products"},
 {"id":"s4","name":"S4 องค์กร ผู้ติดต่อ และราคาตามสัญญา","route":"/organizations"},
 {"id":"s5","name":"S5 เจ้าหน้าที่","route":"/staff"},
-{"id":"s6","name":"S6 คำถามที่แชตส่งต่อ","route":"/escalations"},
+{"id":"s6","name":"S6 คำถามที่ส่งต่อ","route":"/escalations"},
 {"id":"s7","name":"S7 ตัวชี้วัดและตั้งค่า","route":"/settings"},
+{"id":"s9","name":"S9 แผงแชตผู้ช่วย","route":"/requests/new?chat=1"},
 {"id":"s10","name":"S10 ประกาศความเป็นส่วนตัว","route":"/privacy"},
-{"id":"e1","name":"E1 ยังไม่ได้รับสิทธิ์ใช้งาน","route":"/unauthorized"}
+{"id":"e1","name":"E1 ยังไม่ได้รับสิทธิ์ใช้งาน","route":"/not-authorized"}
 ]
 </script>
 
 <script>
-var $=function(i){return document.getElementById(i)};
-function money(n){return Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function toast(t){var e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
-function err(id,msgs){$(id).innerHTML=msgs.length?'<div class="alert e">'+msgs.join('<br>')+'</div>':''}
-function mopen(t,b,ok){$('mt').textContent=t;$('mb').textContent=b;$('mok').onclick=function(){mclose();ok()};$('modal').style.display='flex'}
-function mclose(){$('modal').style.display='none'}
+'use strict';
+var SCREENS=JSON.parse(document.getElementById('mockup-screens').textContent);
+var MON=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+var MONF=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+var NOW=Date.UTC(2026,10,25,10,0);
+var NOWSTR='25 พ.ย. 2569 10:00 น.';
+var CH={phone:'โทรศัพท์',email:'อีเมล',line:'LINE',walk_in:'มาที่ร้าน',other:'อื่น ๆ'};
+var RS={pending_quote:'รอเสนอราคา',quoted:'เสนอราคาแล้ว',closed:'ปิดแล้ว',cancelled:'ยกเลิก'};
+var RB={pending_quote:'b-amber',quoted:'b-blue',closed:'b-grey',cancelled:'b-red'};
+var QS={issued:'ออกแล้ว รอลูกค้าตอบ',confirmed:'ยืนยันแล้ว',rejected:'ปฏิเสธ',revision_requested:'ขอแก้ไข',superseded:'ถูกแทนที่',expired:'หมดอายุ'};
+var QB={issued:'b-blue',confirmed:'b-green',rejected:'b-red',revision_requested:'b-amber',superseded:'b-grey',expired:'b-grey'};
+var REASON={complaint:'ร้องเรียน',low_confidence:'ความมั่นใจต่ำ',unverified_sku:'รหัสสินค้าที่ไม่พบ'};
 
-/* data */
-var ORGS=[
- {id:0,name:'โรงเรียนวัดสุทธิวราราม',tax:'0994000123451',addr:'เขตบางซื่อ กรุงเทพมหานคร',contacts:[{n:'คุณสมหมาย รักเรียน',e:'somмai@example.test'.replace('м','m'),p:'02-555-0101'},{n:'คุณวิไล ใจงาม',e:'wilai@example.test',p:'02-555-0102'}]},
- {id:1,name:'โรงเรียนอนุบาลบ้านดอกไม้',tax:'0994000234562',addr:'อำเภอเมือง จังหวัดนนทบุรี',contacts:[{n:'คุณนิภา สุขสันต์',e:'nipa@example.test',p:'02-555-0201'}]},
- {id:2,name:'บริษัท รุ่งเรืองการพิมพ์ จำกัด',tax:'0105560345673',addr:'เขตลาดพร้าว กรุงเทพมหานคร',contacts:[{n:'คุณประเสริฐ มั่นคง',e:'prasert@example.test',p:'02-555-0301'}]}
-];
-var PRODS=[
- {sku:'PEN-0101',name:'ปากกาลูกลื่นสีน้ำเงิน',cat:'เครื่องเขียน',unit:'ด้าม',list:7,stock:1250,st:'จำหน่าย',cp:[5.6,5.8,6]},
- {sku:'PAP-0201',name:'กระดาษ A4 80 แกรม',cat:'กระดาษและสมุด',unit:'รีม',list:125,stock:860,st:'จำหน่าย',cp:[105,108,110]},
- {sku:'NBK-0310',name:'สมุดปกอ่อน 80 แผ่น',cat:'กระดาษและสมุด',unit:'เล่ม',list:12,stock:0,st:'จำหน่าย',cp:[8,8.5,null]},
- {sku:'LIQ-0402',name:'น้ำยาลบคำผิด',cat:'เครื่องเขียน',unit:'ขวด',list:18,stock:340,st:'จำหน่าย',cp:[null,14,null]},
- {sku:'FLD-0503',name:'แฟ้มสันกว้าง 3 นิ้ว',cat:'อุปกรณ์สำนักงาน',unit:'แฟ้ม',list:45,stock:210,st:'จำหน่าย',cp:[38,40,41]},
- {sku:'STP-0604',name:'ลวดเย็บกระดาษเบอร์ 10',cat:'อุปกรณ์สำนักงาน',unit:'กล่อง',list:9,stock:95,st:'เลิกขาย',cp:[null,null,null]}
-];
-var QUEUE=[
- {c:'QR-2569-0011',o:'บริษัท รุ่งเรืองการพิมพ์ จำกัด',ch:'อีเมล',w:'10 ชม. 30 นาที',st:'รอเสนอราคา',od:1},
- {c:'QR-2569-0012',o:'โรงเรียนวัดสุทธิวราราม',ch:'โทรศัพท์',w:'9 ชม. 45 นาที',st:'รอเสนอราคา',od:1},
- {c:'QR-2569-0013',o:'โรงเรียนอนุบาลบ้านดอกไม้',ch:'ไลน์',w:'1 ชม. 15 นาที',st:'รอเสนอราคา',od:0},
- {c:'QR-2569-0014',o:'บริษัท รุ่งเรืองการพิมพ์ จำกัด',ch:'โทรศัพท์',w:'45 นาที',st:'รอเสนอราคา',od:0},
- {c:'QR-2569-0015',o:'โรงเรียนวัดสุทธิวราราม',ch:'อีเมล',w:'20 นาที',st:'รอเสนอราคา',od:0},
- {c:'QR-2569-0010',o:'โรงเรียนอนุบาลบ้านดอกไม้',ch:'โทรศัพท์',w:'-',st:'เสนอราคาแล้ว',od:0},
- {c:'QR-2569-0009',o:'บริษัท รุ่งเรืองการพิมพ์ จำกัด',ch:'อีเมล',w:'-',st:'ปิดแล้ว',od:0},
- {c:'QR-2569-0008',o:'โรงเรียนวัดสุทธิวราราม',ch:'ไลน์',w:'-',st:'ยกเลิก',od:0}
-];
-var QUOTES=[
- {c:'QT-2569-0010-R0',o:1,d:'20 พ.ย. 2569',t:12626,st:'ออกแล้ว รอลูกค้าตอบ'},
- {c:'QT-2569-0009-R1',o:2,d:'18 พ.ย. 2569',t:8346.5,st:'ยืนยันแล้ว'},
- {c:'QT-2569-0009-R0',o:2,d:'12 พ.ย. 2569',t:9100,st:'ถูกแทนที่ด้วยฉบับใหม่'},
- {c:'QT-2569-0008-R0',o:0,d:'10 พ.ย. 2569',t:5350,st:'ปฏิเสธ'},
- {c:'QT-2569-0007-R0',o:0,d:'2 ต.ค. 2569',t:21400,st:'หมดอายุ'},
- {c:'QT-2569-0006-R0',o:1,d:'28 ต.ค. 2569',t:3745,st:'ยืนยันแล้ว'}
-];
-var ORDERS=[
- {c:'SO-2569-0007',o:1,d:'24 พ.ย. 2569',t:12626,st:'ยืนยันแล้ว',hid:1},
- {c:'SO-2569-0006',o:2,d:'20 พ.ย. 2569',t:8346.5,st:'ยืนยันแล้ว'},
- {c:'SO-2569-0005',o:1,d:'30 ต.ค. 2569',t:3745,st:'ยืนยันแล้ว'}
-];
-var STAFF=[
- {u:'somsri.j',n:'สมศรี ใจดี',own:1,st:'ใช้งาน',me:1},
- {u:'anan.k',n:'อนันต์ กิจดี',own:0,st:'ใช้งาน'},
- {u:'malee.s',n:'มาลี สวัสดี',own:0,st:'ใช้งาน'},
- {u:'chai.p',n:'ชัย พรหมดี',own:0,st:'ปิดบัญชี'}
-];
-var ESC=[{id:1,q:'สินค้าที่ได้รับชำรุด ขอคุยกับเจ้าหน้าที่ ติดต่อ [อีเมลถูกปกปิด] [เบอร์โทรถูกปกปิด]',r:'ร้องเรียนหรือขอคุยกับเจ้าหน้าที่',org:'โรงเรียนวัดสุทธิวราราม',t:'24 พ.ย. 2569 16:05 น.',st:'รอตรวจ'}];
-var INTENDED=[];
-var tab='ทั้งหมด',ltab='q',items8=[],sel='',erasedC={};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function baht(s){return (s/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function toSat(v){var t=String(v).replace(/,/g,'').trim();if(t===''||isNaN(t)||+t<0)return null;return Math.round(+t*100);}
+function parseTh(s){var m=/^\s*(\d{1,2})\s+(\S+?)\s+(\d{4})\s+(\d{1,2}):(\d{2})/.exec(s||'');if(!m)return null;var mi=MON.indexOf(m[2]);if(mi<0)return null;return Date.UTC(+m[3]-543,mi,+m[1],+m[4],+m[5]);}
+function fmtDate(ms){var d=new Date(ms);return d.getUTCDate()+' '+MON[d.getUTCMonth()]+' '+(d.getUTCFullYear()+543);}
+function vatOf(sub,bp){return Math.floor((sub*bp+5000)/10000);}
+function totalsOf(items,bp){var sub=0;items.forEach(function(i){if(i.price!=null)sub+=i.qty*i.price;});var v=vatOf(sub,bp);return {sub:sub,vat:v,total:sub+v};}
+function bpNow(){return Math.round(S.settings.vat*100);}
 
-/* nav */
-function route(){
-  var h=(location.hash||'#s1').slice(1),scr=JSON.parse($('mockup-screens').textContent);
-  if(!scr.some(function(s){return s.id===h}))h='s1';
-  var show=h==='s9'?'s8':h;
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.id===show)});
-  document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('active',a.dataset.n===show)});
-  $('nav').style.visibility=h==='e1'?'hidden':'visible';
-  if(h==='s9')openChat(); else if(h!=='s8'&&h!=='s2')closeChat();
-  window.scrollTo(0,0);
-  ({s1:renderQ,s8:render8,s2l:renderL,s3:renderP,s4:renderOrg,s5:renderS,s6:renderE,s7:s7init})[show]&&({s1:renderQ,s8:render8,s2l:renderL,s3:renderP,s4:renderOrg,s5:renderS,s6:renderE,s7:s7init})[show]();
+var S={
+ mode:'admin',vstate:'ok',
+ orgs:[
+  {id:1,name:'โรงเรียนวัดสุทธิวราราม',tax:'0994000111222',addr:'12 ถนนราชดำเนิน เขตพระนคร กรุงเทพมหานคร',status:'active'},
+  {id:2,name:'โรงเรียนอนุบาลบ้านดอกไม้',tax:'0105560123456',addr:'88 ซอยสุขุมวิท 24 เขตคลองเตย กรุงเทพมหานคร',status:'active'},
+  {id:3,name:'บริษัท ศรีสยามเทรดดิ้ง จำกัด',tax:'0105550987654',addr:'45 ถนนพระราม 4 เขตบางรัก กรุงเทพมหานคร',status:'active'}],
+ contacts:[
+  {id:1,org:1,name:'คุณสมหมาย รักเรียน',email:'sommai@example.com',phone:'02-000-0101',status:'active'},
+  {id:2,org:1,name:'คุณประเสริฐ ดวงดี',email:'',phone:'02-000-0102',status:'active'},
+  {id:3,org:2,name:'คุณนภา บ้านสวน',email:'napa@example.com',phone:'02-000-0201',status:'active'},
+  {id:4,org:3,name:'คุณวีระ ศรีสยาม',email:'weera@example.com',phone:'02-000-0301',status:'active'}],
+ products:[
+  {sku:'PEN-0101',name:'ปากกาลูกลื่นสีน้ำเงิน',desc:'ปากกาลูกลื่นหมึกน้ำเงิน ขนาดเส้น 0.5 มม.',cat:'เครื่องเขียน',unit:'ด้าม',kw:'ปากกา, ปากกาน้ำเงิน, ปากกาเขียนสมุด',list:700,stock:1250,status:'active'},
+  {sku:'NTB-0201',name:'สมุดบันทึก 80 แกรม',desc:'สมุดปกอ่อน 60 แผ่น',cat:'สมุด',unit:'เล่ม',kw:'สมุด, สมุดบันทึก',list:3000,stock:640,status:'active'},
+  {sku:'PAP-0301',name:'กระดาษถ่ายเอกสาร A4 80 แกรม',desc:'บรรจุ 500 แผ่นต่อรีม',cat:'กระดาษ',unit:'รีม',kw:'A4, ถ่ายเอกสาร',list:11000,stock:300,status:'active'},
+  {sku:'FLD-0501',name:'แฟ้มสันกว้าง 3 นิ้ว',desc:'แฟ้มสันกว้าง ปกแข็ง',cat:'แฟ้ม',unit:'เล่ม',kw:'แฟ้ม',list:6200,stock:0,status:'active'},
+  {sku:'MRK-0401',name:'ปากกาไวต์บอร์ดหมึกลิควิด',desc:'หมึกลบได้ บรรจุ 12 ด้ามต่อกล่อง',cat:'เครื่องเขียน',unit:'กล่อง',kw:'ลิควิด, ไวต์บอร์ด',list:18000,stock:40,status:'active'},
+  {sku:'PNC-0102',name:'ดินสอไม้ 2B',desc:'ดินสอไม้ไส้ 2B',cat:'เครื่องเขียน',unit:'โหล',kw:'ดินสอ',list:3600,stock:0,status:'discontinued'}],
+ P:{1:{'PEN-0101':700,'NTB-0201':2500,'PAP-0301':9500,'FLD-0501':5000},
+    2:{'PEN-0101':750,'NTB-0201':2600,'PAP-0301':9800,'FLD-0501':5200,'MRK-0401':15000},
+    3:{'PEN-0101':720,'NTB-0201':2550,'PAP-0301':9600}},
+ requests:[
+  {code:'QR-2569-0012',org:1,contact:1,ch:'phone',status:'pending_quote',recv:'25 พ.ย. 2569 09:15 น.',wait:0.8,note:'ขอใบเสนอราคาสำหรับเปิดภาคเรียนที่ 1',items:[{sku:'PEN-0101',qty:200},{sku:'NTB-0201',qty:100},{sku:'PAP-0301',qty:40},{sku:'FLD-0501',qty:82},{sku:'MRK-0401',qty:20}]},
+  {code:'QR-2569-0011',org:3,contact:4,ch:'email',status:'pending_quote',recv:'23 พ.ย. 2569 14:00 น.',wait:14.0,note:'',items:[{sku:'PAP-0301',qty:60},{sku:'NTB-0201',qty:40}]},
+  {code:'QR-2569-0010',org:2,contact:3,ch:'email',status:'quoted',recv:'19 พ.ย. 2569 15:00 น.',wait:null,note:'',items:[{sku:'PAP-0301',qty:100},{sku:'FLD-0501',qty:20},{sku:'NTB-0201',qty:30},{sku:'PEN-0101',qty:24}]},
+  {code:'QR-2569-0009',org:2,contact:3,ch:'line',status:'pending_quote',recv:'24 พ.ย. 2569 15:00 น.',wait:4.0,note:'',items:[{sku:'PEN-0101',qty:150},{sku:'MRK-0401',qty:10}]},
+  {code:'QR-2569-0008',org:3,contact:4,ch:'phone',status:'pending_quote',recv:'20 พ.ย. 2569 10:00 น.',wait:10.5,note:'ลูกค้าขอแก้ไขใบเสนอราคาฉบับ R0',items:[{sku:'PAP-0301',qty:100},{sku:'PEN-0101',qty:200}]},
+  {code:'QR-2569-0006',org:1,contact:2,ch:'walk_in',status:'closed',recv:'9 พ.ย. 2569 11:00 น.',wait:null,note:'',items:[{sku:'NTB-0201',qty:100},{sku:'PAP-0301',qty:20}]},
+  {code:'QR-2569-0005',org:2,contact:3,ch:'phone',status:'cancelled',recv:'8 พ.ย. 2569 09:30 น.',wait:null,note:'',cancel:'ลูกค้าแจ้งยกเลิกเนื่องจากเลื่อนการจัดซื้อ',items:[{sku:'PEN-0101',qty:50}]},
+  {code:'QR-2569-0004',org:1,contact:1,ch:'email',status:'closed',recv:'14 ต.ค. 2569 16:00 น.',wait:null,note:'',items:[{sku:'PEN-0101',qty:100}]},
+  {code:'QR-2569-0003',org:3,contact:4,ch:'email',status:'closed',recv:'3 พ.ย. 2569 09:00 น.',wait:null,note:'',items:[{sku:'PAP-0301',qty:50},{sku:'NTB-0201',qty:40}]},
+  {code:'QR-2569-0002',org:2,contact:3,ch:'line',status:'closed',recv:'1 พ.ย. 2569 13:00 น.',wait:null,note:'',items:[{sku:'PAP-0301',qty:20}]}],
+ quotes:[
+  {code:'QT-2569-0010-R0',req:'QR-2569-0010',rev:0,status:'issued',issuedStr:'20 พ.ย. 2569 10:00 น.',issued:Date.UTC(2026,10,20,10,0),valid:'20 ธ.ค. 2569',items:[{sku:'PAP-0301',qty:100,price:9800},{sku:'FLD-0501',qty:20,price:5200},{sku:'NTB-0201',qty:30,price:2600},{sku:'PEN-0101',qty:24,price:750}]},
+  {code:'QT-2569-0008-R0',req:'QR-2569-0008',rev:0,status:'revision_requested',issuedStr:'21 พ.ย. 2569 11:00 น.',issued:Date.UTC(2026,10,21,11,0),valid:'21 ธ.ค. 2569',resp:{ch:'email',at:'24 พ.ย. 2569 08:30 น.',note:'ลูกค้าขอเพิ่มจำนวนกระดาษเป็น 120 รีม'},items:[{sku:'PAP-0301',qty:100,price:9600},{sku:'PEN-0101',qty:200,price:720}]},
+  {code:'QT-2569-0006-R0',req:'QR-2569-0006',rev:0,status:'confirmed',issuedStr:'10 พ.ย. 2569 13:00 น.',issued:Date.UTC(2026,10,10,13,0),valid:'10 ธ.ค. 2569',resp:{ch:'phone',at:'14 พ.ย. 2569 10:00 น.',note:'ลูกค้ายืนยันทางโทรศัพท์ ผู้ติดต่อ คุณประเสริฐ'},items:[{sku:'NTB-0201',qty:100,price:2500},{sku:'PAP-0301',qty:20,price:9500}]},
+  {code:'QT-2569-0004-R0',req:'QR-2569-0004',rev:0,status:'expired',issuedStr:'15 ต.ค. 2569 09:00 น.',issued:Date.UTC(2026,9,15,9,0),valid:'14 พ.ย. 2569',items:[{sku:'PEN-0101',qty:100,price:700}]},
+  {code:'QT-2569-0003-R0',req:'QR-2569-0003',rev:0,status:'confirmed',issuedStr:'3 พ.ย. 2569 14:00 น.',issued:Date.UTC(2026,10,3,14,0),valid:'3 ธ.ค. 2569',resp:{ch:'email',at:'5 พ.ย. 2569 10:30 น.',note:'ลูกค้าตอบยืนยันทางอีเมล'},items:[{sku:'PAP-0301',qty:50,price:9600},{sku:'NTB-0201',qty:40,price:2550}]},
+  {code:'QT-2569-0002-R0',req:'QR-2569-0002',rev:0,status:'rejected',issuedStr:'2 พ.ย. 2569 10:00 น.',issued:Date.UTC(2026,10,2,10,0),valid:'2 ธ.ค. 2569',resp:{ch:'line',at:'4 พ.ย. 2569 09:00 น.',note:'ลูกค้าแจ้งทาง LINE',reason:'งบประมาณไม่เพียงพอ'},items:[{sku:'PAP-0301',qty:20,price:9800}]}],
+ orders:[{code:'SO-2569-0005',quote:'QT-2569-0003-R0',at:'5 พ.ย. 2569'},{code:'SO-2569-0006',quote:'QT-2569-0006-R0',at:'14 พ.ย. 2569'}],
+ seq:{QR:12,SO:6},
+ esc:[
+  {id:3,org:1,q:'สินค้าที่ส่งมาเมื่อสัปดาห์ก่อนชำรุด ขอคุยกับเจ้าหน้าที่ โทรกลับที่ [เบอร์โทร]',cat:'complaint',conf:0.95,reason:'complaint',status:'open',at:'25 พ.ย. 2569 09:40 น.',by:'wipa.s'},
+  {id:2,org:2,q:'ขอแบบเดิมที่เคยสั่งเมื่อปีก่อน',cat:'process_question',conf:0.42,reason:'low_confidence',status:'closed',at:'20 พ.ย. 2569 11:10 น.',by:'somchai.k',note:'โทรสอบถามลูกค้าแล้ว'},
+  {id:1,org:1,q:'แนะนำสมุดปกแข็งสำหรับนักเรียน',cat:'recommendation',conf:0.81,reason:'unverified_sku',status:'closed',at:'18 พ.ย. 2569 14:05 น.',by:'wipa.s',note:'ตรวจแล้ว ระบบอ้างรหัสที่ไม่มี'}],
+ users:[
+  {u:'somchai.k',name:'สมชาย กิจเจริญ',status:'active',priv:'3 พ.ย. 2569 09:05 น.'},
+  {u:'wipa.s',name:'วิภา สุขใจ',status:'active',priv:'3 พ.ย. 2569 09:20 น.'},
+  {u:'nattaya.p',name:'ณัฐยา ประเสริฐ',status:'disabled',priv:'10 ต.ค. 2569 13:00 น.'}],
+ settings:{validity:30,vat:7},
+ priv:null,
+ MET:{'2569-08':null,'2569-09':{el:10,w:8,pend:0,med:6.8},'2569-10':{el:12,w:11,pend:0,med:4.9},'2569-11':{el:8,w:7,pend:2,med:5.5}},
+ m7:'2569-11',
+ t1:'all',q1:'',reqId:'QR-2569-0012',quoteId:'QT-2569-0010-R0',
+ draftFor:null,draft:[],
+ f8:{org:'',contact:'',ch:'phone',recv:'25 พ.ย. 2569 09:15 น.',note:'',items:[],q:''},err8:null,
+ f2b:{d:'confirm',ch:'email',at:'24 พ.ย. 2569 14:30 น.',note:'',reason:''},err2b:null,err2a:null,
+ tab2c:'quotes',org2c:'',
+ sel:'PEN-0101',q3:'',c3:'',orgSel:1,flt6:'open',
+ chat:{org:'',msgs:[]},chatBase:'s8'
+};
+var TOASTT=null;
+
+function org(id){return S.orgs.filter(function(o){return o.id==id;})[0];}
+function orgName(id){var o=org(id);return o?o.name:'';}
+function contact(id){return S.contacts.filter(function(c){return c.id==id;})[0];}
+function cname(id){var c=contact(id);return c?c.name:'';}
+function prod(sku){return S.products.filter(function(p){return p.sku===sku;})[0];}
+function getReq(code){return S.requests.filter(function(r){return r.code===code;})[0];}
+function getQ(code){return S.quotes.filter(function(q){return q.code===code;})[0];}
+function qOfReq(code){return S.quotes.filter(function(q){return q.req===code;});}
+function badge(t,c){return '<span class="badge '+c+'">'+t+'</span>';}
+function cPrice(o,sku){var v=(S.P[o]||{})[sku];return v==null?null:v;}
+function counts(){
+ var n=0,ov=0;
+ S.requests.forEach(function(r){if(r.status==='pending_quote'){if(qOfReq(r.code).length===0)n++;if(r.wait>9)ov++;}});
+ return {new:n,over:ov,esc:S.esc.filter(function(e){return e.status==='open';}).length};
 }
-window.addEventListener('hashchange',route);
+function qTotals(q){return totalsOf(q.items,700);}
+function go(id){if(location.hash==='#'+id)render();else location.hash=id;}
+function q$(sel,html){var e=document.querySelector(sel);if(e)e.innerHTML=html;}
+function toast(m,bad){var t=document.getElementById('toast');t.textContent=m;t.className=bad?'bad':'';t.style.display='block';clearTimeout(TOASTT);TOASTT=setTimeout(function(){t.style.display='none';},3200);}
+function modal(title,body,actions){document.getElementById('mbox').innerHTML='<h2>'+title+'</h2>'+body+'<div class="actions">'+actions+'</div>';document.getElementById('modal').className='show';}
+function closeModal(){document.getElementById('modal').className='';}
+function pdf(){toast('ดาวน์โหลด PDF (จำลอง) ไม่มีการส่งข้อมูลออกนอกไฟล์นี้');}
+function nextCode(k){S.seq[k]++;return k+'-2569-'+String(S.seq[k]).padStart(4,'0');}
+function activeOf(v){return v==='s2a'?'s1':v==='s2b'?'s2c':v;}
+
+function nav(active){
+ var c=counts();
+ var items=[['s1','คิวคำขอ',c.new],['s8','บันทึกคำขอแทนลูกค้า',0],['s2c','ใบเสนอราคาและคำสั่งซื้อ',0],['s3','สินค้าและสต็อก',0],['s4','องค์กรและผู้ติดต่อ',0],['s5','เจ้าหน้าที่',0],['s6','คำถามที่ส่งต่อ',c.esc],['s7','ตัวชี้วัดและตั้งค่า',0],['s10','ประกาศความเป็นส่วนตัว',0]];
+ return items.map(function(i){return '<a href="#'+i[0]+'" class="'+(active===i[0]?'on':'')+'"><span>'+i[1]+'</span>'+(i[2]?'<b class="cnt">'+i[2]+'</b>':'')+'</a>';}).join('');
+}
+function userBar(){
+ var adm=S.mode==='admin';
+ return '<div class="appbar"><div class="brand">ระบบใบเสนอราคาเครื่องเขียน</div><div class="user"><span class="av">'+(adm?'สศ':'วส')+'</span><span>'+(adm?'สมศรี ใจดี (ผู้ดูแลระบบ)':'วิภา สุขใจ')+'</span></div></div>';
+}
+function shell(active,inner){return userBar()+'<div class="layout"><aside class="side">'+nav(active)+'</aside><main>'+inner+'</main></div>';}
+function refreshNav(){var s=document.querySelector('.side');if(s)s.innerHTML=nav(activeOf(S.chatBase));}
+
+function stateBox(title){
+ var k=S.vstate;
+ var body=k==='loading'?'<div class="spin"></div>กำลังโหลดข้อมูล กรุณารอสักครู่':k==='empty'?'ยังไม่มีข้อมูลในหน้านี้':'ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่ภายหลัง<div class="actions" style="justify-content:center"><button class="btn" onclick="S.vstate=\'ok\';document.getElementById(\'selState\').value=\'ok\';render()">ลองใหม่</button></div>';
+ return '<div class="pagehead"><h1>'+title+'</h1></div><div class="statebox">'+body+'</div>';
+}
+
+var V={},INIT={};
 
 /* S1 */
-function renderQ(){
-  var T=['ทั้งหมด','รอเสนอราคา','เสนอราคาแล้ว','ปิดแล้ว','ยกเลิก'];
-  $('qtabs').innerHTML=T.map(function(t){return '<button class="'+(t===tab?'on':'')+'" onclick="tab=\''+t+'\';renderQ()">'+t+'</button>'}).join('');
-  var s=$('qstate').value,b=$('qbody');
-  if(s==='loading'){b.innerHTML='<div class="state">กำลังโหลดคิวคำขอ</div>';return}
-  if(s==='error'){b.innerHTML='<div class="state er">ไม่สามารถโหลดคิวคำขอได้ กรุณาลองใหม่</div>';return}
-  var q=$('qsearch').value.trim(),rows=QUEUE.filter(function(r){return (tab==='ทั้งหมด'||r.st===tab)&&(!q||r.c.indexOf(q)>-1||r.o.indexOf(q)>-1)});
-  if(s==='empty')rows=[];
-  if(!rows.length){b.innerHTML='<div class="state">ยังไม่มีคำขอในสถานะนี้</div>';return}
-  b.innerHTML='<table><thead><tr><th>รหัสคำขอ</th><th>องค์กร</th><th>ช่องทาง</th><th>เวลาที่รอ</th><th>สถานะ</th></tr></thead><tbody>'+rows.map(function(r){
-    return '<tr class="click" onclick="'+(r.st==='รอเสนอราคา'?"location.hash='s2'":"toast('คำขอนี้อยู่ในสถานะ "+r.st+"')")+'"><td>'+r.c+'</td><td>'+r.o+'</td><td>'+r.ch+'</td><td>'+r.w+(r.od?' <span class="tag r">เกินกำหนด</span>':'')+'</td><td><span class="tag '+(r.st==='รอเสนอราคา'?'y':r.st==='เสนอราคาแล้ว'?'b':r.st==='ปิดแล้ว'?'g':'')+'">'+r.st+'</span></td></tr>'}).join('')+'</tbody></table>';
+V.s1=function(){
+ var c=counts();
+ var tabs=[['all','ทั้งหมด'],['pending_quote','รอเสนอราคา'],['quoted','เสนอราคาแล้ว'],['closed','ปิดแล้ว'],['cancelled','ยกเลิก']];
+ return '<div class="pagehead"><h1>คิวคำขอใบเสนอราคา</h1><button class="btn primary" onclick="go(\'s8\')">บันทึกคำขอแทนลูกค้า</button></div>'+
+ '<div class="cards"><div class="card"><div class="muted">คำขอใหม่</div><div class="big">'+c.new+' รายการ</div></div>'+
+ '<div class="card"><div class="muted">คำขอเกินกำหนด</div><div class="big" style="color:#9a2a1d">'+c.over+' รายการ</div></div>'+
+ '<div class="card"><div class="muted">คำถามที่ส่งต่อที่ยังไม่ปิด</div><div class="big">'+c.esc+' รายการ</div></div></div>'+
+ '<div class="tabs">'+tabs.map(function(t){return '<button class="'+(S.t1===t[0]?'on':'')+'" onclick="S.t1=\''+t[0]+'\';render()">'+t[1]+'</button>';}).join('')+'</div>'+
+ '<input class="search" placeholder="ค้นหารหัสคำขอหรือชื่อองค์กร" value="'+esc(S.q1)+'" oninput="S.q1=this.value;q$(\'#t1\',tbl1())">'+
+ '<div id="t1">'+tbl1()+'</div>';
+};
+function tbl1(){
+ var q=S.q1.trim().toLowerCase();
+ var rows=S.requests.filter(function(r){return (S.t1==='all'||r.status===S.t1)&&(!q||r.code.toLowerCase().indexOf(q)>=0||orgName(r.org).toLowerCase().indexOf(q)>=0);});
+ rows.sort(function(a,b){return a.code<b.code?1:-1;});
+ if(!rows.length)return '<div class="statebox">ไม่พบคำขอที่ตรงกับเงื่อนไข</div>';
+ return '<table class="t"><tr><th>รหัสคำขอ</th><th>องค์กร</th><th>ช่องทาง</th><th>เวลาที่รอ (ชั่วโมงทำการ)</th><th>สถานะ</th></tr>'+rows.map(function(r){
+  var over=r.status==='pending_quote'&&r.wait>9;
+  return '<tr class="click" onclick="openReq(\''+r.code+'\')"><td>'+r.code+'</td><td>'+esc(orgName(r.org))+'</td><td>'+CH[r.ch]+'</td><td>'+(r.status==='pending_quote'?r.wait.toFixed(1):'-')+'</td><td>'+badge(RS[r.status],RB[r.status])+(over?' '+badge('เกินกำหนด','b-red'):'')+'</td></tr>';
+ }).join('')+'</table><div class="muted" style="margin-top:6px">แสดง '+rows.length+' รายการ คลิกแถวเพื่อเปิดหน้าออกใบเสนอราคา</div>';
 }
-$('qsearch').oninput=renderQ;$('qstate').onchange=renderQ;
+function openReq(c){S.reqId=c;S.err2a=null;go('s2a');}
 
 /* S8 */
-function orgOpts(el,all){el.innerHTML=(all?'<option value="">ทุกองค์กร</option>':'<option value="">เลือกองค์กร</option>')+ORGS.map(function(o){return '<option value="'+o.id+'">'+o.name+'</option>'}).join('')}
-function render8(){
-  if(!$('o8').options.length){orgOpts($('o8'));$('o8').value='0';$('o8').onchange=function(){items8=[];fillC();render8()};fillC();items8=[{i:0,q:500},{i:1,q:40},{i:3,q:100}];$('s8q').oninput=render8}
-  var oi=$('o8').value,b=$('cat8');
-  if(oi===''){b.innerHTML='<div class="state">กรุณาเลือกองค์กรก่อน จึงจะแสดงแคตตาล็อก</div>';}
-  else{var q=$('s8q').value.trim().toLowerCase();
-   var rows=PRODS.filter(function(p){return p.st==='จำหน่าย'&&(!q||(p.sku+p.name).toLowerCase().indexOf(q)>-1)});
-   b.innerHTML=rows.length?'<table><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th class="n">ราคาตามสัญญา</th><th>สต็อก</th><th></th></tr></thead><tbody>'+rows.map(function(p){var c=p.cp[oi],i=PRODS.indexOf(p);
-    return '<tr><td>'+p.sku+'</td><td>'+p.name+'</td><td class="n">'+(c==null?'ราคาตามใบเสนอราคา':money(c))+'</td><td>'+(p.stock>0?'<span class="tag g">มีสินค้า</span>':'<span class="tag r">สินค้าหมด</span>')+'</td><td><button onclick="add8('+i+')">เพิ่ม</button></td></tr>'}).join('')+'</tbody></table>':'<div class="state">ไม่พบสินค้าที่ค้นหา</div>'}
-  var it=$('items8');
-  it.innerHTML=items8.length?'<table><thead><tr><th>รหัส</th><th>สินค้า</th><th>จำนวน</th><th></th></tr></thead><tbody>'+items8.map(function(x,k){return '<tr><td>'+PRODS[x.i].sku+'</td><td>'+PRODS[x.i].name+'</td><td><input type="number" value="'+x.q+'" style="width:80px" onchange="items8['+k+'].q=this.value"></td><td><a class="lnk" onclick="items8.splice('+k+',1);render8()">ลบ</a></td></tr>'}).join('')+'</tbody></table>':'<div class="state">ยังไม่มีรายการในคำขอ</div>';
-}
-function fillC(){var o=ORGS[+$('o8').value];$('c8').innerHTML=o?o.contacts.map(function(c){return '<option>'+c.n+'</option>'}).join(''):''}
-function add8(i){var f=items8.filter(function(x){return x.i===i})[0];if(f)f.q=+f.q+1;else items8.push({i:i,q:1});render8()}
-function save8(){
-  var m=[];if($('o8').value==='')m.push('กรุณาเลือกองค์กร');
-  if(!items8.length)m.push('ต้องมีรายการอย่างน้อย 1 รายการ');
-  items8.forEach(function(x){if(!(Number.isInteger(+x.q)&&+x.q>0))m.push('จำนวนของ '+PRODS[x.i].sku+' ต้องเป็นจำนวนเต็มบวก')});
-  var t=$('t8').value,y=t.match(/(\d{4})/);if(!t.trim())m.push('กรุณาระบุเวลาที่ร้านได้รับคำขอ');else if(y&&+y[1]>2569)m.push('เวลาที่ได้รับต้องไม่อยู่ในอนาคต');
-  err('e8',m);if(m.length)return;
-  var o=ORGS[+$('o8').value];QUEUE.unshift({c:'QR-2569-0016',o:o.name,ch:$('ch8').value,w:'0 นาที',st:'รอเสนอราคา',od:0});
-  $('qbadge').textContent=+$('qbadge').textContent+1;items8=[];tab='ทั้งหมด';toast('บันทึกคำขอ QR-2569-0016 แล้ว');location.hash='s1';
-}
-
-/* S2 */
-var BASE=11800;
-$('liq').oninput=function(){
-  var v=parseFloat(this.value),ok=v>0,add=ok?v*100:0,sub=BASE+add,vat=Math.round(sub*7)/100;
-  $('sum1').textContent=money(sub)+' บาท';$('sum2').textContent=money(vat)+' บาท';$('sum3').textContent=money(sub+vat)+' บาท';
-  $('issue').disabled=!ok;$('w1').style.display=ok?'none':'block';$('lsrc').textContent=ok?'กรอกเอง':'ไม่มีราคาตามสัญญา';
+V.s8=function(){
+ var f=S.f8;
+ var cts=S.contacts.filter(function(c){return c.org==f.org&&c.status==='active';});
+ return '<div class="pagehead"><h1>บันทึกคำขอใบเสนอราคาแทนลูกค้า</h1></div>'+
+ (S.err8?'<div class="err">'+S.err8.map(esc).join('<br>')+'</div>':'')+
+ '<div class="card"><div class="grid3">'+
+ '<label>องค์กร<select onchange="f8org(this.value)"><option value="">เลือกองค์กร</option>'+S.orgs.filter(function(o){return o.status==='active';}).map(function(o){return '<option value="'+o.id+'" '+(f.org==o.id?'selected':'')+'>'+esc(o.name)+'</option>';}).join('')+'</select></label>'+
+ '<label>ผู้ติดต่อ<select onchange="S.f8.contact=this.value">'+(cts.length?'':'<option value="">เลือกองค์กรก่อน</option>')+cts.map(function(c){return '<option value="'+c.id+'" '+(f.contact==c.id?'selected':'')+'>'+esc(c.name)+'</option>';}).join('')+'</select></label>'+
+ '<label>ช่องทางที่ลูกค้าส่งคำขอ<select onchange="S.f8.ch=this.value">'+Object.keys(CH).map(function(k){return '<option value="'+k+'" '+(f.ch===k?'selected':'')+'>'+CH[k]+'</option>';}).join('')+'</select></label>'+
+ '</div><div class="grid3" style="margin-top:12px"><label>เวลาที่ร้านได้รับคำขอ (ต้องไม่อยู่ในอนาคต)<input value="'+esc(f.recv)+'" oninput="S.f8.recv=this.value"></label></div></div>'+
+ '<div class="split"><div><h2>แคตตาล็อกตามราคาตามสัญญา</h2><input class="search" placeholder="ค้นหาสินค้าหรือรหัสสินค้า" value="'+esc(f.q)+'" oninput="S.f8.q=this.value;q$(\'#cat8\',cat8())"><div id="cat8">'+cat8()+'</div></div>'+
+ '<div><h2>รายการในคำขอ</h2><div id="it8">'+items8()+'</div></div></div>'+
+ '<div class="card" style="margin-top:14px"><label>หมายเหตุ<textarea rows="3" oninput="S.f8.note=this.value">'+esc(f.note)+'</textarea></label>'+
+ '<div class="actions"><button class="btn" onclick="openChat(\'s8\')">เปิดแชตผู้ช่วย</button><button class="btn primary" onclick="save8()">บันทึกคำขอ</button></div></div>';
 };
-function issueQ(){mopen('ยืนยันการออกใบเสนอราคา','ออกใบเสนอราคา QT-2569-0012-R0 ยอดสุทธิ '+$('sum3').textContent+' ระบบจะสร้างไฟล์ PDF ให้ส่งต่อให้ลูกค้านอกแอป',function(){QUEUE.forEach(function(r){if(r.c==='QR-2569-0012'){r.st='เสนอราคาแล้ว';r.od=0;r.w='-'}});$('qbadge').textContent='4';toast('ออกใบเสนอราคา QT-2569-0012-R0 แล้ว (จำลอง)');location.hash='s1'})}
-function cancelReq(){mopen('ยกเลิกคำขอ','ยกเลิกคำขอ QR-2569-0012 ตามคำขอของลูกค้าก่อนออกใบเสนอราคา',function(){QUEUE.forEach(function(r){if(r.c==='QR-2569-0012'){r.st='ยกเลิก';r.od=0;r.w='-'}});toast('ยกเลิกคำขอแล้ว');location.hash='s1'})}
-
-/* S2R */
-function decChg(){var d=document.querySelector('input[name=dec]:checked').value;$('rrw').style.display=d==='reject'?'block':'none'}
-function saveResp(){
-  var d=document.querySelector('input[name=dec]:checked').value,m=[];
-  if(!$('rn').value.trim())m.push('หมายเหตุหลักฐาน: กรุณากรอก');
-  if(!$('rch').value)m.push('ช่องทาง: กรุณาระบุ');
-  if(d==='reject'&&!$('rr').value.trim())m.push('เหตุผลที่ปฏิเสธ: กรุณากรอก');
-  err('e3',m);if(m.length)return;
-  if(d==='confirm'){$('r-st').textContent='ยืนยันแล้ว';$('ordcard').style.display='block';$('rform').style.display='none';toast('บันทึกคำตอบแล้ว ระบบสร้างคำสั่งซื้อ SO-2569-0007')}
-  else if(d==='reject'){$('r-st').textContent='ปฏิเสธ';$('rform').style.display='none';toast('บันทึกว่าลูกค้าปฏิเสธแล้ว')}
-  else{$('r-st').textContent='ขอแก้ไข';$('rform').style.display='none';toast('บันทึกคำขอแก้ไขแล้ว คำขอกลับเข้าคิว')}
+function f8org(v){S.f8.org=v;S.f8.items=[];S.f8.q='';var c=S.contacts.filter(function(x){return x.org==v&&x.status==='active';})[0];S.f8.contact=c?String(c.id):'';render();}
+function cat8(){
+ var f=S.f8;
+ if(!f.org)return '<div class="statebox">กรุณาเลือกองค์กรก่อน จึงจะแสดงแคตตาล็อก</div>';
+ var q=f.q.trim().toLowerCase();
+ var rows=S.products.filter(function(p){return p.status==='active'&&(!q||p.sku.toLowerCase().indexOf(q)>=0||p.name.toLowerCase().indexOf(q)>=0);});
+ if(!rows.length)return '<div class="statebox">ไม่พบสินค้า</div>';
+ return '<table class="t"><tr><th>รหัส</th><th>ชื่อสินค้า</th><th class="r">ราคาตามสัญญา</th><th class="r">สต็อก</th><th></th></tr>'+rows.map(function(p){
+  var cp=cPrice(f.org,p.sku);
+  return '<tr><td>'+p.sku+'</td><td>'+esc(p.name)+'</td><td class="r">'+(cp==null?'ราคาตามใบเสนอราคา':baht(cp))+'</td><td class="r">'+p.stock.toLocaleString('en-US')+'</td><td><button class="btn sm" onclick="add8(\''+p.sku+'\')">เพิ่ม</button></td></tr>';
+ }).join('')+'</table>';
+}
+function items8(){
+ var it=S.f8.items;
+ if(!it.length)return '<div class="statebox">ยังไม่มีรายการในคำขอ เลือกสินค้าจากแคตตาล็อก</div>';
+ return '<table class="t"><tr><th>รหัส</th><th>สินค้า</th><th>จำนวน</th><th></th></tr>'+it.map(function(i,n){return '<tr><td>'+i.sku+'</td><td>'+esc(prod(i.sku).name)+'</td><td><input type="number" min="1" style="width:80px" value="'+i.qty+'" onchange="setQty8('+n+',this.value)"></td><td><a class="lnk" onclick="del8('+n+')">ลบ</a></td></tr>';}).join('')+'</table>';
+}
+function add8(sku){var it=S.f8.items.filter(function(i){return i.sku===sku;})[0];if(it)it.qty++;else S.f8.items.push({sku:sku,qty:1});q$('#it8',items8());}
+function setQty8(n,v){var x=parseInt(v,10);S.f8.items[n].qty=(x>=1?x:1);q$('#it8',items8());}
+function del8(n){S.f8.items.splice(n,1);q$('#it8',items8());}
+function save8(){
+ var f=S.f8,e=[];
+ if(!f.org)e.push('องค์กร: กรุณาเลือกองค์กร');
+ if(f.org&&!f.contact)e.push('ผู้ติดต่อ: กรุณาเลือกผู้ติดต่อ');
+ if(!f.items.length)e.push('รายการ: ต้องมีอย่างน้อย 1 รายการ');
+ var t=parseTh(f.recv);
+ if(t==null)e.push('เวลาที่ร้านได้รับคำขอ: รูปแบบไม่ถูกต้อง เช่น 25 พ.ย. 2569 09:15 น.');
+ else if(t>NOW)e.push('เวลาที่ร้านได้รับคำขอ: ต้องไม่อยู่ในอนาคต');
+ if(e.length){S.err8=e;render();return;}
+ var code=nextCode('QR');
+ S.requests.push({code:code,org:+f.org,contact:+f.contact,ch:f.ch,status:'pending_quote',recv:f.recv,wait:0,note:f.note,items:f.items.map(function(i){return {sku:i.sku,qty:i.qty};})});
+ S.f8={org:'',contact:'',ch:'phone',recv:NOWSTR,note:'',items:[],q:''};S.err8=null;
+ toast('บันทึกคำขอ '+code+' แล้ว (จำลอง) ปรากฏในคิวคำขอ');
+ go('s1');
 }
 
-/* S2L */
-function lt(k){ltab=k;$('tq').className=k==='q'?'on':'';$('to').className=k==='o'?'on':'';renderL()}
-function renderL(){
-  if(!$('lorg').options.length)orgOpts($('lorg'),1);
-  var f=$('lorg').value,list=(ltab==='q'?QUOTES:ORDERS).filter(function(r){return f===''||r.o===+f});
-  if(!list.length){$('lbody').innerHTML='<div class="state">ไม่พบรายการ</div>';return}
-  $('lbody').innerHTML='<table><thead><tr><th>'+(ltab==='q'?'รหัสใบเสนอราคา':'รหัสคำสั่งซื้อ')+'</th><th>องค์กร</th><th>'+(ltab==='q'?'วันที่ออก':'วันที่ยืนยัน')+'</th><th class="n">ยอดสุทธิ (บาท)</th><th>สถานะ</th><th></th></tr></thead><tbody>'+list.map(function(r){
-   var wait=r.st==='ออกแล้ว รอลูกค้าตอบ';return '<tr class="'+(wait?'click':'')+'" '+(wait?'onclick="location.hash=\'s2r\'"':'')+'><td>'+r.c+'</td><td>'+ORGS[r.o].name+'</td><td>'+r.d+'</td><td class="n">'+money(r.t)+'</td><td><span class="tag '+(r.st==='ยืนยันแล้ว'?'g':wait?'b':r.st==='ปฏิเสธ'||r.st==='หมดอายุ'?'r':'')+'">'+r.st+'</span></td><td><a class="lnk" onclick="event.stopPropagation();toast(\'จำลองการดาวน์โหลด PDF '+r.c+'\')">PDF</a></td></tr>'}).join('')+'</tbody></table>';
+/* S2a */
+function draftOf(r){
+ if(S.draftFor!==r.code){S.draftFor=r.code;S.draft=r.items.map(function(i){return {sku:i.sku,qty:i.qty,price:cPrice(r.org,i.sku)};});}
+ return S.draft;
 }
+function flagsOf(l,r){
+ var f=[],p=prod(l.sku);
+ if(cPrice(r.org,l.sku)==null)f.push(badge('ไม่มีราคาตามสัญญา','b-amber'));
+ if(p.stock===0&&p.status==='active')f.push(badge('สินค้าหมด','b-red'));
+ if(p.status==='discontinued')f.push(badge('เลิกขาย','b-red'));
+ return f.join(' ');
+}
+V.s2a=function(){
+ var r=getReq(S.reqId);
+ var qs=qOfReq(r.code);
+ var head='<div class="pagehead"><h1>ออกใบเสนอราคาจากคำขอ '+r.code+'</h1>'+badge(RS[r.status],RB[r.status])+'</div>';
+ var info='<div class="grid2"><div class="card"><h2>ข้อมูลคำขอ</h2><div>องค์กร '+esc(orgName(r.org))+'</div><div>ผู้ติดต่อ '+esc(cname(r.contact))+'</div><div class="muted">รับ'+CH[r.ch]+' '+r.recv+'</div>'+(r.note?'<div class="muted">หมายเหตุ: '+esc(r.note)+'</div>':'')+'</div>';
+ if(r.status!=='pending_quote'){
+  return head+info+'<div class="card"><h2>สถานะของคำขอ</h2><div class="info">คำขอนี้อยู่ในสถานะ "'+RS[r.status]+'" จึงออกใบเสนอราคาหรือยกเลิกไม่ได้'+(r.cancel?'<br>เหตุผลการยกเลิก: '+esc(r.cancel):'')+'</div>'+
+  (qs.length?'<table class="t"><tr><th>ใบเสนอราคา</th><th>สถานะ</th><th>ยอดสุทธิ (บาท)</th></tr>'+qs.map(function(q){return '<tr class="click" onclick="S.quoteId=\''+q.code+'\';go(\'s2b\')"><td>'+q.code+'</td><td>'+badge(QS[q.status],QB[q.status])+'</td><td>'+baht(qTotals(q).total)+'</td></tr>';}).join('')+'</table>':'')+'</div></div>';
+ }
+ var rev=qs.length;
+ var qcode=r.code.replace('QR','QT')+'-R'+rev;
+ info+='<div class="card"><h2>ใบเสนอราคา '+qcode+'</h2><div>อายุ '+S.settings.validity+' วัน หมดอายุ '+fmtDate(NOW+S.settings.validity*864e5)+'</div><div class="muted">ภาษีมูลค่าเพิ่มร้อยละ '+S.settings.vat+' แยกบรรทัด</div>'+(rev?'<div class="muted">ฉบับก่อนหน้าจะเป็น "ถูกแทนที่" เมื่อออกฉบับนี้</div>':'')+'</div></div>';
+ var d=draftOf(r);
+ var rows=d.map(function(l,i){var p=prod(l.sku);return '<tr><td>'+l.sku+'</td><td>'+esc(p.name)+'</td><td class="r">'+l.qty+'</td><td class="r"><input class="pin" id="pi'+i+'" value="'+(l.price==null?'':(l.price/100).toFixed(2))+'" oninput="setPrice('+i+',this.value)"></td><td id="ps'+i+'">'+srcOf(l,r)+'</td><td>'+flagsOf(l,r)+'</td></tr>';}).join('');
+ return head+(S.err2a?'<div class="err">'+S.err2a.map(esc).join('<br>')+'</div>':'')+info+
+ '<div id="warn2a"></div><table class="t"><tr><th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th class="r">จำนวน</th><th class="r">ราคาต่อหน่วย (บาท)</th><th>ที่มาราคา</th><th>หมายเหตุ</th></tr>'+rows+'</table>'+
+ '<div class="card" style="margin-top:14px;max-width:420px;margin-left:auto"><h2>สรุปยอด</h2><div id="sum2a"></div></div>'+
+ '<div class="actions"><a class="lnk" onclick="cancelModal()">ยกเลิกคำขอ</a><button class="btn" onclick="openChat(\'s2a\')">เปิดแชตผู้ช่วย</button><button class="btn primary" id="issueBtn" onclick="issueQuote()">ออกใบเสนอราคา</button></div>';
+};
+INIT.s2a=function(){var r=getReq(S.reqId);if(r&&r.status==='pending_quote')upd2a();};
+function srcOf(l,r){if(l.price==null)return '-';return cPrice(r.org,l.sku)===l.price?'ตามสัญญา':'กรอกเอง';}
+function setPrice(i,v){var r=getReq(S.reqId);S.draft[i].price=toSat(v);var e=document.getElementById('ps'+i);if(e)e.textContent=srcOf(S.draft[i],r);upd2a();}
+function upd2a(){
+ var r=getReq(S.reqId),d=S.draft;
+ var t=totalsOf(d,bpNow());
+ var miss=d.filter(function(l){return l.price==null;}).length;
+ var out=d.filter(function(l){return prod(l.sku).stock===0&&prod(l.sku).status==='active';}).length;
+ var disc=d.filter(function(l){return prod(l.sku).status==='discontinued';}).length;
+ var w='';
+ if(miss)w+='<div class="warn">คำเตือน: '+miss+' รายการยังไม่มีราคาต่อหน่วย ต้องกรอกราคาก่อนออกใบเสนอราคา</div>';
+ if(out)w+='<div class="warn">คำเตือน: '+out+' รายการสินค้าหมด เจ้าหน้าที่ตรวจและตัดสินใจก่อนออก</div>';
+ if(disc)w+='<div class="warn">คำเตือน: '+disc+' รายการเลิกขาย ต้องตัดออกหรือใส่สินค้าทดแทน</div>';
+ q$('#warn2a',w);
+ q$('#sum2a','<div class="sumrow"><span>ยอดรวมที่มีราคา</span><span>'+baht(t.sub)+' บาท</span></div><div class="sumrow"><span>ภาษีมูลค่าเพิ่ม ร้อยละ '+S.settings.vat+'</span><span>'+baht(t.vat)+' บาท</span></div><div class="sumrow tot"><span>ยอดสุทธิ</span><span>'+baht(t.total)+' บาท</span></div>');
+ var b=document.getElementById('issueBtn');if(b)b.disabled=(miss>0||disc>0);
+}
+function issueQuote(){
+ var r=getReq(S.reqId),d=S.draft,e=[];
+ d.forEach(function(l,i){if(l.price==null)e.push('บรรทัดที่ '+(i+1)+' ('+l.sku+'): ยังไม่มีราคาต่อหน่วย');if(prod(l.sku).status==='discontinued')e.push('บรรทัดที่ '+(i+1)+' ('+l.sku+'): สินค้าเลิกขาย');});
+ if(e.length){S.err2a=e;render();return;}
+ var qs=qOfReq(r.code);
+ qs.forEach(function(q){if(q.status==='revision_requested')q.status='superseded';});
+ var code=r.code.replace('QR','QT')+'-R'+qs.length;
+ S.quotes.push({code:code,req:r.code,rev:qs.length,status:'issued',issuedStr:NOWSTR,issued:NOW,valid:fmtDate(NOW+S.settings.validity*864e5),items:d.map(function(l){return {sku:l.sku,qty:l.qty,price:l.price};})});
+ r.status='quoted';S.draftFor=null;S.err2a=null;S.quoteId=code;
+ toast('ออกใบเสนอราคา '+code+' แล้ว (จำลอง)');
+ go('s2b');
+}
+function cancelModal(){
+ modal('ยกเลิกคำขอ '+S.reqId,'<div id="cerr"></div><p class="muted">ยกเลิกได้เฉพาะคำขอสถานะรอเสนอราคา ต้องระบุเหตุผล</p><label>เหตุผลการยกเลิก (จำเป็น)<textarea id="creason" rows="3"></textarea></label>','<button class="btn" onclick="closeModal()">ปิด</button><button class="btn danger" onclick="doCancel()">ยืนยันยกเลิกคำขอ</button>');
+}
+function doCancel(){
+ var v=document.getElementById('creason').value.trim();
+ if(!v){q$('#cerr','<div class="err">เหตุผลการยกเลิก: จำเป็นต้องระบุ</div>');return;}
+ var r=getReq(S.reqId);r.status='cancelled';r.cancel=v;S.draftFor=null;closeModal();toast('ยกเลิกคำขอ '+r.code+' แล้ว (จำลอง)');go('s1');
+}
+
+/* S2b */
+V.s2b=function(){
+ var q=getQ(S.quoteId),r=getReq(q.req),t=qTotals(q),f=S.f2b;
+ var order=S.orders.filter(function(o){return o.quote===q.code;})[0];
+ var head='<div class="pagehead"><h1>บันทึกคำตอบของลูกค้า '+q.code+'</h1>'+badge(QS[q.status],QB[q.status])+'</div>';
+ var sumc='<div class="grid2"><div class="card"><h2>'+esc(orgName(r.org))+'</h2><div>ออกเมื่อ '+q.issuedStr+'</div><div>หมดอายุ '+q.valid+'</div><div>ยอดสุทธิ '+baht(t.total)+' บาท</div></div>'+
+  '<div class="card"><h2>คำสั่งซื้อ</h2>'+(order?'<div>'+order.code+' '+badge('ยืนยันแล้ว','b-green')+'</div><div class="muted">ระบบสร้างหลังบันทึกคำตอบยืนยัน ไม่ตัดสต็อกอัตโนมัติ</div><div class="actions" style="justify-content:flex-start"><button class="btn sm" onclick="pdf()">ดาวน์โหลด PDF คำสั่งซื้อ</button></div>':'<div class="muted">ยังไม่มีคำสั่งซื้อ ระบบสร้างหลังบันทึกคำตอบยืนยัน</div>')+'</div></div>';
+ var lines='<table class="t"><tr><th>รหัส</th><th>สินค้า</th><th class="r">จำนวน</th><th class="r">ราคาต่อหน่วย</th><th class="r">รวม</th></tr>'+q.items.map(function(i){return '<tr><td>'+i.sku+'</td><td>'+esc(prod(i.sku).name)+'</td><td class="r">'+i.qty+'</td><td class="r">'+baht(i.price)+'</td><td class="r">'+baht(i.qty*i.price)+'</td></tr>';}).join('')+'</table>';
+ if(q.status!=='issued'){
+  return head+'<div class="info">ใบเสนอราคานี้ไม่อยู่ในสถานะที่รับคำตอบได้ (หมดอายุ ถูกแทนที่ หรือตอบแล้ว) บันทึกคำตอบไม่ได้</div>'+sumc+
+  (q.resp?'<div class="card"><h2>คำตอบที่บันทึกไว้</h2><div>ช่องทาง '+CH[q.resp.ch]+' เมื่อ '+q.resp.at+'</div><div>หมายเหตุหลักฐาน: '+esc(q.resp.note)+'</div>'+(q.resp.reason?'<div>เหตุผลที่ปฏิเสธ: '+esc(q.resp.reason)+'</div>':'')+'</div>':'')+lines+
+  '<div class="actions"><button class="btn" onclick="go(\'s2c\')">กลับรายการ</button><button class="btn" onclick="pdf()">ดาวน์โหลด PDF ใบเสนอราคา</button></div>';
+ }
+ var opts=[['confirm','ลูกค้ายืนยัน'],['reject','ลูกค้าปฏิเสธ'],['revise','ลูกค้าขอแก้ไข']];
+ return head+(S.err2b?'<div class="err">'+S.err2b.map(esc).join('<br>')+'</div>':'')+sumc+lines+
+ '<div class="card" style="margin-top:14px"><h2>คำตอบของลูกค้า</h2><div style="display:flex;gap:18px;margin-bottom:10px">'+opts.map(function(o){return '<label style="flex-direction:row;align-items:center;gap:6px"><input type="radio" name="dec" '+(f.d===o[0]?'checked':'')+' onchange="S.f2b.d=\''+o[0]+'\';render()">'+o[1]+'</label>';}).join('')+'</div>'+
+ '<div class="info">ผลของแต่ละคำตอบ: ยืนยัน สร้างคำสั่งซื้อยืนยันแล้ว 1 รายการ / ปฏิเสธ ต้องระบุเหตุผล คำขอปิดแล้ว / ขอแก้ไข คำขอกลับเข้าคิวและนับเวลารอใหม่</div>'+
+ '<div class="grid2"><label>ช่องทางที่ลูกค้าตอบ<select onchange="S.f2b.ch=this.value">'+Object.keys(CH).map(function(k){return '<option value="'+k+'" '+(f.ch===k?'selected':'')+'>'+CH[k]+'</option>';}).join('')+'</select></label>'+
+ '<label>วันและเวลาที่ลูกค้าตอบ<input value="'+esc(f.at)+'" oninput="S.f2b.at=this.value"></label></div>'+
+ (f.d==='reject'?'<label style="margin-top:10px">เหตุผลที่ปฏิเสธ (จำเป็น)<textarea rows="2" oninput="S.f2b.reason=this.value">'+esc(f.reason)+'</textarea></label>':'')+
+ '<label style="margin-top:10px">หมายเหตุหลักฐาน (จำเป็น)<textarea rows="3" placeholder="เช่น ลูกค้าตอบยืนยันทางอีเมลเมื่อวันที่ 24 พ.ย. 2569 หัวเรื่อง ยืนยันใบเสนอราคา" oninput="S.f2b.note=this.value">'+esc(f.note)+'</textarea></label>'+
+ '<div class="actions"><a class="lnk" onclick="go(\'s2c\')">ยกเลิก</a><button class="btn" onclick="pdf()">ดาวน์โหลด PDF ใบเสนอราคา</button><button class="btn primary" onclick="recordResp()">บันทึกคำตอบ</button></div></div>';
+};
+function recordResp(){
+ var q=getQ(S.quoteId),f=S.f2b,e=[];
+ if(q.status!=='issued'){toast('ใบเสนอราคานี้ไม่อยู่ในสถานะที่รับคำตอบได้ (409)',1);return;}
+ var t=parseTh(f.at);
+ if(t==null)e.push('วันและเวลาที่ลูกค้าตอบ: รูปแบบไม่ถูกต้อง เช่น 24 พ.ย. 2569 14:30 น.');
+ else if(t<q.issued)e.push('วันและเวลาที่ลูกค้าตอบ: ต้องไม่ก่อนวันที่ออกใบเสนอราคา ('+q.issuedStr+')');
+ else if(t>NOW+5*60000)e.push('วันและเวลาที่ลูกค้าตอบ: ต้องไม่อยู่ในอนาคต');
+ if(!f.note.trim())e.push('หมายเหตุหลักฐาน: จำเป็นต้องระบุ');
+ if(f.d==='reject'&&!f.reason.trim())e.push('เหตุผลที่ปฏิเสธ: จำเป็นต้องระบุ');
+ if(e.length){S.err2b=e;render();return;}
+ var r=getReq(q.req);
+ q.resp={ch:f.ch,at:f.at,note:f.note.trim(),reason:f.d==='reject'?f.reason.trim():''};
+ if(f.d==='confirm'){q.status='confirmed';r.status='closed';var oc=nextCode('SO');S.orders.push({code:oc,quote:q.code,at:fmtDate(t)});toast('บันทึกคำตอบแล้ว เกิดคำสั่งซื้อ '+oc+' สถานะยืนยันแล้ว (จำลอง)');}
+ else if(f.d==='reject'){q.status='rejected';r.status='closed';toast('บันทึกว่าลูกค้าปฏิเสธแล้ว คำขอปิดแล้ว (จำลอง)');}
+ else{q.status='revision_requested';r.status='pending_quote';r.wait=0.5;toast('บันทึกว่าลูกค้าขอแก้ไขแล้ว คำขอกลับเข้าคิว (จำลอง)');}
+ S.err2b=null;S.f2b={d:'confirm',ch:'email',at:'24 พ.ย. 2569 14:30 น.',note:'',reason:''};
+ render();
+}
+
+/* S2c */
+V.s2c=function(){
+ var tab=S.tab2c,of=S.org2c;
+ var sel='<select onchange="S.org2c=this.value;render()"><option value="">ทุกองค์กร</option>'+S.orgs.map(function(o){return '<option value="'+o.id+'" '+(of==o.id?'selected':'')+'>'+esc(o.name)+'</option>';}).join('')+'</select>';
+ var body;
+ if(tab==='quotes'){
+  var rows=S.quotes.filter(function(q){return !of||getReq(q.req).org==of;});
+  body=rows.length?'<table class="t"><tr><th>รหัสใบเสนอราคา</th><th>องค์กร</th><th>วันที่ออก</th><th class="r">ยอดสุทธิ (บาท)</th><th>สถานะ</th><th></th></tr>'+rows.map(function(q){return '<tr class="click" onclick="S.quoteId=\''+q.code+'\';S.err2b=null;go(\'s2b\')"><td>'+q.code+'</td><td>'+esc(orgName(getReq(q.req).org))+'</td><td>'+q.issuedStr.replace(' น.','').replace(/ \d+:\d+$/,'')+'</td><td class="r">'+baht(qTotals(q).total)+'</td><td>'+badge(QS[q.status],QB[q.status])+'</td><td><button class="btn sm" onclick="event.stopPropagation();pdf()">PDF</button></td></tr>';}).join('')+'</table>':'<div class="statebox">ไม่พบใบเสนอราคา</div>';
+ }else{
+  var os=S.orders.filter(function(o){return !of||getReq(getQ(o.quote).req).org==of;});
+  body=os.length?'<table class="t"><tr><th>รหัสคำสั่งซื้อ</th><th>ใบเสนอราคา</th><th>องค์กร</th><th>วันที่ยืนยัน</th><th class="r">ยอดสุทธิ (บาท)</th><th></th></tr>'+os.map(function(o){var q=getQ(o.quote);return '<tr><td>'+o.code+'</td><td>'+q.code+'</td><td>'+esc(orgName(getReq(q.req).org))+'</td><td>'+o.at+'</td><td class="r">'+baht(qTotals(q).total)+'</td><td><button class="btn sm" onclick="pdf()">PDF</button></td></tr>';}).join('')+'</table><div class="muted" style="margin-top:6px">การยืนยันคำสั่งซื้อไม่ตัดสต็อกอัตโนมัติ</div>':'<div class="statebox">ไม่พบคำสั่งซื้อ</div>';
+ }
+ return '<div class="pagehead"><h1>ใบเสนอราคาและคำสั่งซื้อ</h1><button class="btn" onclick="pdf()">ดาวน์โหลด PDF</button></div>'+
+ '<div class="tabs"><button class="'+(tab==='quotes'?'on':'')+'" onclick="S.tab2c=\'quotes\';render()">ใบเสนอราคา</button><button class="'+(tab==='orders'?'on':'')+'" onclick="S.tab2c=\'orders\';render()">คำสั่งซื้อ</button></div><div style="margin-bottom:10px">'+sel+'</div>'+body;
+};
 
 /* S3 */
-$('pq').oninput=renderP;$('pcat').onchange=renderP;
-function renderP(){
-  var q=$('pq').value.trim().toLowerCase(),c=$('pcat').value;
-  var rows=PRODS.filter(function(p){return (!c||p.cat===c)&&(!q||(p.sku+p.name).toLowerCase().indexOf(q)>-1)});
-  $('pbody').innerHTML=rows.length?'<table><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หน่วย</th><th class="n">ราคามาตรฐาน (บาท)</th><th class="n">สต็อก</th><th>สถานะ</th></tr></thead><tbody>'+rows.map(function(p){return '<tr class="click" onclick="editP('+PRODS.indexOf(p)+')"><td>'+p.sku+'</td><td>'+p.name+'</td><td>'+p.unit+'</td><td class="n">'+money(p.list)+'</td><td class="n">'+p.stock.toLocaleString('en-US')+'</td><td><span class="tag '+(p.st==='จำหน่าย'?'g':'')+'">'+p.st+'</span></td></tr>'}).join('')+'</tbody></table>':'<div class="state">ไม่พบสินค้า</div>';
-  if(!$('pedit').innerHTML)editP(0);
+V.s3=function(){
+ var cats=[];S.products.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat);});
+ return '<div class="pagehead"><h1>สินค้าและสต็อก</h1><button class="btn primary" onclick="S.sel=\'NEW\';render()">เพิ่มสินค้า</button></div>'+
+ '<div style="display:flex;gap:10px;margin-bottom:10px"><input class="search" style="margin:0" placeholder="ค้นหารหัสหรือชื่อสินค้า" value="'+esc(S.q3)+'" oninput="S.q3=this.value;q$(\'#pl\',plist())"><select onchange="S.c3=this.value;q$(\'#pl\',plist())"><option value="">ทุกหมวด</option>'+cats.map(function(c){return '<option '+(S.c3===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>'+
+ '<div id="pl">'+plist()+'</div><div class="card" style="margin-top:16px">'+pform()+'</div>';
+};
+function plist(){
+ var q=S.q3.trim().toLowerCase();
+ var rows=S.products.filter(function(p){return (!S.c3||p.cat===S.c3)&&(!q||p.sku.toLowerCase().indexOf(q)>=0||p.name.toLowerCase().indexOf(q)>=0);});
+ if(!rows.length)return '<div class="statebox">ไม่พบสินค้า</div>';
+ return '<table class="t"><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หน่วย</th><th class="r">ราคา (บาท)</th><th class="r">สต็อก</th><th>สถานะ</th></tr>'+rows.map(function(p){return '<tr class="click" onclick="S.sel=\''+p.sku+'\';render()"><td>'+p.sku+'</td><td>'+esc(p.name)+'</td><td>'+p.unit+'</td><td class="r">'+baht(p.list)+'</td><td class="r">'+p.stock.toLocaleString('en-US')+'</td><td>'+(p.status==='active'?badge('จำหน่าย','b-green'):badge('เลิกขาย','b-grey'))+'</td></tr>';}).join('')+'</table>';
 }
-function editP(i){var p=i<0?{sku:'',name:'',list:'',stock:'',st:'จำหน่าย'}:PRODS[i];
-  $('pedit').innerHTML='<b>'+(i<0?'เพิ่มสินค้าใหม่':'แก้ไขสินค้า '+p.sku)+'</b><div class="row"><div><label>ชื่อสินค้า</label><input id="pe1" value="'+p.name+'"></div><div><label>ราคามาตรฐาน (บาท)</label><input id="pe2" value="'+(p.list!==''?money(p.list):'')+'"></div><div><label>จำนวนสต็อก</label><input id="pe3" value="'+(p.stock!==''?p.stock.toLocaleString('en-US'):'')+'"></div><div><label>สถานะ</label><select id="pe4"><option'+(p.st==='จำหน่าย'?' selected':'')+'>จำหน่าย</option><option'+(p.st==='เลิกขาย'?' selected':'')+'>เลิกขาย</option></select></div></div><div id="e6"></div><div style="margin-top:12px;display:flex;gap:8px"><button class="p" onclick="saveP('+i+')">บันทึก</button><button class="d" onclick="toast(\'เลิกขายสินค้าแล้ว (จำลอง)\')">เลิกขาย</button></div><p class="note">การยืนยันคำสั่งซื้อไม่ตัดสต็อกอัตโนมัติ เจ้าหน้าที่ปรับสต็อกเอง</p>';
-  if(i>=0)window.scrollTo(0,document.body.scrollHeight)}
-function newProd(){editP(-1)}
-function saveP(i){var m=[],pr=parseFloat($('pe2').value.replace(/,/g,'')),st=parseInt($('pe3').value.replace(/,/g,''),10);
-  if(!$('pe1').value.trim())m.push('ชื่อสินค้า: กรุณากรอก');if(!(pr>=0))m.push('ราคามาตรฐาน: ต้องไม่ติดลบ');if(!(st>=0))m.push('จำนวนสต็อก: ต้องเป็นจำนวนเต็มไม่ติดลบ');
-  err('e6',m);if(m.length)return;
-  if(i>=0){PRODS[i].name=$('pe1').value;PRODS[i].list=pr;PRODS[i].stock=st;PRODS[i].st=$('pe4').value}else{PRODS.push({sku:'NEW-0'+(700+PRODS.length),name:$('pe1').value,cat:'เครื่องเขียน',unit:'ชิ้น',list:pr,stock:st,st:$('pe4').value,cp:[null,null,null]})}
-  renderP();toast('บันทึกสินค้าแล้ว')}
+function pform(){
+ var n=S.sel==='NEW',p=n?{sku:'',name:'',desc:'',cat:'',unit:'',kw:'',list:0,stock:0,status:'active'}:prod(S.sel);
+ return '<h2>'+(n?'เพิ่มสินค้าใหม่':'แก้ไขสินค้า '+p.sku)+'</h2><div id="perr"></div><div class="grid2">'+
+ '<label>รหัสสินค้า (รูปแบบ AAA-0000)<input id="pf_sku" value="'+esc(p.sku)+'" '+(n?'':'disabled')+'></label>'+
+ '<label>ชื่อสินค้า<input id="pf_name" value="'+esc(p.name)+'"></label>'+
+ '<label>หมวด<input id="pf_cat" value="'+esc(p.cat)+'"></label><label>หน่วย<input id="pf_unit" value="'+esc(p.unit)+'"></label>'+
+ '<label>ราคามาตรฐาน (บาท)<input id="pf_list" value="'+(p.list/100).toFixed(2)+'"></label>'+
+ '<label>จำนวนสต็อก'+(n?'<input id="pf_stock" value="0">':'<input disabled value="'+p.stock.toLocaleString('en-US')+'">')+'</label>'+
+ '<label>สถานะ<select id="pf_status" '+(n?'disabled':'')+'><option value="active" '+(p.status==='active'?'selected':'')+'>จำหน่าย</option><option value="discontinued" '+(p.status==='discontinued'?'selected':'')+'>เลิกขาย</option></select></label>'+
+ '<label>ชื่อเรียกอื่น (ใช้ค้นในแชต)<input id="pf_kw" value="'+esc(p.kw)+'"></label></div>'+
+ '<label style="margin-top:10px">รายละเอียด<textarea id="pf_desc" rows="2">'+esc(p.desc)+'</textarea></label>'+
+ '<div class="muted" style="margin-top:6px">ราคามาตรฐานและสต็อกเห็นเฉพาะเจ้าหน้าที่ การยืนยันคำสั่งซื้อไม่ตัดสต็อกอัตโนมัติ เจ้าหน้าที่ปรับสต็อกเอง</div>'+
+ '<div class="actions">'+(n?'':'<button class="btn danger" onclick="discModal()">เลิกขาย</button><button class="btn" onclick="stockModal()">ปรับสต็อก</button>')+'<button class="btn primary" onclick="saveProd()">บันทึก</button></div>';
+}
+function saveProd(){
+ var g=function(i){return document.getElementById(i).value.trim();};
+ var n=S.sel==='NEW',e=[];
+ var sku=n?g('pf_sku').toUpperCase():S.sel;
+ if(!/^[A-Z]{2,5}-[0-9]{4}$/.test(sku))e.push('รหัสสินค้า: ต้องตรงรูปแบบ เช่น PEN-0101');
+ if(n&&prod(sku))e.push('รหัสสินค้า: มีอยู่แล้ว');
+ if(!g('pf_name'))e.push('ชื่อสินค้า: จำเป็นต้องระบุ');
+ if(!g('pf_cat'))e.push('หมวด: จำเป็นต้องระบุ');
+ if(!g('pf_unit'))e.push('หน่วย: จำเป็นต้องระบุ');
+ var pr=toSat(g('pf_list'));if(pr==null)e.push('ราคามาตรฐาน: ต้องเป็นตัวเลขไม่ติดลบ');
+ var st=0;if(n){st=parseInt(g('pf_stock'),10);if(isNaN(st)||st<0)e.push('จำนวนสต็อก: ต้องเป็นจำนวนเต็มไม่ติดลบ');}
+ if(e.length){q$('#perr','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}
+ var p=n?{sku:sku,status:'active',stock:st}:prod(sku);
+ p.name=g('pf_name');p.cat=g('pf_cat');p.unit=g('pf_unit');p.list=pr;p.kw=g('pf_kw');p.desc=g('pf_desc');
+ if(!n)p.status=document.getElementById('pf_status').value;
+ if(n){S.products.push(p);S.sel=sku;}
+ toast('บันทึกสินค้า '+sku+' แล้ว (จำลอง)');render();
+}
+function discModal(){modal('เลิกขายสินค้า '+S.sel,'<p>สินค้าที่เลิกขายจะไม่ปรากฏในแคตตาล็อกและแชต และออกใบเสนอราคาไม่ได้</p>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn danger" onclick="doDisc()">ยืนยันเลิกขาย</button>');}
+function doDisc(){prod(S.sel).status='discontinued';closeModal();toast('เลิกขายสินค้าแล้ว (จำลอง)');render();}
+function stockModal(){var p=prod(S.sel);modal('ปรับสต็อก '+p.sku,'<div id="serr"></div><label>จำนวนสต็อกใหม่<input id="sv" value="'+p.stock+'"></label>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="doStock()">บันทึก</button>');}
+function doStock(){var v=document.getElementById('sv').value.trim();var x=+v;if(v===''||!isFinite(x)||x<0||Math.floor(x)!==x){q$('#serr','<div class="err">จำนวนสต็อก: ต้องเป็นจำนวนเต็มไม่ติดลบ</div>');return;}prod(S.sel).stock=x;closeModal();toast('ปรับสต็อกแล้ว (จำลอง)');render();}
 
 /* S4 */
-function renderOrg(){
-  if(!$('o4').options.length){$('o4').innerHTML=ORGS.map(function(o){return '<option value="'+o.id+'">'+o.name+'</option>'}).join('')}
-  var o=ORGS[+$('o4').value];
-  $('orginfo').textContent='เลขประจำตัวผู้เสียภาษี '+o.tax+' ที่อยู่ '+o.addr;
-  $('invbox').style.display='none';
-  $('ctab').innerHTML='<table><thead><tr><th>ชื่อ-นามสกุล</th><th>อีเมลที่ทำงาน</th><th>เบอร์โทรที่ทำงาน</th><th></th></tr></thead><tbody>'+o.contacts.map(function(c,k){var er=erasedC[o.id+'-'+k];
-   return '<tr><td>'+(er?'ข้อมูลถูกลบตามคำขอ':c.n)+'</td><td>'+(er?'ข้อมูลถูกลบตามคำขอ':c.e)+'</td><td>'+(er?'ข้อมูลถูกลบตามคำขอ':c.p)+'</td><td class="right">'+(er?'<span class="tag">ลบแล้ว</span>':'<button onclick="invite('+k+')">สร้างข้อความเชิญ</button> <button class="d" onclick="erase('+k+')">ลบข้อมูลส่วนบุคคล</button>')+'</td></tr>'}).join('')+'</tbody></table>';
-  $('ptab').innerHTML='<table><thead><tr><th>รหัส</th><th>สินค้า</th><th class="n">ราคามาตรฐาน</th><th class="n">ราคาตามสัญญา</th></tr></thead><tbody>'+PRODS.filter(function(p){return p.st==='จำหน่าย'}).map(function(p){var v=p.cp[o.id];return '<tr><td>'+p.sku+'</td><td>'+p.name+'</td><td class="n">'+money(p.list)+'</td><td class="n"><input type="number" step="0.01" min="0" style="width:110px;text-align:right" value="'+(v==null?'':v)+'" placeholder="ไม่มี"></td></tr>'}).join('')+'</tbody></table>';
+V.s4=function(){
+ var o=org(S.orgSel);
+ var cts=S.contacts.filter(function(c){return c.org==o.id;});
+ var pr=S.products.filter(function(p){return p.status==='active';});
+ return '<div class="pagehead"><h1>องค์กร ผู้ติดต่อ และราคาตามสัญญา</h1><button class="btn primary" onclick="orgModal()">เพิ่มองค์กร</button></div>'+
+ '<div style="display:grid;grid-template-columns:260px 1fr;gap:16px"><div class="card orgs" style="padding:0">'+S.orgs.map(function(x){return '<button class="'+(x.id==o.id?'on':'')+'" onclick="S.orgSel='+x.id+';render()">'+esc(x.name)+(x.status==='closed'?' '+badge('ปิด','b-grey'):'')+'</button>';}).join('')+'</div><div>'+
+ '<div class="card"><h2>ข้อมูลองค์กร</h2><div id="oerr"></div><div class="grid2"><label>ชื่อองค์กร<input id="of_name" value="'+esc(o.name)+'"></label><label>เลขประจำตัวผู้เสียภาษี 13 หลัก<input id="of_tax" value="'+esc(o.tax)+'"></label><label>ที่อยู่<input id="of_addr" value="'+esc(o.addr)+'"></label><label>สถานะ<select id="of_st"><option value="active" '+(o.status==='active'?'selected':'')+'>ใช้งาน</option><option value="closed" '+(o.status==='closed'?'selected':'')+'>ปิด (บันทึกคำขอใหม่ไม่ได้)</option></select></label></div><div class="actions"><button class="btn primary" onclick="saveOrg()">บันทึกองค์กร</button></div></div>'+
+ '<div class="card"><div class="pagehead" style="margin:0 0 8px"><h2 style="margin:0">ผู้ติดต่อ</h2><button class="btn sm" onclick="ctModal()">เพิ่มผู้ติดต่อ</button></div><table class="t"><tr><th>ชื่อ</th><th>อีเมล</th><th>เบอร์โทร</th><th>สถานะ</th><th></th></tr>'+cts.map(function(c){var an=c.status==='anonymized';return '<tr><td>'+esc(c.name)+'</td><td>'+(esc(c.email)||'-')+'</td><td>'+(esc(c.phone)||'-')+'</td><td>'+(an?badge('ลบข้อมูลแล้ว','b-grey'):badge('ใช้งาน','b-green'))+'</td><td>'+(an?'':'<button class="btn sm" onclick="invModal('+c.id+')">สร้างข้อความเชิญ</button> <button class="btn sm danger" onclick="eraseModal('+c.id+')">ลบข้อมูลส่วนบุคคล</button>')+'</td></tr>';}).join('')+'</table></div>'+
+ '<div class="card"><h2>ราคาตามสัญญา (บาท ต่อหน่วย)</h2><div id="perr4"></div><table class="t"><tr><th>รหัส</th><th>สินค้า</th><th class="r">ราคามาตรฐาน</th><th class="r">ราคาตามสัญญา</th></tr>'+pr.map(function(p){var v=cPrice(o.id,p.sku);return '<tr><td>'+p.sku+'</td><td>'+esc(p.name)+'</td><td class="r">'+baht(p.list)+'</td><td class="r"><input class="pin" id="pr_'+p.sku+'" placeholder="ไม่มี" value="'+(v==null?'':(v/100).toFixed(2))+'"></td></tr>';}).join('')+'</table><div class="muted" style="margin-top:6px">เว้นว่างเพื่อเอาราคาออก สินค้านั้นจะแสดง "ราคาตามใบเสนอราคา"</div><div class="actions"><button class="btn primary" onclick="savePrices()">บันทึกราคา</button></div></div></div></div>';
+};
+function saveOrg(){
+ var g=function(i){return document.getElementById(i).value.trim();},e=[];
+ if(!g('of_name'))e.push('ชื่อองค์กร: จำเป็นต้องระบุ');
+ if(g('of_tax')&&!/^[0-9]{13}$/.test(g('of_tax')))e.push('เลขประจำตัวผู้เสียภาษี: ต้องเป็นตัวเลข 13 หลัก');
+ if(e.length){q$('#oerr','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}
+ var o=org(S.orgSel);o.name=g('of_name');o.tax=g('of_tax');o.addr=g('of_addr');o.status=document.getElementById('of_st').value;
+ toast('บันทึกองค์กรแล้ว (จำลอง)');render();
 }
-function invite(k){var o=ORGS[+$('o4').value],c=o.contacts[k];
-  $('invtxt').textContent='เรียน '+c.n+'\nร้านเครื่องเขียนขอเชิญท่านใช้ระบบขอใบเสนอราคาออนไลน์ในนามของ '+o.name+'\nเข้าใช้งานได้ที่ https://quotes.example.test\nร้านเก็บชื่อ อีเมล และเบอร์โทรที่ทำงานของท่านเพื่อติดต่อเรื่องใบเสนอราคาเท่านั้น และลบได้เมื่อท่านแจ้งขอ';
-  $('invbox').style.display='block'}
-function copyInv(){var t=$('invtxt').textContent;if(navigator.clipboard)navigator.clipboard.writeText(t).catch(function(){});toast('คัดลอกข้อความเชิญแล้ว')}
-function erase(k){var o=ORGS[+$('o4').value];mopen('ลบข้อมูลส่วนบุคคล','ระบบจะแทนชื่อ อีเมล และเบอร์โทรด้วยข้อความ "ข้อมูลถูกลบตามคำขอ" คำขอ ใบเสนอราคา และคำสั่งซื้อเดิมยังคงอยู่เป็นหลักฐานทางการค้า',function(){erasedC[o.id+'-'+k]=1;renderOrg();toast('ลบข้อมูลส่วนบุคคลของผู้ติดต่อแล้ว')})}
+function savePrices(){
+ var o=org(S.orgSel),np={},e=[];
+ S.products.filter(function(p){return p.status==='active';}).forEach(function(p){var v=document.getElementById('pr_'+p.sku).value.trim();if(v==='')return;var s=toSat(v);if(s==null)e.push(p.sku+': ราคาต้องเป็นตัวเลขไม่ติดลบ');else np[p.sku]=s;});
+ if(e.length){q$('#perr4','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}
+ S.P[o.id]=np;S.draftFor=null;toast('บันทึกราคาตามสัญญาของ '+o.name+' แล้ว (จำลอง)');render();
+}
+function orgModal(){modal('เพิ่มองค์กร','<div id="merr"></div><label>ชื่อองค์กร<input id="m_name"></label>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="doOrg()">บันทึก</button>');}
+function doOrg(){var v=document.getElementById('m_name').value.trim();if(!v){q$('#merr','<div class="err">ชื่อองค์กร: จำเป็นต้องระบุ</div>');return;}if(S.orgs.some(function(o){return o.name===v;})){q$('#merr','<div class="err">ชื่อองค์กร: มีอยู่แล้ว</div>');return;}var id=S.orgs.length+1;S.orgs.push({id:id,name:v,tax:'',addr:'',status:'active'});S.P[id]={};S.orgSel=id;closeModal();toast('เพิ่มองค์กรแล้ว (จำลอง)');render();}
+function ctModal(){modal('เพิ่มผู้ติดต่อ','<div id="merr"></div><label>ชื่อ-นามสกุล<input id="m_n"></label><label style="margin-top:8px">อีเมลที่ทำงาน<input id="m_e"></label><label style="margin-top:8px">เบอร์โทรที่ทำงาน<input id="m_p"></label><div class="muted" style="margin-top:6px">ต้องมีอีเมลหรือเบอร์โทรอย่างน้อยหนึ่งค่า</div>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="doCt()">บันทึก</button>');}
+function doCt(){var n=document.getElementById('m_n').value.trim(),em=document.getElementById('m_e').value.trim(),p=document.getElementById('m_p').value.trim(),e=[];if(!n)e.push('ชื่อ-นามสกุล: จำเป็นต้องระบุ');if(!em&&!p)e.push('ต้องมีอีเมลหรือเบอร์โทรอย่างน้อยหนึ่งค่า');if(em&&!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(em))e.push('อีเมล: รูปแบบไม่ถูกต้อง');if(e.length){q$('#merr','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}S.contacts.push({id:S.contacts.length+1,org:S.orgSel,name:n,email:em,phone:p,status:'active'});closeModal();toast('เพิ่มผู้ติดต่อแล้ว (จำลอง)');render();}
+function invModal(id){
+ var c=contact(id),o=org(c.org);
+ var t='เรียน '+c.name+'\nร้านเครื่องเขียนขอเชิญ '+o.name+' ใช้ระบบขอใบเสนอราคาออนไลน์ที่ https://app.example.invalid/quotes\nข้อมูลที่ระบบเก็บ: ชื่อ-นามสกุล อีเมลที่ทำงาน เบอร์โทรที่ทำงาน และชื่อผู้ใช้ เพื่อระบุผู้ขอและติดต่อเรื่องใบเสนอราคา\nขณะนี้ส่วนสำหรับผู้สั่งซื้อยังไม่เปิดใช้งาน ท่านเข้าใช้ได้เมื่อร้านเปิดบริการระยะที่ 2 ร้านจะแจ้งให้ทราบอีกครั้ง';
+ modal('ข้อความเชิญผู้สั่งซื้อ','<div class="info">เจ้าหน้าที่ส่งข้อความนี้เองนอกแอป แอปไม่ส่งอีเมล ผู้รับเข้าใช้ได้เมื่อเปิดระยะที่ 2</div><pre class="inv" id="invt">'+esc(t)+'</pre>','<button class="btn" onclick="closeModal()">ปิด</button><button class="btn primary" onclick="copyInv()">คัดลอกข้อความ</button>');
+}
+function copyInv(){var t=document.getElementById('invt').textContent;try{navigator.clipboard.writeText(t);}catch(e){}toast('คัดลอกข้อความเชิญแล้ว');}
+function eraseModal(id){var c=contact(id);modal('ลบข้อมูลส่วนบุคคลของ '+esc(c.name),'<div id="merr"></div><div class="warn">ระบบจะแทนชื่อด้วย "ข้อมูลถูกลบตามคำขอ" และล้างอีเมล เบอร์โทร ชื่อผู้ใช้ คำขอและใบเสนอราคาเดิมยังคงอยู่เป็นหลักฐานทางการค้า</div><div class="grid2"><label>ช่องทางที่ได้รับคำขอลบ<select id="m_ch">'+Object.keys(CH).map(function(k){return '<option value="'+k+'">'+CH[k]+'</option>';}).join('')+'</select></label><label>วันที่ได้รับคำขอ<input id="m_d" value="25 พ.ย. 2569 09:00 น."></label></div>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn danger" onclick="doErase('+id+')">ยืนยันลบข้อมูล</button>');}
+function doErase(id){var d=document.getElementById('m_d').value;var t=parseTh(d);if(t==null||t>NOW){q$('#merr','<div class="err">วันที่ได้รับคำขอ: รูปแบบไม่ถูกต้องหรืออยู่ในอนาคต</div>');return;}var c=contact(id);c.name='ข้อมูลถูกลบตามคำขอ';c.email='';c.phone='';c.status='anonymized';closeModal();toast('ลบข้อมูลส่วนบุคคลแล้ว (จำลอง)');render();}
 
 /* S5 */
-function renderS(){
-  $('stbody').innerHTML='<table><thead><tr><th>ชื่อที่แสดง</th><th>ชื่อผู้ใช้</th><th>บทบาท</th><th>สถานะ</th><th></th></tr></thead><tbody>'+STAFF.map(function(s,k){
-   var lock=s.own||s.me;return '<tr><td>'+s.n+'</td><td>'+s.u+'</td><td>'+(s.own?'เจ้าของแอป':'เจ้าหน้าที่')+'</td><td><span class="tag '+(s.st==='ใช้งาน'?'g':'')+'">'+s.st+'</span></td><td class="right"><button class="'+(s.st==='ใช้งาน'?'d':'')+'" onclick="togS('+k+')">'+(s.st==='ใช้งาน'?'ปิดบัญชี':'เปิดบัญชี')+'</button></td></tr>'}).join('')+'</tbody></table><p class="note">ปิดบัญชีตนเองหรือบัญชีเจ้าของแอปไม่ได้ ระบบแจ้ง "ไม่สามารถปิดบัญชีนี้ได้"</p>'}
-function togS(k){var s=STAFF[k];if(s.st==='ใช้งาน'&&(s.own||s.me)){toast('ไม่สามารถปิดบัญชีนี้ได้');return}s.st=s.st==='ใช้งาน'?'ปิดบัญชี':'ใช้งาน';renderS()}
-function addStaff(){var m=[];if(!$('su1').value.trim())m.push('ชื่อที่แสดง: กรุณากรอก');if(!$('su2').value.trim())m.push('ชื่อผู้ใช้: กรุณากรอก');err('e5',m);if(m.length)return;
-  STAFF.push({u:$('su2').value.trim(),n:$('su1').value.trim(),own:0,st:'ใช้งาน'});$('su1').value='';$('su2').value='';renderS();toast('เพิ่มเจ้าหน้าที่แล้ว')}
+V.s5=function(){
+ var self=S.mode==='staff'?'wipa.s':'';
+ return '<div class="pagehead"><h1>เจ้าหน้าที่</h1></div><div class="info">ผู้ดูแลระบบ PromptServe ไม่อยู่ในรายการนี้ เพราะสิทธิ์มาจากแพลตฟอร์ม การเพิ่มหรือถอนสิทธิ์ผู้ดูแลทำที่แพลตฟอร์ม</div>'+
+ '<div class="card"><h2>เพิ่มเจ้าหน้าที่</h2><div id="uerr"></div><div class="grid3"><label>ชื่อผู้ใช้ PromptServe<input id="u_name" placeholder="เช่น somying.r"></label><label>ชื่อที่แสดง<input id="u_disp"></label><label>&nbsp;<button class="btn primary" onclick="addUser()">เพิ่มเจ้าหน้าที่</button></label></div></div>'+
+ '<table class="t"><tr><th>ชื่อผู้ใช้</th><th>ชื่อที่แสดง</th><th>สถานะ</th><th>รับทราบประกาศความเป็นส่วนตัว</th><th></th></tr>'+S.users.map(function(u){return '<tr><td>'+u.u+(u.u===self?' (บัญชีของท่าน)':'')+'</td><td>'+esc(u.name)+'</td><td>'+(u.status==='active'?badge('ใช้งาน','b-green'):badge('ปิดบัญชี','b-grey'))+'</td><td>'+u.priv+'</td><td><button class="btn sm" onclick="toggleUser(\''+u.u+'\')">'+(u.status==='active'?'ปิดบัญชี':'เปิดบัญชี')+'</button></td></tr>';}).join('')+'</table>';
+};
+function addUser(){
+ var u=document.getElementById('u_name').value.trim(),d=document.getElementById('u_disp').value.trim(),e=[];
+ if(!/^[a-z0-9._-]{3,}$/.test(u))e.push('ชื่อผู้ใช้: ใช้ตัวพิมพ์เล็ก ตัวเลข จุด ขีดล่าง หรือขีดกลาง อย่างน้อย 3 ตัวอักษร');
+ if(S.users.some(function(x){return x.u===u;}))e.push('ชื่อผู้ใช้: มีอยู่แล้ว');
+ if(!d)e.push('ชื่อที่แสดง: จำเป็นต้องระบุ');
+ if(e.length){q$('#uerr','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}
+ S.users.push({u:u,name:d,status:'active',priv:'ยังไม่รับทราบ'});toast('เพิ่มเจ้าหน้าที่ '+u+' แล้ว (จำลอง) ผู้ใช้ต้องมีบัญชี PromptServe ที่สร้างนอกแอป');render();
+}
+function toggleUser(u){
+ var x=S.users.filter(function(i){return i.u===u;})[0];
+ if(S.mode==='staff'&&u==='wipa.s'&&x.status==='active'){toast('ไม่สามารถปิดบัญชีนี้ได้ (409)',1);return;}
+ x.status=x.status==='active'?'disabled':'active';toast('เปลี่ยนสถานะบัญชีแล้ว (จำลอง)');render();
+}
 
 /* S6 */
-function renderE(){
-  var l=ESC.filter(function(e){return e.st!=='ปิดแล้ว'});
-  $('esbody').innerHTML=l.length?'<table><thead><tr><th>วันและเวลา</th><th>องค์กร</th><th>ข้อความ (ปกปิดแล้ว)</th><th>เหตุผลที่ส่งต่อ</th><th></th></tr></thead><tbody>'+l.map(function(e,k){return '<tr><td>'+e.t+'</td><td>'+e.org+'</td><td>'+e.q+'</td><td>'+e.r+'</td><td><button onclick="ESC['+ESC.indexOf(e)+'].st=\'ปิดแล้ว\';renderE();toast(\'ปิดรายการแล้ว\')">ปิดรายการ</button></td></tr>'}).join('')+'</tbody></table>':'<div class="state">ไม่มีคำถามที่ส่งต่อค้างอยู่</div>'}
+V.s6=function(){
+ var f=S.flt6;
+ var tabs=[['open','ยังไม่ปิด'],['closed','ปิดแล้ว'],['all','ทั้งหมด']];
+ var rows=S.esc.filter(function(e){return f==='all'||e.status===f;});
+ return '<div class="pagehead"><h1>คำถามที่แชตส่งต่อ</h1></div><div class="info">เก็บเฉพาะคำถามที่ปกปิดอีเมลและเบอร์โทรแล้ว ไม่เก็บคำตอบ และลบอัตโนมัติเมื่อครบ 90 วัน</div>'+
+ '<div class="tabs">'+tabs.map(function(t){return '<button class="'+(f===t[0]?'on':'')+'" onclick="S.flt6=\''+t[0]+'\';render()">'+t[1]+'</button>';}).join('')+'</div>'+
+ (rows.length?'<table class="t"><tr><th>เวลา</th><th>องค์กร</th><th>คำถาม (ปกปิดแล้ว)</th><th>เหตุผล</th><th class="r">ความมั่นใจ</th><th>สถานะ</th><th></th></tr>'+rows.map(function(e){return '<tr><td>'+e.at+'</td><td>'+(e.org?esc(orgName(e.org)):'-')+'</td><td>'+esc(e.q)+'</td><td>'+badge(REASON[e.reason],'b-amber')+'</td><td class="r">'+(e.conf==null?'-':e.conf.toFixed(2))+'</td><td>'+(e.status==='open'?badge('ยังไม่ปิด','b-red'):badge('ปิดแล้ว','b-green'))+(e.note?'<div class="muted">'+esc(e.note)+'</div>':'')+'</td><td>'+(e.status==='open'?'<button class="btn sm" onclick="escModal('+e.id+')">ปิดรายการ</button>':'')+'</td></tr>';}).join('')+'</table>':'<div class="statebox">ไม่มีรายการในสถานะนี้</div>');
+};
+function escModal(id){modal('ปิดรายการคำถามที่ส่งต่อ','<div id="merr"></div><label>หมายเหตุการปิดรายการ<textarea id="m_note" rows="3"></textarea></label>','<button class="btn" onclick="closeModal()">ยกเลิก</button><button class="btn primary" onclick="doEsc('+id+')">ปิดรายการ</button>');}
+function doEsc(id){var v=document.getElementById('m_note').value.trim();if(!v){q$('#merr','<div class="err">หมายเหตุ: จำเป็นต้องระบุ</div>');return;}var e=S.esc.filter(function(x){return x.id===id;})[0];e.status='closed';e.note=v;closeModal();toast('ปิดรายการแล้ว (จำลอง)');render();}
 
 /* S7 */
-function s7init(){
-  var b=$('bp'),n=$('asnon');
-  b.onclick=function(e){
-    if(n.checked){e.preventDefault();toast('เฉพาะเจ้าของแอปเปลี่ยนค่านี้ได้');return}
-    e.preventDefault();var to=!b.checked;
-    mopen(to?'ยืนยันการเปิดระยะที่ 2':'ยืนยันการปิดระยะที่ 2',to?'ผู้สั่งซื้อจะเข้าใช้แอปเองได้ และเห็นราคาตามสัญญาขององค์กรตนเอง การเปลี่ยนค่านี้บันทึกใน audit_log':'ผู้สั่งซื้อจะเข้าใช้แอปไม่ได้อีก',function(){b.checked=to;$('bpnote').textContent=to?'เปิดอยู่ ผู้สั่งซื้อเข้าใช้ได้':'ปิดอยู่ ฝั่งผู้สั่งซื้อทุก route ตอบ 403';toast('บันทึกการเปลี่ยนค่าลง audit_log แล้ว')})};
-  n.onchange=function(){b.disabled=false;$('bpnote').textContent=n.checked?'เฉพาะเจ้าของแอปเปลี่ยนค่านี้ได้ (อ่านอย่างเดียว)':(b.checked?'เปิดอยู่ ผู้สั่งซื้อเข้าใช้ได้':'ปิดอยู่ ฝั่งผู้สั่งซื้อทุก route ตอบ 403')}
+V.s7=function(){
+ var adm=S.mode==='admin';
+ var keys=Object.keys(S.MET);
+ var m=S.MET[S.m7];
+ var ml=function(k){var p=k.split('-');return MONF[+p[1]-1]+' '+p[0];};
+ var bk=keys.filter(function(k){return S.MET[k];})[0],bm=S.MET[bk];
+ var bpct=bm?(bm.w/bm.el*100):null;
+ var body;
+ if(!m)body='<div class="statebox">ยังไม่มีข้อมูลของเดือนนี้</div>';
+ else{
+  var pct=m.w/m.el*100,meets=pct>=90;
+  body='<div class="cards" style="grid-template-columns:repeat(4,1fr)"><div class="card"><div class="muted">ตัวหาร (คำขอที่นับ)</div><div class="big">'+m.el+'</div></div><div class="card"><div class="muted">ตัวตั้ง (ออก R0 ภายใน 9 ชม.ทำการ)</div><div class="big">'+m.w+'</div></div><div class="card"><div class="muted">ร้อยละ</div><div class="big">'+pct.toFixed(1)+'%</div></div><div class="card"><div class="muted">ค่ามัธยฐาน (ชั่วโมงทำการ)</div><div class="big">'+m.med.toFixed(1)+'</div></div></div>'+
+  '<div class="card"><div>เป้าหมายร้อยละ 90 สถานะ '+(meets?badge('ถึงเป้าหมาย','b-green'):badge('ต่ำกว่าเป้าหมาย','b-red'))+' '+(m.pend>0?badge('ยังไม่สิ้นสุด','b-amber')+' <span class="muted">รอผล '+m.pend+' รายการ</span>':'')+'</div><div style="margin-top:8px">ค่าฐาน (เดือนแรกที่มีข้อมูล คือ '+ml(bk)+'): <b>'+bpct.toFixed(1)+'%</b> เทียบกับเดือนที่เลือก <b>'+pct.toFixed(1)+'%</b></div></div>';
+ }
+ return '<div class="pagehead"><h1>ตัวชี้วัดและตั้งค่า</h1></div><div class="card"><h2>เวลาออกใบเสนอราคาฉบับแรก (R0) ภายใน 9 ชั่วโมงทำการ</h2><label style="max-width:260px;margin-bottom:12px">เดือน<select onchange="S.m7=this.value;render()">'+keys.map(function(k){return '<option value="'+k+'" '+(S.m7===k?'selected':'')+'>'+ml(k)+'</option>';}).join('')+'</select></label>'+body+'</div>'+
+ '<div class="card"><h2>ตั้งค่า</h2><div id="serr7"></div><div class="grid2"><label>อายุใบเสนอราคา (วัน 1 ถึง 180)<input id="s_v" value="'+S.settings.validity+'"></label><label>อัตราภาษีมูลค่าเพิ่ม (ร้อยละ 0 ถึง 20)<input id="s_t" value="'+S.settings.vat+'"></label></div><div class="actions"><button class="btn primary" onclick="saveSet()">บันทึกค่าตั้ง</button></div></div>'+
+ '<div class="card"><h2>ส่วนสำหรับผู้สั่งซื้อ (ระยะที่ 2)</h2><label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" disabled> เปิดให้ผู้สั่งซื้อเข้าใช้งาน</label>'+(adm?'<div class="info" style="margin-top:8px">ส่วนผู้สั่งซื้อยังไม่พร้อมใช้งานในรุ่นนี้</div>':'<div class="info" style="margin-top:8px">อ่านอย่างเดียว เฉพาะผู้ดูแลระบบเปลี่ยนค่านี้ได้</div>')+'</div>';
+};
+function saveSet(){
+ var v=document.getElementById('s_v').value.trim(),t=document.getElementById('s_t').value.trim(),e=[];
+ var vn=+v,tn=+t;
+ if(v===''||!isFinite(vn)||vn<1||vn>180||Math.floor(vn)!==vn)e.push('อายุใบเสนอราคา: ต้องเป็นจำนวนเต็ม 1 ถึง 180 วัน');
+ if(t===''||!isFinite(tn)||tn<0||tn>20)e.push('อัตราภาษี: ต้องอยู่ระหว่างร้อยละ 0 ถึง 20');
+ if(e.length){q$('#serr7','<div class="err">'+e.map(esc).join('<br>')+'</div>');return;}
+ S.settings.validity=vn;S.settings.vat=tn;S.draftFor=null;toast('บันทึกค่าตั้งแล้ว (จำลอง)');render();
 }
 
 /* S10 */
-function acceptPv(){$('pvok').style.display='block';$('pvb').style.display='none';toast('บันทึกการรับทราบแล้ว')}
+V.s10=function(){
+ return '<div class="pagehead"><h1>ประกาศความเป็นส่วนตัว</h1></div><div class="card"><p>ร้านเก็บข้อมูลส่วนบุคคลเท่าที่จำเป็นต่อการออกใบเสนอราคา ดังนี้</p>'+
+ '<table class="t"><tr><th>ข้อมูล</th><th>เหตุผลที่เก็บ</th><th>ระยะเก็บและการลบ</th></tr><tr><td>ชื่อ-นามสกุล อีเมล และเบอร์โทรที่ทำงานของผู้ติดต่อ</td><td>ระบุผู้ขอและผู้ตอบใบเสนอราคา และติดต่อเรื่องใบเสนอราคา</td><td>เก็บตลอดที่ใช้งาน ลบด้วยการปกปิดตัวตนเมื่อมีคำขอ</td></tr><tr><td>ชื่อผู้ใช้และชื่อที่แสดงของเจ้าหน้าที่</td><td>ระบุผู้ทำรายการในบันทึกการใช้งาน</td><td>เก็บตลอดที่ใช้งาน หลังปิดบัญชีคงไว้ในบันทึกการใช้งาน</td></tr><tr><td>ข้อความคำถามจากแชตที่ปกปิดแล้ว (เฉพาะที่ส่งต่อ)</td><td>ให้เจ้าหน้าที่ตรวจเรื่องที่ผู้ช่วยตอบไม่ได้</td><td>ลบอัตโนมัติเมื่อครบ 90 วัน</td></tr><tr><td>เวลารับทราบประกาศนี้</td><td>หลักฐานการแจ้งตาม PDPA</td><td>เก็บตลอดที่ใช้งาน</td></tr></table>'+
+ '<p class="muted">ร้านไม่เก็บเลขบัตรประชาชน ที่อยู่ส่วนบุคคล ข้อมูลการชำระเงิน และประวัติแชต</p>'+
+ (S.priv?'<div class="ok">รับทราบแล้วเมื่อ '+S.priv+'</div>':'<div class="actions"><button class="btn primary" onclick="S.priv=NOWSTR;toast(\'บันทึกการรับทราบแล้ว (จำลอง)\');render()">รับทราบประกาศความเป็นส่วนตัว</button></div>')+'</div>';
+};
 
-/* S9 chat */
-function openChat(){orgOpts($('co'));if(!$('co').dataset.s){$('co').dataset.s=1}$('drawer').classList.add('on')}
-function closeChat(){$('drawer').classList.remove('on');if(location.hash==='#s9')location.hash='s8'}
-function bub(c,t,extra){var d=document.createElement('div');d.className='m '+c;d.textContent=t;if(extra)d.insertAdjacentHTML('beforeend',extra);$('msgs').appendChild(d);$('msgs').scrollTop=1e5;return d}
-function sendChat(){
-  var t=$('cin').value.trim();if(!t)return;
-  if($('co').value===''){toast('กรุณาเลือกองค์กรก่อนถาม');return}
-  var o=+$('co').value;
-  var masked=t.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,'[อีเมลถูกปกปิด]').replace(/0\d{1,2}[- ]?\d{3}[- ]?\d{4}/g,'[เบอร์โทรถูกปกปิด]');
-  bub('u',masked);$('cin').value='';
-  var w=bub('a','กำลังประมวลผล...');
-  setTimeout(function(){
-    var r,x='';
-    if(/ลดราคา|ส่วนลด|ต่อรอง|ตั้งราคา/.test(t))r='ขออภัย ผู้ช่วยไม่สามารถตั้ง ลด หรือต่อรองราคาได้ กรุณาบันทึกคำขอพร้อมระบุความต้องการในหมายเหตุ เจ้าหน้าที่จะพิจารณาในใบเสนอราคา';
-    else if(/ออกใบเสนอราคา/.test(t))r='ผู้ช่วยออกใบเสนอราคาไม่ได้ ขั้นตอนคือบันทึกคำขอในหน้า บันทึกคำขอแทนลูกค้า แล้วเจ้าหน้าที่จะออกใบเสนอราคาให้';
-    else if(/ร้องเรียน|ชำรุด|คุยกับเจ้าหน้าที่/.test(t)){r='ได้ส่งเรื่องถึงเจ้าหน้าที่แล้ว จะปรากฏในหน้าคำถามที่ส่งต่อ';ESC.push({id:2,q:masked,r:'ร้องเรียนหรือขอคุยกับเจ้าหน้าที่',org:ORGS[o].name,t:'25 พ.ย. 2569 10:00 น.',st:'รอตรวจ'})}
-    else if(/ปากกา/.test(t)){r='แนะนำสินค้าจากแคตตาล็อกขององค์กรท่าน';var p=PRODS[0];x='<div class="pc">'+p.sku+' '+p.name+'<br>ราคาตามสัญญา '+money(p.cp[o])+' บาทต่อ'+p.unit+' (ยังไม่รวมภาษีมูลค่าเพิ่ม)<br><span class="tag g">มีสินค้า</span></div>'}
-    else if(/ลิควิด|ลบคำผิด|น้ำยา/.test(t)){r='พบสินค้าที่ตรงความหมาย';var q=PRODS[3],c=q.cp[o];x='<div class="pc">'+q.sku+' '+q.name+'<br>'+(c==null?'ราคาจะระบุในใบเสนอราคา':'ราคาตามสัญญา '+money(c)+' บาท')+'</div>'}
-    else if(/สมุด/.test(t)){r='พบสินค้าตามแคตตาล็อก';var s=PRODS[2];x='<div class="pc">'+s.sku+' '+s.name+'<br>ราคาตามสัญญา '+(s.cp[o]==null?'ราคาจะระบุในใบเสนอราคา':money(s.cp[o])+' บาท')+'<br><span class="tag r">สินค้าหมด</span></div>'}
-    else r='ไม่พบสินค้าที่ตรงกับคำถามในแคตตาล็อก แนะนำให้บันทึกคำขอพร้อมหมายเหตุ เจ้าหน้าที่จะตรวจสอบให้';
-    w.textContent=r;if(x)w.insertAdjacentHTML('beforeend',x);
-  },700);
+/* E1 */
+function e1html(){
+ return userBar()+'<div class="center card"><h1>ยังไม่ได้รับสิทธิ์ใช้งาน</h1><p>บัญชีนี้ยังไม่ได้รับสิทธิ์ใช้งาน กรุณาติดต่อผู้ดูแลระบบ</p><p class="muted">หน้านี้ไม่แสดงข้อมูลใดของแอป</p></div>';
 }
 
-route();
+/* S9 chat */
+function openChat(from){
+ S.chatBase=from;
+ var o=from==='s2a'?String(getReq(S.reqId).org):String(S.f8.org||'');
+ if(S.chat.org!==o){S.chat.org=o;S.chat.msgs=[];}
+ go('s9');
+}
+function drawer(){
+ return '<div class="drawer"><div class="dhead"><b>แชตผู้ช่วย</b><button class="btn sm" onclick="go(S.chatBase)">ปิด</button></div><div class="dbody"><label style="margin-bottom:8px">องค์กรที่เลือก<select onchange="chatOrg(this.value)"><option value="">เลือกองค์กร</option>'+S.orgs.map(function(o){return '<option value="'+o.id+'" '+(S.chat.org==o.id?'selected':'')+'>'+esc(o.name)+'</option>';}).join('')+'</select></label><div class="chips"><button onclick="chip(\'มีปากกาลูกลื่นสีน้ำเงินไหม\')">มีปากกาลูกลื่นสีน้ำเงินไหม</button><button onclick="chip(\'ขอส่วนลด 20 เปอร์เซ็นต์\')">ขอส่วนลด</button><button onclick="chip(\'สินค้าชำรุด ขอคุยกับเจ้าหน้าที่\')">ร้องเรียนสินค้าชำรุด</button><button onclick="chip(\'ขอเก้าอี้สำนักงาน\')">สินค้าที่ไม่มีในแคตตาล็อก</button></div><div id="chatmsgs">'+chatMsgs()+'</div></div><div class="dfoot"><input id="chatin" maxlength="1000" placeholder="พิมพ์คำถามเกี่ยวกับสินค้า" onkeydown="if(event.key===\'Enter\')chatSend()"><button class="btn primary" onclick="chatSend()">ส่ง</button></div></div>';
+}
+function chatMsgs(){
+ if(!S.chat.msgs.length)return '<div class="muted">ถามเรื่องสินค้าได้ ผู้ช่วยอ้างเฉพาะสินค้าในแคตตาล็อกและไม่ตั้งราคาหรือออกใบเสนอราคา</div>';
+ return S.chat.msgs.map(function(m){
+  if(m.r==='u')return '<div class="msg u">'+esc(m.t)+'</div>';
+  if(m.r==='w')return '<div class="msg a muted">กำลังประมวลผล...</div>';
+  return '<div class="msg a">'+esc(m.t)+(m.p||[]).map(function(p){var cp=cPrice(S.chat.org,p.sku);return '<div class="pc"><b>'+p.sku+'</b> '+esc(p.name)+'<br>หน่วย '+p.unit+' | '+(cp==null?'ราคาตามใบเสนอราคา':baht(cp)+' บาท')+' | '+(p.stock>0?'มีสินค้า':'สินค้าหมด')+'</div>';}).join('')+(m.esc?'<div class="muted" style="margin-top:6px">ส่งเรื่องถึงเจ้าหน้าที่แล้ว (คิว S6)</div>':'')+'</div>';
+ }).join('');
+}
+function chatOrg(v){S.chat.org=v;S.chat.msgs=[];q$('#chatmsgs',chatMsgs());}
+function chip(t){document.getElementById('chatin').value=t;chatSend();}
+function maskT(t){return t.replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g,'[อีเมล]').replace(/(\+66|0)[\s-]?\d([\s-]?\d){7,8}/g,'[เบอร์โทร]');}
+function chatSend(){
+ var inp=document.getElementById('chatin'),t=inp.value.trim();
+ if(!t)return;
+ if(!S.chat.org){toast('กรุณาเลือกองค์กรก่อนถาม',1);return;}
+ if(t.length>1000){toast('ข้อความยาวเกิน 1,000 ตัวอักษร',1);return;}
+ var m=maskT(t);inp.value='';
+ S.chat.msgs.push({r:'u',t:m});S.chat.msgs.push({r:'w'});
+ q$('#chatmsgs',chatMsgs());
+ setTimeout(function(){S.chat.msgs.pop();S.chat.msgs.push(chatReply(m));q$('#chatmsgs',chatMsgs());refreshNav();},700);
+}
+function addEsc(m,cat,conf,reason){S.esc.unshift({id:S.esc.length+1+Math.floor(Math.random()*1000),org:+S.chat.org,q:m,cat:cat,conf:conf,reason:reason,status:'open',at:NOWSTR,by:'ผู้ช่วยแชต'});}
+function chatReply(m){
+ var l=m.toLowerCase();
+ if(/ร้องเรียน|ขอคุยกับเจ้าหน้าที่|ชำรุด/.test(m)){addEsc(m,'complaint',0.95,'complaint');return {r:'a',t:'ขออภัยในความไม่สะดวก ระบบส่งเรื่องถึงเจ้าหน้าที่แล้ว เจ้าหน้าที่จะตรวจสอบและติดต่อกลับ',esc:true};}
+ if(/ส่วนลด|ลดราคา|ต่อรอง|ออกใบเสนอราคา|ตั้งราคา/.test(m))return {r:'a',t:'ขออภัย ผู้ช่วยไม่สามารถตั้งราคา ลดราคา ต่อรองราคา หรือออกใบเสนอราคาได้ กรุณาบันทึกคำขอพร้อมระบุความต้องการในหมายเหตุ เจ้าหน้าที่จะเป็นผู้เสนอราคา'};
+ if(/แบบเดิม|เมื่อปีก่อน/.test(m)){addEsc(m,'process_question',0.42,'low_confidence');return {r:'a',t:'ขออภัย ข้อมูลยังไม่เพียงพอที่จะระบุสินค้า กรุณาระบุชื่อหรือรหัสสินค้า ระบบส่งคำถามนี้ให้เจ้าหน้าที่ช่วยตรวจสอบแล้ว',esc:true};}
+ var found=S.products.filter(function(p){
+  if(p.status!=='active')return false;
+  var terms=[p.sku,p.name,p.cat].concat(p.kw.split(',').map(function(x){return x.trim();})).filter(Boolean);
+  return terms.some(function(x){return l.indexOf(x.toLowerCase())>=0;});
+ }).slice(0,5);
+ if(found.length)return {r:'a',t:'พบสินค้าที่เกี่ยวข้องในแคตตาล็อก ดังนี้ ราคาสุดท้ายเป็นไปตามใบเสนอราคา',p:found};
+ return {r:'a',t:'ไม่พบสินค้าที่เกี่ยวข้องในแคตตาล็อก แนะนำให้บันทึกคำขอพร้อมระบุรายละเอียดในหมายเหตุ'};
+}
+
+/* router */
+function render(){
+ var id=(location.hash||'#s1').slice(1);
+ if(!SCREENS.some(function(s){return s.id===id;}))id='s1';
+ var view=id==='s9'?S.chatBase:id;
+ document.getElementById('selScreen').value=id;
+ document.getElementById('selMode').value=S.mode;
+ document.getElementById('selState').value=S.vstate;
+ var app=document.getElementById('app');
+ var name=SCREENS.filter(function(s){return s.id===view;})[0].name;
+ document.title='Mockup '+name;
+ if(S.mode==='none'||id==='e1'){app.innerHTML=e1html();return;}
+ var inner;
+ if(S.vstate!=='ok'&&view!=='s10')inner=stateBox(name.replace(/^\S+\s/,''));
+ else inner=V[view]();
+ app.innerHTML=shell(activeOf(view),inner);
+ if(S.vstate==='ok'&&INIT[view])INIT[view]();
+ if(id==='s9'){app.insertAdjacentHTML('beforeend',drawer());var d=document.getElementById('chatmsgs');if(d)d.parentNode.scrollTop=d.parentNode.scrollHeight;}
+ window.scrollTo(0,0);
+}
+(function(){
+ var sel=document.getElementById('selScreen');
+ sel.innerHTML=SCREENS.map(function(s){return '<option value="'+s.id+'">'+esc(s.name)+'  ('+esc(s.route)+')</option>';}).join('');
+ window.addEventListener('hashchange',render);
+ document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+ render();
+})();
 </script>
 </body>
 </html>

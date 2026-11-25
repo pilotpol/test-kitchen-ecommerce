@@ -1,0 +1,316 @@
+{
+  "schema": 2,
+  "items": {
+    "BL-01": {
+      "start": "2026-11-26",
+      "end": "2026-11-27",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-02": {
+      "start": "2026-11-30",
+      "end": "2026-11-30",
+      "owner": "lead",
+      "note": ""
+    },
+    "BL-03": {
+      "start": "2026-11-30",
+      "end": "2026-12-01",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-11": {
+      "start": "2026-11-30",
+      "end": "2026-12-02",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-04": {
+      "start": "2026-12-01",
+      "end": "2026-12-02",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-05": {
+      "start": "2026-12-03",
+      "end": "2026-12-03",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-06": {
+      "start": "2026-12-03",
+      "end": "2026-12-04",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-07": {
+      "start": "2026-12-03",
+      "end": "2026-12-04",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-08": {
+      "start": "2026-12-03",
+      "end": "2026-12-04",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-10": {
+      "start": "2026-12-03",
+      "end": "2026-12-03",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-09": {
+      "start": "2026-12-07",
+      "end": "2026-12-08",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-24": {
+      "start": "2026-12-07",
+      "end": "2026-12-08",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-25": {
+      "start": "2026-12-09",
+      "end": "2026-12-10",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-12": {
+      "start": "2026-12-09",
+      "end": "2026-12-14",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-26": {
+      "start": "2026-12-11",
+      "end": "2026-12-16",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-28": {
+      "start": "2026-12-11",
+      "end": "2026-12-14",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-13": {
+      "start": "2026-12-15",
+      "end": "2026-12-16",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-14": {
+      "start": "2026-12-15",
+      "end": "2026-12-17",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-32": {
+      "start": "2026-12-17",
+      "end": "2026-12-17",
+      "owner": "devops",
+      "note": ""
+    },
+    "BL-15": {
+      "start": "2026-12-18",
+      "end": "2026-12-22",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-17": {
+      "start": "2026-12-18",
+      "end": "2026-12-22",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-16": {
+      "start": "2026-12-23",
+      "end": "2026-12-23",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-18": {
+      "start": "2026-12-23",
+      "end": "2026-12-23",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-19": {
+      "start": "2026-12-23",
+      "end": "2026-12-24",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-20": {
+      "start": "2026-12-23",
+      "end": "2026-12-24",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-21": {
+      "start": "2026-12-23",
+      "end": "2026-12-25",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-27": {
+      "start": "2026-12-23",
+      "end": "2026-12-25",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-30": {
+      "start": "2026-12-23",
+      "end": "2026-12-23",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-31": {
+      "start": "2026-12-24",
+      "end": "2026-12-25",
+      "owner": "tester",
+      "note": ""
+    },
+    "BL-29": {
+      "start": "2026-12-25",
+      "end": "2026-12-25",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-23": {
+      "start": "2026-12-25",
+      "end": "2026-12-29",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-22": {
+      "start": "2026-12-28",
+      "end": "2026-12-28",
+      "owner": "builder",
+      "note": ""
+    },
+    "BL-33": {
+      "start": "2026-12-30",
+      "end": "2026-12-31",
+      "owner": "reviewer",
+      "note": ""
+    },
+    "BL-34": {
+      "start": "2027-01-04",
+      "end": "2027-01-05",
+      "owner": "devops",
+      "note": ""
+    }
+  },
+  "phases": [
+    {
+      "id": "P1",
+      "name": "Kick-off และยืนยันขอบเขต",
+      "start": "2026-11-26",
+      "end": "2026-11-26",
+      "owner": "lead",
+      "backlog": [],
+      "note": "ร่วมกับร้านและผู้รับผิดชอบโครงการ"
+    },
+    {
+      "id": "P2",
+      "name": "ตั้ง environment บน Playground",
+      "start": "2026-12-30",
+      "end": "2026-12-31",
+      "owner": "devops",
+      "backlog": [],
+      "note": "BACKEND_INTERNAL_KEY และ PS_ADMIN_ROLE_NAME ต้องถามผู้ใช้ก่อนตั้ง"
+    },
+    {
+      "id": "P3",
+      "name": "Local Run ตรวจ flow ด้วย psapp dev",
+      "start": "2027-01-04",
+      "end": "2027-01-04",
+      "owner": "tester",
+      "backlog": [],
+      "note": "ใช้ข้อมูลทดสอบ ก่อนนำขึ้น Playground"
+    },
+    {
+      "id": "P4",
+      "name": "UAT บน Playground โดยร้าน",
+      "start": "2027-01-06",
+      "end": "2027-01-07",
+      "owner": "customer",
+      "backlog": [],
+      "note": "เจ้าของร้านหรือผู้ที่ร้านมอบหมายยืนยันผลและบันทึกชื่อกับวันที่"
+    },
+    {
+      "id": "P5",
+      "name": "อบรมเจ้าหน้าที่และผู้ดูแลระบบ",
+      "start": "2027-01-08",
+      "end": "2027-01-08",
+      "owner": "lead",
+      "backlog": [],
+      "note": "สาธิต S1 ถึง S10 และแชตผู้ช่วย"
+    },
+    {
+      "id": "P6",
+      "name": "ตรวจ /golive-check และ Go live",
+      "start": "2027-01-11",
+      "end": "2027-01-11",
+      "owner": "devops",
+      "backlog": [],
+      "note": "กด Go live ใน AI Workspace โดยมนุษย์หลังร้านยืนยัน"
+    },
+    {
+      "id": "P7",
+      "name": "ส่งมอบและปิดโครงการ",
+      "start": "2027-01-12",
+      "end": "2027-01-12",
+      "owner": "lead",
+      "backlog": [],
+      "note": "ส่ง runbook และ golive-checklist"
+    }
+  ],
+  "milestones": [
+    {
+      "name": "ฐานสิทธิ์และการเข้าใช้พร้อม (BL-04)",
+      "date": "2026-12-02"
+    },
+    {
+      "name": "flow ใบเสนอราคาถึงคำสั่งซื้อพร้อม (BL-17)",
+      "date": "2026-12-22"
+    },
+    {
+      "name": "ฟีเจอร์ครบทุก backlog ยกเว้นตรวจคุณภาพ (BL-23)",
+      "date": "2026-12-29"
+    },
+    {
+      "name": "ผ่านการตรวจคุณภาพและเทียบ wireframe 46 หน้า (BL-33)",
+      "date": "2026-12-31"
+    },
+    {
+      "name": "ขึ้น Playground และผ่าน SIT (BL-34)",
+      "date": "2027-01-05"
+    },
+    {
+      "name": "ร้านยืนยันผล UAT",
+      "date": "2027-01-07"
+    },
+    {
+      "name": "Go live",
+      "date": "2027-01-11"
+    },
+    {
+      "name": "ส่งมอบโครงการ",
+      "date": "2027-01-12"
+    }
+  ],
+  "project": {
+    "start": "2026-11-26",
+    "end": "2027-01-12"
+  },
+  "source": "draft",
+  "draftedAt": 1795601338,
+  "savedAt": 1795601338,
+  "savedBy": ""
+}
